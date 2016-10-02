@@ -1,12 +1,11 @@
 ## Installation -- You will need to install Node before hand.
-1. Download the repository
-2. Clone repo(which ever method you prefer)
-3. open command prompt/terminal and change directory to the project folder
-4. Install npm modules: `npm install`
-5. install bower through npm : `npm install -g bower`
-6. Install bower dependencies `bower install`
-7. Start up the server: `node server.js`
-8. View in browser at http://localhost:8080
+1. Clone repo(which ever method you prefer)
+2. open command prompt/terminal and change directory to the project folder
+3. Install npm modules: `npm install`
+4. install bower through npm : `npm install -g bower`
+5. Install bower dependencies `bower install`
+6. Start up the server: `node server.js`
+7. View in browser at http://localhost:8080
 
 ## Eclipse cloning repo(IntelliJ is similar, dont know exact detail)
 1. File -> import project -> git -> project from git repo -> clone uri
