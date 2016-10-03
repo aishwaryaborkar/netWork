@@ -13,7 +13,7 @@
 3. enter in github login
 4. choose master branch
 5. import project as a general project
-6.. fill in directory and other info and finish.
+6. fill in directory and other info and finish.
 
 
 if you have this set up, whenever you change the file you can use the ide to do the commit and push
