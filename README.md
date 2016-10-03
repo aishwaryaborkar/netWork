@@ -11,8 +11,10 @@
 1. File -> import project -> git -> project from git repo -> clone uri
 2. enter the 'https://github.com/aishwaryaborkar/cmpe133fall16.git' as uri
 3. enter in github login
-4. choose Setup Sandbox branch for this trial/test purpose
-5. fill in directory and other info and finish.
+4. choose master branch
+5. import project as a general project
+6.. fill in directory and other info and finish.
+
 
 if you have this set up, whenever you change the file you can use the ide to do the commit and push
 right click on project -> team -> commit and fill in the forms as needed.
