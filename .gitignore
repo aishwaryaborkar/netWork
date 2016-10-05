@@ -1095,3 +1095,4 @@ public/libs/jquery/src/var/rnothtmlwhite.js
 public/libs/jquery/src/var/slice.js
 public/libs/jquery/src/var/support.js
 public/libs/jquery/src/var/toString.js
+/node_modules/
