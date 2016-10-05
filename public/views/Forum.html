@@ -17,13 +17,34 @@
 		  <li class="list-group-item">Porta ac consectetur ac</li>
 		  <li class="list-group-item">Vestibulum at eros</li>
 		</ul>
-
 	</div>
 
 	<br>
+	<br>
+	<br>
 
-	<div class="forum">
+	<div class="forum" ng-controller="ForumController">
+
+		<div class="media">
+			<div class="media-left">
+				<a href="#">
+					<img class="media-object" src="images/profile.png">
+				</a>
+			</div>
+			<div class="media-body" ng-model="heading">
+				<h4 class="media-heading">{{heading}}</h4>
+				Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+				<div class="media m-t-2">
+					<a class="media-left" href="#">
+						<img class="media-object" src="images/profile.png">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Nested media heading</h4>
+						Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
-
 </div>
