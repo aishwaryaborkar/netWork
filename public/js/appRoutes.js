@@ -35,7 +35,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		
 		.when('/forum', {
 			templateUrl: 'views/Forum.html',
-			controller: 'SearchController'
+			controller: 'ForumController'
 		})
 		
 		.when('/connection', {

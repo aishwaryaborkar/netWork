@@ -1,1 +1,1 @@
-angular.module('netWork', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService', 'SearchController', 'SearchService']);
+angular.module('netWork', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService', 'SearchController', 'SearchService', 'ForumController']);
