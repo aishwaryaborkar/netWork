@@ -40,7 +40,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		
 		.when('/connection', {
 			templateUrl: 'views/Connection.html',
-			controller: 'SearchController'
+			controller: 'ConnectionController'
 		});
 
 	$locationProvider.html5Mode(true);
