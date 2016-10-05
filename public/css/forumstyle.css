@@ -1,0 +1,13 @@
+#forumOptions > ul > li {
+    list-style-type: none;
+    display: inline;
+    margin: 10px;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    font-size: 20px;
+}
+.forum {
+    background-color: dodgerblue;
+    width: 75%;
+    height: 400px;
+    margin: 0 auto;
+}
