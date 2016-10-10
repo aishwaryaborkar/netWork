@@ -28,26 +28,28 @@
 <body ng-app="netWork" ng-controller="MainController">
 	<div class="container">
 	
-		<!-- HEADER -->
+		<!-- HEADER(NOT LOGGED IN) -->
 		<nav class="navbar navbar-inverse" ng-hide="{{isLoggedIn}}">
 			<div class="navbar-header" style="float:left">
 				<a href="/" float="left"><img src="./images/header/logo4-copy.png" class="Logo"></a>
 			</div>
 			<div style="float:right">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav" style="float:right">
 				<li><a href="/"><img src="./images/header/logout.png"  class="icon"/></a></li>
 			</ul>
 		</nav>
+		
+		<!-- HEADER(LOGGED IN) -->
 		<nav class="navbar navbar-inverse" ng-show="{{isLoggedIn}}">
 			<div class="navbar-header" style="float:left">
 				<a href="/" float="left"><img src="./images/header/logo4-copy.png" class="Logo"></a>
 			</div>
 			<div style="float:right">
 				<ul class="nav navbar-nav">
-				<li><a href="/search">search</a></li>
 				<li><a href="/profile"><img src="./images/header/profile.png" class="icon"></a></li>
 				<li><a href="/connection"><img src="./images/header/connections.png" class="icon"/></a></li>
 				<li><a href="/message"><img src="./images/header/messages.png" class="icon"/></a></li>
+				<li><a href="/search"><img src="./images/header/searchglass.png"></a></li>
 				<li><a href="/forum"><img src="./images/header/forums.png" class="icon"/></a></li>
 				<li><a href="/"><img src="./images/header/logout.png"  class="icon"/></a></li>
 			</ul>

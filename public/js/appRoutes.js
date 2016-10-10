@@ -31,8 +31,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/connection', {
 			templateUrl: 'views/Connection.html',
 			controller: 'ConnectionController'
-		});
+		})
 
+		.when('/recoveraccount', {
+			templateUrl: 'views/Recovery.html',
+			controller: 'RecoveryController'
+		});
+		
+		
 	$locationProvider.html5Mode(true);
 
 }]);
