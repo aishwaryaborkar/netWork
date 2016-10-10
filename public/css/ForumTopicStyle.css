@@ -1,0 +1,40 @@
+#forumOptionsWrapper > ul > li {
+    list-style-type: none;
+    display: inline;
+    margin: 10px;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    font-size: 20px;
+}
+#forumOptionsWrapper > ul > li > a {
+    text-decoration: none;
+    color: black;
+}
+#forumOptionsWrapper > ul > li > a:hover {
+    color: white;
+}
+#options {
+    padding-top: 10px;
+}
+#forumOptions {
+    background-color: dodgerblue;
+    width: 100%;
+    height: 50px;
+}
+.forum {
+    width: 95%;
+    height: 700px;
+    margin: 0 auto;
+    background-color: dodgerblue;
+}
+.media-object {
+    width: 300px;
+    height: 300px;
+}
+.media-heading > a {
+    text-decoration: none;
+    color: black;
+    font-size: 50px;
+}
+.media-header > a:hover {
+    color: dodgerblue;
+}
