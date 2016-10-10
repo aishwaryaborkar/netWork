@@ -7,6 +7,16 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/Login.html',
 			controller: 'MainController'
 		})
+
+		.when('/nerds', {
+			templateUrl: 'views/nerd.html',
+			controller: 'NerdController'
+		})
+
+		.when('/geeks', {
+			templateUrl: 'views/geek.html',
+			controller: 'GeekController'	
+		})
 		
 		.when('/search', {
 			templateUrl: 'views/Search.html',
@@ -27,18 +37,17 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/Forum.html',
 			controller: 'ForumController'
 		})
+
+		.when('/forumTopic', {
+			templateUrl: 'views/ForumTopic.html',
+			controller: 'ForumController'
+		})
 		
 		.when('/connection', {
 			templateUrl: 'views/Connection.html',
 			controller: 'ConnectionController'
-		})
-
-		.when('/recoveraccount', {
-			templateUrl: 'views/Recovery.html',
-			controller: 'RecoveryController'
 		});
-		
-		
+
 	$locationProvider.html5Mode(true);
 
 }]);
