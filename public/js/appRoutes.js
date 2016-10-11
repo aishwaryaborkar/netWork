@@ -7,15 +7,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/Login.html',
 			controller: 'MainController'
 		})
-
-		.when('/nerds', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
-		})
-
-		.when('/geeks', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'	
+		
+		.when('/recoveraccount', {
+			templateUrl: 'views/Recovery.html',
+			controller: 'RecoveryController'
 		})
 		
 		.when('/search', {
