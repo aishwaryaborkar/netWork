@@ -13,6 +13,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'RecoveryController'
 		})
 		
+		.when('/createaccount', {
+			templateUrl: 'views/Registration.html',
+			controller: 'RegistrationController'
+		})
+		
 		.when('/search', {
 			templateUrl: 'views/Search.html',
 			controller: 'SearchController'

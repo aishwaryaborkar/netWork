@@ -1,17 +1,43 @@
-var isUserLoggedIn = true;
-var username = "abc@gmail.com"
-var password = "password"
-
-angular.module('MainCtrl', []).controller('MainController', function($scope) {
-
-	$scope.isLoggedIn = validateLogin("abc@gmail.com","password");	
+angular.module('MainCtrl', [])
+.controller('MainController', function($scope, $rootScope, $location) {
+	this.isLoggedIn = function(){
+		return $rootScope.isUserLoggedIn
+	};
 	
+	this.logout = function(){
+		$rootScope.isUserLoggedIn = false;
+		$location.path('/');
+	}
 	
+	this.loadRegistration = function(){
+		$location.path('/createaccount');
+	}
 	
+	this.goHome = function(){
+		if($rootScope.isUserLoggedIn){
+			$location.path('/profile');
+		}else{
+			$location.path('/');
+		}
+	}
+})
+.controller('LoginController', function($scope, $rootScope, $location) {
+	
+	this.validateLogin = function(userIn, passIn){
+		$rootScope.isUserLoggedIn = (userIn.$viewValue === 'admin' && passIn.$viewValue === 'password');
 
+		if($rootScope.isUserLoggedIn){
+			$location.path('/profile'); // path not hash
+		}
+	};
+})
+.controller('RegistrationController', function($scope, $rootScope, $location) {
+	
+	this.validateLogin = function(userIn, passIn){
+		$rootScope.isUserLoggedIn = (userIn.$viewValue === 'admin' && passIn.$viewValue === 'password');
+
+		if($rootScope.isUserLoggedIn){
+			$location.path('/profile'); // path not hash
+		}
+	};
 });
-
-function validateLogin(userIn, passIn){
-	return (userIn == username && passIn == password);
-}
-

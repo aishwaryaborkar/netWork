@@ -1,0 +1,110 @@
+<div class="jumbotron text-center">
+	<link rel="stylesheet" type="text/css" href="../css/login.css" />
+	<link rel="stylesheet" type="text/css" href="../css/simplegrid.css" />
+
+	
+	<body>
+		<div class="grid grid-pad">
+			<div class="col-3-12"></div>
+    		<div class="col-6-12">
+    		    <form name="form" ng-controller="RegistrationController as ctrl" role="form">
+        		<div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.password.$error.required }">
+            		<label for="Email">Email</label>
+	            	<input type="text" name="email" id="email" class="form-control" ng-model="email" required />
+		            <span ng-show="form.email.$error.required" class="help-block">Email is required</span>
+        		</div>
+        		<div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+	            	<label for="password">Password</label>
+    	        	<input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+	    	        <span ng-show="form.password.$error.required" class="help-block">Password is required</span>
+        		</div>
+        		<div class="form-group" ng-class="{ 'has-error': form.passwordConf.$dirty && form.passwordConf.$error.required }">
+	            	<label for="passwordConf">Password Confirmation</label>
+    	        	<input type="password" name="passwordConf" id="passwordConf" class="form-control" ng-model="passwordConf" required />
+	    	        <span ng-show="form.passwordConf.$error.required" class="help-block">Password Confirmation is required</span>
+        		</div>
+        		<label for="day">Day: </label>
+        		<select name=birthday" id="day">
+        		<option>1</option>
+        		<option>2</option>
+        		<option>3</option>
+        		<option>4</option>
+        		<option>5</option>
+        		<option>6</option>
+        		<option>7</option>
+        		<option>8</option>
+        		<option>9</option>
+        		<option>10</option>
+        		<option>11</option>
+        		<option>12</option>
+        		<option>13</option>
+        		<option>14</option>
+        		<option>15</option>
+        		<option>16</option>
+        		<option>17</option>
+        		<option>18</option>
+        		<option>19</option>
+        		<option>20</option>
+        		<option>21</option>
+        		<option>22</option>
+        		<option>23</option>
+        		<option>24</option>
+        		<option>25</option>
+        		<option>26</option>
+        		<option>27</option>
+        		<option>28</option>
+        		<option>29</option>
+        		<option>30</option>
+        		<option>31</option>
+        		</select>
+        		
+        		<label for="month">Month: </label>
+        		<select name=birthday" id="month">
+        		<option>January</option>
+        		<option>February</option>
+        		<option>March</option>
+        		<option>April</option>
+        		<option>May</option>
+        		<option>June</option>
+        		<option>July</option>
+        		<option>August</option>
+        		<option>September</option>
+        		<option>October</option>
+        		<option>November</option>
+        		<option>December</option>
+        		</select>
+        		
+        		<label for="year">Year: </label>
+        		<select name=birthday" id="year">
+				<option>1990</option>
+				<option>1991</option>
+				<option>1992</option>
+				<option>1993</option>
+				<option>1994</option>
+				<option>1995</option>
+				<option>1996</option>
+				<option>1997</option>
+				<option>1998</option>
+        		</select>
+        		
+        		<br>
+        		
+        		<form>
+        			<input type="checkbox" name="premium">Premium User<br>
+        		</form>
+        		
+        		<br>
+        		
+        		<div class="form-group">
+            		<button type="submit" ng-click=" " class="btn btn-primary pull-right" value="Login" title="Login" ng-disabled="!form.$valid">
+           				<span>Begin Work Journey!</span>
+         			</button>
+            	</div>
+   				</form>
+    		</div>
+
+			<div class="col-3-12"></div>
+		</div>
+	
+	</body>
+</div>
