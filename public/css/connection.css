@@ -1,36 +1,9 @@
 @charset "UTF-8";
 /* CSS Document */
-html{
-	background-color:#000;
-	color: #FFF !Important;
-	overflow: auto;
-}
-head {
-	border-bottom-color: #FFF;
-	text-align: left;
-}
-.nav-main{
-	display:table;
-	float: left;
-	width: 100%;
-}
-.nav-main li{
-	display: table-cell;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:16px;
-	float:center;
-}
-nav-main li: hover{
-	background-color:#333;
-}
 
 table {
-	color: black;
+	color: gray;
     background-color: white;
-}
-footer{
- position:fixed;
- bottom:0;
- left:5;
+    border-radius: 25px;
 }
 
