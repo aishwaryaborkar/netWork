@@ -15,15 +15,27 @@ table {
     border-radius: 25px;
 	float: center;
 }
+hr{
+	width: 95%;
+	align: center;
+}
 th{
-	padding: 10px;
+	border: 2px solid;
+    border-radius: 25px;
+    border-color: #CCC;
+}
+img{
+	height: 100px;
+	width: 100px;
+	border-radius: 15px;
 }
 .boxed{
-	padding:10px;
+	border: 2px solid;
+    border-radius: 25px;
+	padding:20px;
 }
 button{
-	float: right;
-	margin-right: 45;
+	border-radius: 15px;
 }
 img{
 	width:100px;
