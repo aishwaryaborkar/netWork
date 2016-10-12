@@ -1,5 +1,8 @@
 @charset "UTF-8";
 /* CSS Document */
+div{
+	align: center;
+}
 h1{
 	font-family:"Arial Black", Gadget, sans-serif;
 	color:#000;
@@ -24,20 +27,18 @@ th{
     border-radius: 25px;
     border-color: #CCC;
 }
-img{
+#photo{
 	height: 100px;
 	width: 100px;
 	border-radius: 15px;
 }
-.boxed{
-	border: 2px solid;
+div #boxed{
+	align: center;
+	border: 2px solid #FFF;
     border-radius: 25px;
 	padding:20px;
 }
 button{
 	border-radius: 15px;
 }
-img{
-	width:100px;
-	height 100px;
-}
+
