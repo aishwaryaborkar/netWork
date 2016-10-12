@@ -10,16 +10,16 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
 		[{
 			name:"Stacy Wong",
 			jobTitle:"Software Engineer",
-			company:"net[work]"}
+			company:"net[work]"
 		},
 		{
 			name:"Jonathan Chen",
 			jobTitle:"Software Consultant",
-			Company:"Thomson Reuters"}
+			Company:"Thomson Reuters"
 		},
 		{
 			name:"Ash Borkar",
 			jobTitle:"Software Developer",
-			Company:"Visa"}
+			Company:"Visa"
 		}]
 });
