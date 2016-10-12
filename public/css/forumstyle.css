@@ -4,9 +4,7 @@
     margin: 10px;
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     font-size: 20px;
-<<<<<<< HEAD
-   
-=======
+
 }
 #forumOptionsWrapper > ul > li > a {
     text-decoration: none;
@@ -15,9 +13,22 @@
 #forumOptionsWrapper > ul > li > a:hover {
     color: white;
 }
+
+.media {
+    border: 2px solid;
+    border-radius: 25px;
+    background-color: dodgerblue;
+
+}
+/*
+div {
+    border: 2px solid;
+    border-radius: 25px;
+}*/
+
 #options {
     padding-top: 10px;
->>>>>>> 591cc288d8d4fbd843092894ac255998b0e32a37
+>
 }
 #forumOptions {
     background-color: dodgerblue;
