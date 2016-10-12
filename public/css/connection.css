@@ -1,9 +1,28 @@
 @charset "UTF-8";
 /* CSS Document */
-
+h1{
+	font-family:"Arial Black", Gadget, sans-serif;
+	color:#000;
+	font-size:larger;
+	float: center;
+	position: 60px;
+}
 table {
+	width:30%;
+	border: 5;
 	color: gray;
     background-color: white;
     border-radius: 25px;
+	float: center;
+}
+th{
+	padding: 10px;
+}
+.boxed{
+	padding:10px;
+}
+button{
+	float: right;
+	margin-right: 45;
 }
 
