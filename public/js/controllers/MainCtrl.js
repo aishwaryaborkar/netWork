@@ -21,6 +21,7 @@ angular.module('MainCtrl', [])
 		}
 	}
 })
+
 .controller('LoginController', function($scope, $rootScope, $location) {
 	
 	this.validateLogin = function(userIn, passIn){
@@ -31,6 +32,7 @@ angular.module('MainCtrl', [])
 		}
 	};
 })
+
 .controller('RegistrationController', function($scope, $rootScope, $location) {
 	
 	this.validateLogin = function(userIn, passIn){
