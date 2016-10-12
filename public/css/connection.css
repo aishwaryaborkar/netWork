@@ -3,31 +3,27 @@
 h1{
 	font-family:"Arial Black", Gadget, sans-serif;
 	color:#000;
-	font-size:larger;
-	float: center;
-	position: 60px;
+	font-size:large;
+	align: center;
 }
 table {
-	width:30%;
-	border: 5;
-	color: gray;
-    background-color: white;
-    border-radius: 25px;
-	float: center;
+	width:100%;
+	align: center;
 }
 hr{
 	width: 95%;
 	align: center;
 }
 th{
-	border: 2px solid;
-    border-radius: 25px;
-    border-color: #CCC;
+	padding: 20px;
 }
-#photo{
+div #boxed{
+	border: 2px solid #000; 
+	border-radius: 5px;	
+}
+img src #photo{
 	height: 100px;
 	width: 100px;
-	border-radius: 15px;
 }
 Button{
 	border-radius: 15px;
