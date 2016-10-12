@@ -17,11 +17,10 @@
 
 	<!-- JS(Custom Source) -->
 	<script src="js/controllers/MainCtrl.js"></script>
-	<script src="js/controllers/NerdCtrl.js"></script>
-	<script src="js/services/NerdService.js"></script>
-	<script src="js/controllers/GeekCtrl.js"></script>
-	<script src="js/services/GeekService.js"></script>
 	<script src="js/controllers/SearchController.js"></script>
+	<script src="js/controllers/ConnectionController.js"></script>
+	<script src="js/controllers/ForumController.js"></script>
+	<script src="js/controllers/RecoveryController.js"></script>
 	<script src="js/services/SearchService.js"></script>
 	<script src="js/controllers/ForumController.js"></script>
 	<script src="js/controllers/GeekCtrl.js"></script>
@@ -29,22 +28,33 @@
 	<script src="js/app.js"></script>
 </head>
 
-<body ng-app="netWork" ng-controller="NerdController">
+<body ng-app="netWork" ng-controller="MainController as ctrl">
 	<div class="container">
 	
-		<!-- HEADER -->
-		<nav class="navbar navbar-inverse">
-			<div class="navbar-header">
-				<a href="/"><img src="./images/header/logo4-copy.png" class="Logo"></a>
+		<!-- HEADER(NOT LOGGED IN) -->
+		<nav class="navbar navbar-inverse" ng-hide="$root.isUserLoggedIn">
+			<div class="navbar-header" style="float:left">
+				<a href="#"><img src="./images/header/logo4-copy.png" class="Logo" ng-click="ctrl.goHome()"></a>
 			</div>
+			<div style="float:right">
+				<ul class="nav navbar-nav" style="float:right">
+				<li><button name="Sign Up" value="Sign Up" ng-click="ctrl.loadRegistration()"><span>Sign Up!</span></button></li>
+			</ul>
+		</nav>
+		
+		<!-- HEADER(LOGGED IN) -->
+		<nav class="navbar navbar-inverse" ng-show="$root.isUserLoggedIn">
+			<div class="navbar-header" style="float:left">
+				<img src="./images/header/logo4-copy.png" class="Logo" ng-click="ctrl.goHome()">
+			</div>
+			<div style="float:right">
 				<ul class="nav navbar-nav">
-				<li><a href="/nerds">Nerds</a></li>
-				<li><a href="/search">search</a></li>
 				<li><a href="/profile"><img src="./images/header/profile.png" class="icon"></a></li>
 				<li><a href="/connection"><img src="./images/header/connections.png" class="icon"/></a></li>
 				<li><a href="/message"><img src="./images/header/messages.png" class="icon"/></a></li>
+				<li><a href="/search"><img src="./images/header/searchglass.png"></a></li>
 				<li><a href="/forum"><img src="./images/header/forums.png" class="icon"/></a></li>
-				<li><a href="/"><img src="./images/header/logout.png"  class="icon"/></a></li>
+				<li><a href="/"><img src="./images/header/logout.png"  class="icon" ng-click="ctrl.logout()"/></a></li>
 			</ul>
 		</nav>
 

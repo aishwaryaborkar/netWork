@@ -1,3 +1,39 @@
+
 <div class="jumbotron text-center">
-	<h1>Home Page 4 Life</h1>
+	<link rel="stylesheet" type="text/css" href="../css/login.css" />
+	<link rel="stylesheet" type="text/css" href="../css/simplegrid.css" />
+
+	
+	<body>
+		<div class="grid grid-pad">
+    		<div class="col-8-12">
+        	   	<img src= "./images/login/logo.jpg" alt="company Logo" style="max-width:100%"/>
+    		</div>
+    		<div class="col-4-12">
+    		    <form name="form" ng-controller="LoginController as ctrl" role="form">
+        		<div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.password.$error.required }">
+            		<label for="Email">Email</label>
+	            	<input type="text" name="email" id="email" class="form-control" ng-model="email" required />
+		            <span ng-show="form.email.$error.required" class="help-block">Email is required</span>
+        		</div>
+        		<div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+	            	<label for="password">Password</label>
+    	        	<input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+	    	        <span ng-show="form.password.$error.required" class="help-block">Password is required</span>
+        		</div>
+     			<div class="form-group">
+     			    <div class="col-1-2">
+            			<button type="submit" ng-click="ctrl.validateLogin(form.email,form.password)" class="btn btn-primary pull-right" value="Login" title="Login" ng-disabled="!form.$valid">
+           				<span>Login</span>
+         			</button>
+            		</div>
+         			<div class="col-1-2">
+            			<a href="/recoveraccount"><strong><u>Forgot My Logins</u><strong></a>
+            		</div>
+     			</div>
+   			</form>
+    		</div>
+		</div>
+	
+	</body>
 </div>

@@ -1,3 +1,4 @@
+
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 	$routeProvider
@@ -7,15 +8,15 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/Login.html',
 			controller: 'MainController'
 		})
-
-		.when('/nerds', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
+		
+		.when('/recoveraccount', {
+			templateUrl: 'views/Recovery.html',
+			controller: 'RecoveryController'
 		})
-
-		.when('/geeks', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'	
+		
+		.when('/createaccount', {
+			templateUrl: 'views/Registration.html',
+			controller: 'RegistrationController'
 		})
 		
 		.when('/search', {
@@ -37,12 +38,16 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/Forum.html',
 			controller: 'ForumController'
 		})
+
+		.when('/forumTopic', {
+			templateUrl: 'views/ForumTopic.html',
+			controller: 'ForumController'
+		})
 		
 		.when('/connection', {
 			templateUrl: 'views/Connection.html',
-			controller: 'SearchController'
+			controller: 'ConnectionController'
 		});
 
 	$locationProvider.html5Mode(true);
-
 }]);

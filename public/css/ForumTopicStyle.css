@@ -4,9 +4,6 @@
     margin: 10px;
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     font-size: 20px;
-<<<<<<< HEAD
-   
-=======
 }
 #forumOptionsWrapper > ul > li > a {
     text-decoration: none;
@@ -17,7 +14,6 @@
 }
 #options {
     padding-top: 10px;
->>>>>>> 591cc288d8d4fbd843092894ac255998b0e32a37
 }
 #forumOptions {
     background-color: dodgerblue;
@@ -26,17 +22,18 @@
 }
 .forum {
     width: 95%;
-    height: 400px;
+    height: 700px;
     margin: 0 auto;
     background-color: dodgerblue;
 }
 .media-object {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
 }
 .media-heading > a {
     text-decoration: none;
     color: black;
+    font-size: 50px;
 }
 .media-header > a:hover {
     color: dodgerblue;
