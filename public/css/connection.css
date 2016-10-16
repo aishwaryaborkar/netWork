@@ -4,21 +4,28 @@ h1{
 	font-family:"Arial Black", Gadget, sans-serif;
 	color:#000;
 	font-size:large;
-	align: center;
+	margin: auto;
+    width: 50%;
+}
+h2{
+	position: 50%;
+	text-align:center;
 }
 table {
 	width:100%;
-	align: center;
 }
 hr{
 	width: 95%;
-	align: center;
 }
 th{
 	padding: 20px;
 }
+p2{
+	font-size: 11px;
+	font-style: italic;
+}
 div #boxed{
-	border: 2px solid #000; 
+	border: 2px solid #0868A0; 
 	border-radius: 5px;	
 }
 img src #photo{
@@ -28,5 +35,6 @@ img src #photo{
 Button{
 	border-radius: 15px;
 	align: right;
+	alignment-adjust:
 }
 
