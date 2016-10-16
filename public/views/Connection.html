@@ -1,11 +1,14 @@
 
 <div class="jumbotron text-center" style = "background-color: white;">
 <!-- Connection page-->
+<div class="container">
 <ul class="nav nav-pills">
-  <li class="active"><a href="#connection">Connections</a></li>
-  <li><a href="#request">Requests</a></li>
+  <li class="active"><a href="#connected" data-toggle="tab">Connections</a></li>
+  <li class=""><a href="#request" data-toggle="tab">Requests <span class="label label-info"">3</span></a></li>
   </ul>
-  <div id="request" class = "tabcontent">
+  </div>
+  <div class="tab-content">
+  <div id="request" class = "tab-pane">
 <h2 align="center" style="font-family:Arial, Gadget, sans-serif;">Connection Requests <span class="label label-info"">3</span></h2>
 
 <!--Connection Request bubbles utilizing Bootstrap-->
@@ -54,8 +57,8 @@
        </div>
    </div>
 </div>
-<hr/>
-<div id="connected" class="tabcontent">
+
+<div id="connected" class="tab-pane active">
 <!--Actual connections user has-->
 <h2 align = "center" style="font-family:Arial, Gadget, sans-serif;">Connections <span class="label label-info"">4</span></h2>
 
