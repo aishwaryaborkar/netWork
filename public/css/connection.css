@@ -1,36 +1,40 @@
 @charset "UTF-8";
 /* CSS Document */
-html{
-	background-color:#000;
-	color: #FFF !Important;
-	overflow: auto;
+h1{
+	font-family:"Arial Black", Gadget, sans-serif;
+	color:#000;
+	font-size:large;
+	margin: auto;
+    width: 50%;
 }
-head {
-	border-bottom-color: #FFF;
-	text-align: left;
+h2{
+	position: 50%;
+	text-align:center;
 }
-.nav-main{
-	display:table;
-	float: left;
-	width: 100%;
-}
-.nav-main li{
-	display: table-cell;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:16px;
-	float:center;
-}
-nav-main li: hover{
-	background-color:#333;
-}
-
 table {
-	color: black;
-    background-color: white;
+	width:100%;
 }
-footer{
- position:fixed;
- bottom:0;
- left:5;
+hr{
+	width: 95%;
+}
+th{
+	padding: 20px;
+}
+p2{
+	font-size: 11px;
+	font-style: italic;
+}
+div #boxed{
+	border: 2px solid #0868A0; 
+	border-radius: 5px;	
+}
+img src #photo{
+	height: 100px;
+	width: 100px;
+}
+Button{
+	border-radius: 15px;
+	align: right;
+	alignment-adjust:
 }
 
