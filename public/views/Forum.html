@@ -24,12 +24,12 @@
 						<div class="media-left">
 							<a href="#">
 								<a href="forumTopic"><img class="media-object" src="images/forum/profileFiller.jpg"></a>
+								<p>By: {{post.postAuthor}}</p>
+								<p>Date: {{post.postDate}}</p>
 							</a>
 						</div>
 						<div class="media-body" ng-model="post">
 							<h4 class="media-heading"><a href="forumTopic">{{post.postName}}</a></h4>
-							<p>By: {{post.postAuthor}}</p>
-							<p>Date: {{post.postDate}}</p>
 							<p>{{post.postContent}}</p>
 							
 						</div>
