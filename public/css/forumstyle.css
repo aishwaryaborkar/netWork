@@ -13,28 +13,10 @@
 #forumOptionsWrapper > ul > li > a:hover {
     color: white;
 }
-/*.media{
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-font-size: 14px;
-line-height: 1.42857143;
-color: #fff;
-background-color: #F1F1F1;
-}*/
-.jumbotron {
-    position:relative;
-}
-
 .media {
     border-radius: 10px;
     background-color: #42BBEB;
-
 }
-/*
-div {
-    border: 2px solid;
-    border-radius: 25px;
-}*/
-
 #options {
     padding-top: 10px;
  
@@ -43,12 +25,6 @@ div {
     background-color: #42BBEB;
     width: 100%;
     height: 50px;
-}
-.forum {
-    width: 95%;
-    height: 400px;
-    margin: 0 auto;
-    background-color: #42BBEB;
 }
 .media-object {
     width: 150px;
@@ -71,4 +47,8 @@ div {
 }
 .media-left > p {
     font-size: 15px;
+}
+.temp{
+    background-color: #0868A0;
+    height: 500px;
 }
