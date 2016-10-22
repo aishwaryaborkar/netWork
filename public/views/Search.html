@@ -1,67 +1,48 @@
 <link rel="stylesheet" type="text/css" href="css/search.css">
 
 <body>
+
+	<!-- FOR THE SEARCH FILEDS-->
   <div class="row">
   <div class="col-lg-4"> </div><!-- /.col-lg-6 -->
   <div class="col-lg-4">
   
     <div class="input-group">
-      <input type="text" class="form-control" aria-label="...">
-      
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </div><!-- /btn-group -->
-
+       <form name="form" role="form" ng-controller="SearchController as ctrl">
+        		<div class="form-group">
+            		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" />
+        		</div>
+				<p style= "font-style:bold;font-size: 18px;">{{ctrl.result.name}}</p> 
+				<p style= "font-size: 15px;">{{ctrl.result.jobTitle}}</p> 
+				<p style= "font-size: 15px;">{{ctrl.result.company}}</p> 
+		<input type="submit" name="submit" ng-click="ctrl.handleSubmit()" value="Search"/>
+		</form>
     </div><!-- /input-group -->
+	
   </div><!-- /.col-lg-6 -->
   <div class="col-lg-4"></div>
 
 </div>
 
-
+	<!-- FOR THE SEARCH RESULT-->
 <div class="row">
   <div class="col-lg-4">
 
   </div>
   <div class="col-lg-4">
-  <ul>
-    <li>
-      <img src="https://static.pexels.com/photos/28409/pexels-photo.jpg" >
-      <h3>The Grasslands</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet.</p>
-    </li>
-      
-    <li>
-      <img src="https://static.pexels.com/photos/5198/bow-tie-fashion-man-person.jpg" >
-      <h3>Paradise Found</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet.</p>
-    </li>
+   <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center" ng-repeat="result in results">
+      <br />
+          <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
 
-    <li>
-      <img src="https://static.pexels.com/photos/7529/pexels-photo.jpeg" >
-      <h3>Smoke On The Water</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet.</p>
-    </li>
-
-    <li>
-      <img src="https://static.pexels.com/photos/7077/man-people-office-writing.jpg" >
-      <h3>Headline</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet.</p>
-    </li>
-  </ul>
-  </div>
-      
- 
+          <p style= "font-style:bold;font-size: 18px;">{{result.name}}</p> 
+          <p style= "font-size: 15px;">{{result.jobTitle}}</p> 
+		  <p style= "font-size: 15px;">{{result.company}}</p> 
+          <div class="dropdown">
+  		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">View Profile</button>
+	</div> <!--dropdown-->
+	<br />
+      </div><!--boxed-->
   <div class="col-lg-4"></div>
-
-
 </div>
 
 </body>
