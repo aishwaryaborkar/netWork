@@ -8,14 +8,14 @@
   <div class="col-lg-4">
   
     <div class="input-group">
-       <form name="form" role="form" ng-controller="SearchController as ctrl">
+       <form name="form" role="form" ng-controller="SearchController as searchCtrl">
         		<div class="form-group">
             		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" />
         		</div>
-				<p style= "font-style:bold;font-size: 18px;">{{ctrl.result.name}}</p> 
-				<p style= "font-size: 15px;">{{ctrl.result.jobTitle}}</p> 
-				<p style= "font-size: 15px;">{{ctrl.result.company}}</p> 
-		<input type="submit" name="submit" ng-click="ctrl.handleSubmit()" value="Search"/>
+				<p style= "font-style:bold;font-size: 18px;">{{testData.name}}</p> 
+				<p style= "font-size: 15px;">{{testData.jobTitle}}</p> 
+				<p style= "font-size: 15px;">{{testData.company}}</p> 
+		<input type="submit" name="submit" ng-click="handleSubmit()" value="Search"/>
 		</form>
     </div><!-- /input-group -->
 	
@@ -30,7 +30,7 @@
 
   </div>
   <div class="col-lg-4">
-   <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center" ng-repeat="result in results">
+   <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center" ng-repeat="result in searchCtrl.results track by result.id">
       <br />
           <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
 
