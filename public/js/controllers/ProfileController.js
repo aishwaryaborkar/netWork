@@ -1,3 +1,3 @@
-angular.module('ProfileController', []).controller('ProfileController', function($scope) {
+angular.module('ProfileController', []).controller('ProfileController', function($scope, $uibModal) {
     console.log('ProfileController loaded[]');
 });
