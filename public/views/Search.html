@@ -8,13 +8,15 @@
   <div class="col-lg-4">
   
     <div class="input-group">
-       <form name="form" role="form" ng-controller="SearchController as searchCtrl">
+       <form name="form" role="form">
         		<div class="form-group">
             		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" />
         		</div>
-				<p style= "font-style:bold;font-size: 18px;">{{testData.name}}</p> 
-				<p style= "font-size: 15px;">{{testData.jobTitle}}</p> 
-				<p style= "font-size: 15px;">{{testData.company}}</p> 
+        	<div ng-repeat="data in testData">
+				<p style= "font-style:bold;font-size: 18px;">{{data.name}}</p> 
+				<p style= "font-size: 15px;">{{data.jobTitle}}</p> 
+				<p style= "font-size: 15px;">{{data.company}}</p>
+				</div> 
 		<input type="submit" name="submit" ng-click="handleSubmit()" value="Search"/>
 		</form>
     </div><!-- /input-group -->
@@ -27,21 +29,18 @@
 	<!-- FOR THE SEARCH RESULT-->
 <div class="row">
   <div class="col-lg-4">
-
+  
   </div>
   <div class="col-lg-4">
-   <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center" ng-repeat="result in searchCtrl.results track by result.id">
-      <br />
+   <div class="boxed" style="border: 2px solid #0868A0; border-radius: 5px;" align="center" ng-repeat="data in results">
           <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-
-          <p style= "font-style:bold;font-size: 18px;">{{result.name}}</p> 
-          <p style= "font-size: 15px;">{{result.jobTitle}}</p> 
-		  <p style= "font-size: 15px;">{{result.company}}</p> 
+          <p style= "font-style:bold;font-size: 18px;">{{data.name}}</p> 
+          <p style= "font-size: 15px;">{{data.jobTitle}}</p> 
+		  <p style= "font-size: 15px;">{{data.company}}</p> 
           <div class="dropdown">
-  		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">View Profile</button>
-	</div> <!--dropdown-->
-	<br />
-      </div><!--boxed-->
+  			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">View Profile</button>
+		  </div> <!--dropdown-->
+   </div><!--boxed-->
   <div class="col-lg-4"></div>
 </div>
 

@@ -11,19 +11,15 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 			return $http({
 						method: 'GET',
 						url: urlBase + '/testService'
-			}).then(handleSuccess, handleError);
+			}).then( 
+				function(res) {
+					console.log(JSON.stringify(res.data));
+				return res.data;
+				}, function(res) {
+					return $q.reject(res.data);
+			});
 		}
- 
-        //if http success...
-        function handleSuccess(res) {
-        	console.log(JSON.stringify(res.data));
-            return res.data;
-        }
- 
-		//if http fails
-        function handleError(res) {
-            return $q.reject(res.data);
-        }
+        
 	
     return dataService;
 }]);
