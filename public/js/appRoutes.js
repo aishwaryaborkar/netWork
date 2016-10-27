@@ -9,6 +9,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'MainController'
 		})
 		
+		.when('/home', {
+			templateUrl: 'views/home.html',
+			controller: 'MainController'
+		})
+		
 		.when('/recoveraccount', {
 			templateUrl: 'views/Recovery.html',
 			controller: 'RecoveryController'
