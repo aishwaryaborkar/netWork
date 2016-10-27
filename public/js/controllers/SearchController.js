@@ -2,6 +2,9 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 	var temp = [{id:1, "name":"JC","jobTitle":"Software Consultant","company":"Thomson Reuters"}];
 	$scope.testData = temp;
 	
+	var isPremuiumUser = false;
+	$scope.premiumUser = isPremiumUser;
+	
 	$scope.results = [];
 	
     $scope.handleSubmit = function() {
