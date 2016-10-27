@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('User', {
-		//TALK TO NAV
+module.exports = mongoose.Schema( 
+	{	
+		email : String,
+		password : String,
 	}
-});
+);
