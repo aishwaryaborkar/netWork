@@ -1,14 +1,17 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('Forum', 
+module.exports = mongoose.Schema(  
 	{
 		title : String,
-		ownerName : String,
+		forumOwner : String,
 		date : String,
 		description : String,
-		type : String,
-		comments : [{ ownerName : String,
+		comments : [{ commentOnwer : String,
 					  date : String,
-					  description : String,}]
+					  description : String,
+					  reply : [{ replyOnwer : String,
+								 date : String,
+								 description : String}]
+					}]
 	}
-});
+);
