@@ -5,6 +5,7 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 	var isPremuiumUser = false;
 	$scope.premiumUser = isPremiumUser;
 	
+	
 	$scope.results = [];
 	
     $scope.handleSubmit = function() {
