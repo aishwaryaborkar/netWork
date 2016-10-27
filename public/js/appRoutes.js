@@ -26,7 +26,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		
 		.when('/profile', {
 			templateUrl: 'views/Profile.html',
-			controller: 'SearchController'
+			// controller: 'SearchController'
+			controller: 'ProfileController'
 		})
 		
 		.when('/message', {

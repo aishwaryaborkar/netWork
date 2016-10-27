@@ -1,36 +1,14 @@
-#forumOptionsWrapper > ul > li {
-    list-style-type: none;
-    display: inline;
-    margin: 10px;
-    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-    font-size: 20px;
-
-}
-#forumOptionsWrapper > ul > li > a {
-    text-decoration: none;
-    color: black;
-}
-#forumOptionsWrapper > ul > li > a:hover {
-    color: white;
-}
+/*border around divs*/
 .media {
     border-radius: 10px;
-    background-color: #42BBEB;
 }
-#options {
-    padding-top: 10px;
- 
-}
-#forumOptions {
-    background-color: #42BBEB;
-    width: 100%;
-    height: 50px;
-}
+/*forum picture*/
 .media-object {
     width: 150px;
     height: 150px;
     margin: 30px;
 }
+/*forum name*/
 .media-heading > a {
     text-decoration: none;
     color: black;
@@ -39,16 +17,25 @@
     padding-top: 30px;
     font-size: 25px;
 }
+/*forum description*/
 .media-body > p {
     font-size: 20px;
-}
-.media-header > a:hover {
-    color: #42BBEB;
 }
 .media-left > p {
     font-size: 15px;
 }
-.temp{
+/*featured style*/
+.featured{
     background-color: #0868A0;
-    height: 500px;
+    color: white;
+}
+.glyphicon {
+    padding-right: 10px;
+}
+/*forums style*/
+.forums {
+     background-color: #42BBEB;
+}
+.btn {
+    
 }
