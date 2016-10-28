@@ -43,11 +43,11 @@
 	
 		<!-- HEADER(NOT LOGGED IN) -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" ng-hide="$root.isUserLoggedIn">
-			<div class="navbar-header" style="float:left">
+			<div class="navbar-header" style="float:left;">
 				<a href="#"><img src="./images/header/logo4-copy.png" class="Logo" ng-click="ctrl.goHome()"></a>
 			</div>
 			<div style="float:right">
-				<ul class="nav navbar-nav" style="float:right">
+				<ul class="nav navbar-nav" style="float:right;">
 				<li><a href="/login"><img src="./images/header/login.png" class="icon" style="margin-top:10px"/></a></li>
 				<li><a href="/createaccount"><img src="./images/header/signup.png" class="icon" style="margin-top:5px"/></a></li>
 			</ul>
@@ -55,15 +55,15 @@
 		
 		<!-- HEADER(LOGGED IN) -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" ng-show="$root.isUserLoggedIn">
-			<div class="navbar-header" style="float:left">
+			<div class="navbar-header" style="float:left;">
 				<img src="./images/header/logo4-copy.png" class="Logo" ng-click="ctrl.goHome()">
 			</div>
 			<div style="float:right">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav" style="margin-top:10px;">
 				<li><a href="/profile"><img src="./images/header/profile.png" class="icon" title="Profile"/></a></li>
 				<li><a href="/connection"><img src="./images/header/connections.png" class="icon" title="Connections"/></a></li>
 				<li><a href="/message"><img src="./images/header/messages.png" class="icon" title="Messages"/></a></li>
-				<li><a href="/forum"><img src="./images/header/forum.png" style="margin-top:5px" class="icon" title="Forums"/></a></li>
+				<li><a href="/forum"><img src="./images/header/forum.png" style="margin-top:5px;" class="icon" title="Forums"/></a></li>
 				<li><a href="/search"><img src="./images/header/searchglass.png" title="Search"/></a></li>
 				<li><a href="/"><img src="./images/header/logout.png"  class="icon" ng-click="ctrl.logout()"/></a></li>
 			</ul>
