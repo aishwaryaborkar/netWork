@@ -49,6 +49,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/ForumTopic.html',
 			controller: 'ForumController'
 		})
+
+		.when('/createForum', {
+			templateUrl: 'views/CreateForum.html',
+			controller: 'ForumController'
+		})
 		
 		.when('/connection', {
 			templateUrl: 'views/Connection.html',
