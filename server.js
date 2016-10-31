@@ -18,6 +18,42 @@ db.once('open', function() {
   console.log("Database connection ready"); // connect to our mongoDB database (commented out after you enter in your own credentials)
 });
 
+/*
+var forumSchema = require('./app/models/Forum.js');
+var discussion = mongoose.model('Forum', forumSchema);
+
+var createForum = new discussion({
+				title: "LinkedIn or LinkedOut?", 
+				forumOwner: "58123f3d1cdd73d423e93971", 
+				date: "July 27, 2016", 
+				description:"Default content",
+				comments : [{   commentOwner : "58159b516d7744982fb036d4",
+								date : "October 26, 2016",
+								description : "#1troll strikes with some spams",
+								reply : [{ replyOnwer : "58123f3d1cdd73d423e93971",
+											date : "October 26, 2016",
+											description : "OMG..."}]},
+							{ commentOwner : "58159b516d7744982fb036d4",
+								date : "October 26, 2016",
+								description : "some more spams",
+								reply : [{ replyOnwer : "58123f3d1cdd73d423e93971",
+											date : "October 26, 2016",
+											description : "STAHP"}]},
+							{ commentOwner : "58159b516d7744982fb036d4",
+								date : "October 26, 2016",
+								description : "and a bit more than some more spams"}]
+});
+
+createForum.save(function (err, createForum) {
+  if (err) 
+	  return console.error(err);
+  else
+	  return console.log("INSERTED DATA INTO DB");
+});
+*/
+
+
+
 // get all data/stuff of the body (POST) parameters
 app.use(bodyParser.json()); // parse application/json 
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json

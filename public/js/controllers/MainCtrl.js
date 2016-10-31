@@ -1,7 +1,7 @@
-angular.module('MainCtrl', [])
+angular.module('MainCtrl', ['DataService'])
 .controller('MainController', function($scope, $rootScope, $location) {
 	this.isLoggedIn = function(){
-		return $rootScope.isUserLoggedIn
+		return $rootScope.isUserLoggedIn;
 	};
 	
 	this.logout = function(){
@@ -22,14 +22,24 @@ angular.module('MainCtrl', [])
 	}
 })
 
-.controller('LoginController', function($scope, $rootScope, $location) {
+.controller('LoginController', function($scope, $rootScope, $location, $q, dataService) {
 	
-	this.validateLogin = function(userIn, passIn){
-		$rootScope.isUserLoggedIn = (userIn.$viewValue === 'admin' && passIn.$viewValue === 'password');
+	$scope.validateLogin = function(userIn, passIn){		
+		dataService.performLoginOperation(userIn.$viewValue, passIn.$viewValue).then( function(body){
+			console.log(body)
+			console.log(JSON.stringify(body.data));
+			if(body.data.message !== undefined && body.data.message === "OK"){
+				$rootScope.isUserLoggedIn = sessionStorage.getItem('isUserLoggedIn');
+				$location.path('/profile'); // path not hash
+			}else{
+				$rootScope.isUserLoggedIn = false;
+				$rootScope.showError = true;
+				//need to show error
+				//clearfield
+			}
+		
 
-		if($rootScope.isUserLoggedIn){
-			$location.path('/profile'); // path not hash
-		}
+		});
 	};
 })
 
