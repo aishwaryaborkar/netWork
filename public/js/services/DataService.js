@@ -5,6 +5,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
     var dataService = {};
 
 	dataService.testService = testService;
+	dataService.testForumService = testForumService;
 	dataService.performLoginOperation = performLoginOperation;
 	
 	return dataService;	
@@ -14,6 +15,21 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 		return $http({
 				method: 'GET',
 				url: urlBase + '/testService'
+		}).then(
+			function(res) { //what to on on success call
+				console.log(JSON.stringify(res.data));
+				return res.data;
+			},
+			function(res) { //what to do on failed call
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+		});
+	}
+
+	function testForumService(){
+		return $http({
+				method: 'GET',
+				url: urlBase + '/testForumService'
 		}).then(
 			function(res) { //what to on on success call
 				console.log(JSON.stringify(res.data));

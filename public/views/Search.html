@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/search.css">
+  vvv v<link rel="stylesheet" type="text/css" href="css/search.css">
 
 <body onload="myFunction();">
 
@@ -9,10 +9,20 @@
 
     <div class="input-group">
        <form name="form" role="form">
- 
+
         		<div class="form-group">
             		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" />
         		</div>
+            <div ng-repeat="result in results">
+                <p style= "font-style:bold;font-size: 18px;">{{result.name}}</p> 
+                <p style= "font-size: 15px;">{{result.jobTitle}}</p> 
+                <p style= "font-size: 15px;">{{result.company}}</p> 
+            </div>
+      
+        <input type="submit" name="submit" ng-click="addResult()" value="Search"/>
+       </form>
+
+
         		<div class="form-group">
         		    Company: <input type="text" name="company" id="company" class="form-control" ng-model="company" />
             	</div>
@@ -33,6 +43,7 @@
 		<input type="submit" name="submit" ng-click="handleSubmit()" value="Search"/>
 		</form>
 		
+
     </div><!-- /input-group -->
 	
   </div><!-- /.col-lg-6 -->

@@ -6,10 +6,10 @@ module.exports = mongoose.Schema(
 		forumOwner : String,
 		date : String,
 		description : String,
-		comments : [{ commentOnwer : String,
+		comww [{ commentOwner : String,
 					  date : String,
 					  description : String,
-					  reply : [{ replyOnwer : String,
+					  reply : [{ replyOwner : String,
 								 date : String,
 								 description : String}]
 					}]
