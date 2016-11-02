@@ -29,6 +29,7 @@
     background-color: #0868A0;
     color: white;
 }
+/*glyphicon style*/
 .glyphicon {
     padding-right: 10px;
 }
@@ -37,5 +38,5 @@
      background-color: #42BBEB;
 }
 .btn {
-    
+    float: left;
 }
