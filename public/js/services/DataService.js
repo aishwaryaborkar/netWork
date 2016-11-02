@@ -5,6 +5,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
     var dataService = {};
 
 	dataService.testService = testService;
+	dataService.testForumService = testForumService;
 	dataService.performLoginOperation = performLoginOperation;
 	
 	return dataService;	

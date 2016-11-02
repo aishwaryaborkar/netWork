@@ -6,7 +6,7 @@ module.exports = mongoose.Schema(
 		forumOwner : String,
 		date : String,
 		description : String,
-		comments : [{ commentOwner : String,
+		comww [{ commentOwner : String,
 					  date : String,
 					  description : String,
 					  reply : [{ replyOwner : String,
