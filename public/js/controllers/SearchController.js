@@ -40,17 +40,11 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 	// }
 
 	$scope.addResult = function(){
-		console.log("Results before: " + JSON.stringify($scope.results));
 
-		$scope.results.push({id:2, name:"Ash",jobTitle:"President",company:"SWE"});
-
-		console.log("Results before: " + JSON.stringify($scope.results));
 
 		dataService.testService().then(	function(searchResult){
 
-			console.log("In dataService promise function b4 cpy: " + JSON.stringify(searchResult));
-			console.log("In dataService promise function b4 cpy: " + JSON.stringify($scope.results));
-	
+			
 			$scope.results = [];
 			
 			
@@ -58,16 +52,12 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 			
 			var i = 0;
 			for (i = 0; i < searchResult.length ;i++) {
-				var obj = { id: searchResult[i].id,
+				var obj = { id: searchResult[i].title,
 							name: searchResult[i].name,
 							jobTitle: searchResult[i].jobTitle,
 							company: searchResult[i].company};
 				$scope.results.push(obj);
 			}
-			
-			console.log("In dataService promise function after cpy: " + JSON.stringify(searchResult));
-			console.log("In dataService promise function after cpy: " + JSON.stringify($scope.results));
-			
 		});
 		
 		//changing the temp value right under the search criteria for testing purpose....
