@@ -1,9 +1,5 @@
 angular.module('MainCtrl', ['DataService'])
-.controller('MainController', function($scope, $rootScope, $location) {
-	this.isLoggedIn = function(){
-		return $rootScope.isUserLoggedIn;
-	};
-	
+.controller('MainController', function($scope, $rootScope, $location) {	
 	this.logout = function(){
 		$rootScope.isUserLoggedIn = false;
 		$location.path('/');
@@ -29,16 +25,21 @@ angular.module('MainCtrl', ['DataService'])
 			console.log(body)
 			console.log(JSON.stringify(body.data));
 			if(body.data.message !== undefined && body.data.message === "OK"){
+				sessionStorage.setItem('isUserLoggedIn', true);
+				if(userIn.$viewValue === 'admin'){
+					sessionStorage.setItem('isPremiumUser', true);
+				}else{
+					//will eventually determine based on profile...
+					sessionStorage.setItem('isPremiumUser', false);
+				}
 				$rootScope.isUserLoggedIn = sessionStorage.getItem('isUserLoggedIn');
 				$location.path('/profile'); // path not hash
 			}else{
 				$rootScope.isUserLoggedIn = false;
-				$rootScope.showError = true;
+				console.log(body.data)
 				//need to show error
 				//clearfield
 			}
-		
-
 		});
 	};
 })

@@ -2,8 +2,7 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 	var temp = [{id:1, "name":"JC","jobTitle":"Software Consultant","company":"Thomson Reuters"}];
 	$scope.testData = temp;
 	
-	var isPremuiumUser = false;
-	$scope.premiumUser = isPremiumUser;
+	$scope.isPremiumUser = sessionStorage.getItem('isPremiumUser');
 	
 	$scope.results = [];
 	
@@ -13,10 +12,7 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 
 			console.log("In dataService promise function b4 cpy: " + JSON.stringify(searchResult));
 			console.log("In dataService promise function b4 cpy: " + JSON.stringify($scope.results));
-		
-			//try the same logic as below...but only after i get the "promise" reponse back from the dataservice call
-			
-			//tried a different method both doesnt work, but both shows that $scope.results are updated to new value.
+	
 			$scope.results = [];
 			
 			
@@ -33,6 +29,7 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 			
 			console.log("In dataService promise function after cpy: " + JSON.stringify(searchResult));
 			console.log("In dataService promise function after cpy: " + JSON.stringify($scope.results));
+			
 		});
 		
 		//changing the temp value right under the search criteria for testing purpose....

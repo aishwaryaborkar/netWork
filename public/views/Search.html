@@ -11,23 +11,22 @@
        <form name="form" role="form">
  
         		<div class="form-group">
-        		$scope.premiumUser()
             		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" />
         		</div>
         		<div class="form-group">
         		    Company: <input type="text" name="company" id="company" class="form-control" ng-model="company" />
             	</div>
-        		<div class="form-group" id="premiumUser()">
+        		<div class="form-group">
         		    Job Title: <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="jobtitle"/>
             	</div>            	
-            	<div class="form-group" >
-            		Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="skill" />
+            	<div class="form-group" ng-show={{isPremiumUser}}>
+            		Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="skill"/>
             	</div>
-            	 <div class="form-group" >
-            		Endorsements: <input type="text" name="endorsement" id="endorsement" class="form-control" ng-model="endorsement" />
+            	 <div class="form-group" ng-show={{isPremiumUser}}>
+            		Endorsements: <input type="text" name="endorsement" id="endorsement" class="form-control" ng-model="endorsement"/>
             	</div>
-            	 <div class="form-group" style="display:none;">
-            		Education: <input type="text" name="education" id="education" class="form-control" ng-model="education" />
+            	 <div class="form-group"  ng-show={{isPremiumUser}}>
+            		Education: <input type="text" name="education" id="education" class="form-control" ng-model="education"/>
             	</div>            	
           
     
