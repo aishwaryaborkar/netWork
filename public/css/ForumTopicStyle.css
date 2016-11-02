@@ -37,6 +37,14 @@
     background-color: #0868A0;
     color: white;
 }
+/*glyphicon style*/
+.glyphicon {
+    padding-right: 10px;
+}
+/*create bytton style*/
+#createBtn {
+    float: left;
+}
 
 /*COMMENTS SECTION*/
 /*font Awesome http://fontawesome.io*/

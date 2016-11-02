@@ -1,10 +1,19 @@
 <link rel="stylesheet" type="text/css" href="css/ForumTopicStyle.css">
- <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
 <div>
-
     <div class="jumbotron text-center">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <a href="createForum"><button type="button" id="createBtn" class="btn btn-primary btn-lg">Create Forum</button></a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
     <div class="row">
- 
     <div class ="col-md-8">
     <div class="forum">
         <div class="media">
@@ -122,17 +131,13 @@
 
 <div class="container">
     <div class="row">
+        <div class="col-md-8">
         <h3>Add Comment</h3>
-    </div>
-    
-    <div class="row">
-    
-    <div class="col-md-6">
         <div class="widget-area no-padding blank">
             <div class="status-upload">
                 <form>
                     <textarea placeholder="What are you doing right now?" ></textarea>
-                        <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Submit</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-share"></i> Submit</button>
                 </form>
             </div><!-- Status Upload  -->
         </div><!-- Widget Area -->
