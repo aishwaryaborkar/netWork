@@ -5,7 +5,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 		// home page
 		.when('/', {
-			templateUrl: 'views/Login.html',
+			templateUrl: 'views/home.html',
+			controller: 'MainController'
+		})
+		
+		.when('/login', {
+			templateUrl: 'views/login.html',
 			controller: 'MainController'
 		})
 		
@@ -26,7 +31,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		
 		.when('/profile', {
 			templateUrl: 'views/Profile.html',
-			controller: 'SearchController'
+			// controller: 'SearchController'
+			controller: 'ProfileController'
 		})
 		
 		.when('/message', {
@@ -41,6 +47,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 		.when('/forumTopic', {
 			templateUrl: 'views/ForumTopic.html',
+			controller: 'ForumController'
+		})
+
+		.when('/createForum', {
+			templateUrl: 'views/CreateForum.html',
 			controller: 'ForumController'
 		})
 		

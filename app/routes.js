@@ -3,7 +3,7 @@ module.exports = function(app) {
 	// server routes ===========================================================
 	// handle things like api calls
 	// authentication routes
-	app.use('/api', require('./app/ApiController'));
+	app.use('/api/*', require('./app/ApiController'));
 	
 	
 	

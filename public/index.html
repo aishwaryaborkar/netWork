@@ -23,6 +23,7 @@
 	<script src="js/controllers/RecoveryController.js"></script>
 	<script src="js/services/DataService.js"></script>
 	<script src="js/controllers/ForumController.js"></script>
+	<script src="js/controllers/ProfileController.js"></script>
 	
 	<script src="js/appRoutes.js"></script>
 	<script src="js/app.js"></script>
@@ -30,38 +31,40 @@
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-   	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+   	<script src="libs/bootstrap/dist/js"></script>
+   	
    	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
 </head>
 
 <body ng-app="netWork" ng-controller="MainController as ctrl">
-	<div class="container">
+	<div class="container" id="con2">
 	
 		<!-- HEADER(NOT LOGGED IN) -->
-		<nav class="navbar navbar-inverse" ng-hide="$root.isUserLoggedIn">
-			<div class="navbar-header" style="float:left">
+		<nav class="navbar navbar-inverse navbar-fixed-top" ng-hide="$root.isUserLoggedIn">
+			<div class="navbar-header" style="float:left;">
 				<a href="#"><img src="./images/header/logo4-copy.png" class="Logo" ng-click="ctrl.goHome()"></a>
 			</div>
 			<div style="float:right">
-				<ul class="nav navbar-nav" style="float:right">
-				<li><button name="Sign Up" value="Sign Up" ng-click="ctrl.loadRegistration()"><span>Sign Up!</span></button></li>
+				<ul class="nav navbar-nav" style="float:right;">
+				<li><a href="/login"><img src="./images/header/login.png" class="icon" style="margin-top:10px"/></a></li>
+				<li><a href="/createaccount"><img src="./images/header/signup.png" class="icon" style="margin-top:5px"/></a></li>
 			</ul>
 		</nav>
 		
 		<!-- HEADER(LOGGED IN) -->
-		<nav class="navbar navbar-inverse" ng-show="$root.isUserLoggedIn">
-			<div class="navbar-header" style="float:left">
+		<nav class="navbar navbar-inverse navbar-fixed-top" ng-show="$root.isUserLoggedIn">
+			<div class="navbar-header" style="float:left;">
 				<img src="./images/header/logo4-copy.png" class="Logo" ng-click="ctrl.goHome()">
 			</div>
 			<div style="float:right">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav" style="margin-top:10px;">
 				<li><a href="/profile"><img src="./images/header/profile.png" class="icon" title="Profile"/></a></li>
 				<li><a href="/connection"><img src="./images/header/connections.png" class="icon" title="Connections"/></a></li>
 				<li><a href="/message"><img src="./images/header/messages.png" class="icon" title="Messages"/></a></li>
+				<li><a href="/forum"><img src="./images/header/forum.png" style="margin-top:5px;" class="icon" title="Forums"/></a></li>
 				<li><a href="/search"><img src="./images/header/searchglass.png" title="Search"/></a></li>
-				<li><a href="/forum"><img src="./images/header/forums.png" class="icon" title="Forums"/></a></li>
 				<li><a href="/"><img src="./images/header/logout.png"  class="icon" ng-click="ctrl.logout()"/></a></li>
 			</ul>
 		</nav>
@@ -70,13 +73,15 @@
 		<div ng-view></div>
 
 		<!-- FOOTER -->
-		<nav class="navbar navbar-inverse">
+		<div class="footer">
+		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-header">
 				<span style="color:white"><p>&copy;2016 by Team Ash. All Rights Reserved.</p></span>
 			</div>
 			<ul class="nav navbar-nav">
 			</ul>
 		</nav>
+		</div>
 	</div>
 </body>
 

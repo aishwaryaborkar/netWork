@@ -1,0 +1,173 @@
+
+* {margin:0;padding:0;}
+ul li {
+	list-style-type:none;
+}
+
+.main-wrapper {
+	
+	width:100%;
+	margin:0 auto;
+	margin-top:1%;
+}
+.main-wrapper .menu {
+	min-height:100%;
+	width:15%;
+	float:left;
+	
+}
+
+.main-wrapper .menu .icon-list {
+	background:#ccc;
+	min-height:400px;
+	margin-top:5px;
+}
+
+.menu a {
+	background:#ccc;
+	font-weight:bold;
+	display:block;
+	color:#fff;
+	text-decoration:none;
+	outline:none;
+	padding:14px;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.menu a:hover {
+	color:#0CF;
+}
+
+#all-msg,#new-msg,#unread-msg {
+	display:none;
+	float:left;
+	width:75%;
+	margin-left:2%;
+	border:2px solid #9ca1b3;
+}
+
+.message {
+	border:1px solid #9ca1b3;
+	height:120px;
+	margin:10px 10px 20px 10px;
+}
+.message .left-head{
+	width:120px;
+	height:100%;
+	float:left;
+}
+.left-head img{
+	margin:10px;
+	width:100px;
+	height:100px;
+}
+.message .msg-info{
+	height:100%;
+	float:left;
+	width:80%;
+	padding-left:3%;
+}
+.msg-info .info {
+	height:30%;
+	padding-top:20px;
+}
+.info .nickname {
+	float:left;
+}
+.info .time {
+	margin-left:20px;
+	float:left;
+}
+.msg-info .content {
+	padding-top:30px;
+}
+
+.myol {
+	list-style-position:inside;
+	padding:5px;
+}
+
+.myol li {
+	border-bottom:1px dotted #ccc;
+	padding:3px 0px;
+	text-align:left;
+}
+
+.myol li span {
+	float:right;
+}
+
+#pop {
+	position:fixed;
+	width:50%;
+	left:50%;
+	margin-left:-300px;
+	top:15%;
+	border:1px solid black;
+	box-sizing:border-box;
+	background:white;
+	display:none;
+}
+
+#pop .line1 {
+	background:#666;
+	text-align:left;
+	height:35px;
+	line-height:35px;
+	padding-left:3px;
+	color:white;
+}
+
+#pop .line1 .close {
+	float:right;
+	margin-right:3px;
+	cursor:pointer;
+}
+
+#pop .content {
+	padding:5px;
+}
+
+#pop .content .tomail {
+	margin-bottom:5px;
+}
+
+#pop .content .tomail input {
+	width:100%;
+	box-sizing:border-box;
+	height:30px;
+}
+
+#pop .content textarea {
+	width:100%;
+	box-sizing:border-box;
+	height:150px;
+	resize:none;
+}
+
+#pop .content .submit {
+	margin-top:5px;
+	text-align:right;
+}
+
+#pop .content .submit button {
+	border:none;
+	border-radius:5px;
+	padding:5px 20px;
+	background:#0CF;
+	color:white;
+	cursor:pointer;
+}
+
+a.write {
+	background:blue;
+	display:block;
+	background:#0CF;
+}
+
+a.write:hover {
+	color:gray;
+}
+
+
+

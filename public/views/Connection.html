@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" type="text/css" href="css/Connection.css">
 <div class="jumbotron text-center" style = "background-color: white;">
 <!-- Connection page-->
 <div class="container">
@@ -12,59 +12,40 @@
   
   <div id="request" class = "tab-pane">
   
-<h2 align="center" style="font-family:Arial, Gadget, sans-serif;">Connection Requests <span class="label label-info"">3</span></h2>
+<h2 align="center">Connection Requests <span class="label label-info"">3</span></h2>
 <br />
 <!--Connection Request bubbles utilizing Bootstrap-->
 <div class = "row">
-
-      <div class = "col-md-2">
-      <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center">
+      <div class = "col-md-2" ng-repeat="connection in pendingConnections">
+      <div class="boxed" align = "center">
       <br />
-          <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-
-          <p><b>John Moore</b></p>
-          <p style= "font-style:italic;font-size: 15px;"> Software Engineer- Intel</p>
+          <img src= "./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
+	<br />
+          <p1><b>{{connection.name}}</b></p1>
+          <br />
+          <p2>{{connection.jobTitle}}</p2>
+          <br /> 
+          <p2>{{connection.Company}}</p2> 
+           <br />
+           
             <button type="button" class="btn btn-primary btn-xs" onclick="">Accept </button>
             <button type="button" class="btn btn-primary btn-xs" onclick="">Deny</button>
             <br />
             <br />
 		</div><!--boxed-->
       </div><!--colmd2-->
-     
-      <div class = "col-md-2">
-      <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center">
-      <br />
-          <img src="./images/connection/woman1.jpg" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-
-          <p><b>Olivia Smith</b></p>
-          <p style= "font-style:italic;font-size: 15px;"> Web Developer- Ebay</p>
-            <button type="button" class="btn btn-primary btn-xs" onclick="">Accept </button>
-            <button type="button" class="btn btn-primary btn-xs" onclick="">Deny</button>
-            <br />
-            <br />
-	</div><!--boxed-->
-      </div><!--colmd2-->
-
-    
-      <div class = "col-md-2">
-      <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px; background-color: white;" align = "center">
-      <br />
-          <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-
-          <p><b>William Jones</b></p>
-          <p style= "font-style:italic;font-size: 15px;"> Software Engineer- Cisco</p>
-            <button type="button" class="btn btn-primary btn-xs" onclick="">Accept</button>
-            <button type="button" class="btn btn-primary btn-xs" onclick="">Deny</button>
-            <br />
-            <br />
-       </div><!--boxed-->
-       </div><!--colmd2-->
    </div><!--row-->
-</div><!--request-->
+</div>
+
+
+<!--request-->
+
+
+
 
 <div id="connected" class="tab-pane active">
 <!--Actual connections user has-->
-<h2 align = "center" style="font-family:Arial, Gadget, sans-serif;">Connections <span class="label label-info"">4</span></h2>
+<h2 align = "center">Connections <span class="label label-info"">3</span></h2>
 
     <br />
     <div class = "row">
@@ -79,12 +60,17 @@
         </div><!--input group button-->
         <br />
    <div class = "row">
-      <div class = "col-md-2">
-      <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center">
-      <br />
-          <img src="./images/connection/woman1.jpg" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-          <p><b>Patricia Jones</b></p>
-          <p style= "font-style:italic;font-size: 15px;"> Network Manager- AT&T </p>
+
+<div class = "col-md-2" ng-repeat="connection in connections">
+      <div class="boxed" align = "center">
+     	  <br />
+          <img src="./images/connection/woman1.jpg" class="img-rounded" width = 100px height = 100px>
+          <br />
+          <p1><b>{{connection.name}}</b></p1>
+          <br />
+          <p2>{{connection.jobTitle}}</p2> 
+          <br />
+          <p2>{{connection.Company}}</p2> 
           <div class="dropdown">
   		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Connected <span class="glyphicon glyphicon-ok"></span>
   		<span class="caret"></span></button>
@@ -94,70 +80,10 @@
   		</ul>
 	</div> <!--dropdown-->
 	<br /> 
-		</div><!--boxed-->
-      </div><!--col-md-2-->
-     
-      <div class = "col-md-2">
-      <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center">
-      <br />
-          <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-
-          <p><b>Tom Lee</b></p>
-          <p style= "font-style:italic;font-size: 15px;"> Software Developer- Ebay</p> 
-          <div class="dropdown">
-  		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Connected <span class="glyphicon glyphicon-ok"></span>
-  		<span class="caret"></span></button>
-  		<ul class="dropdown-menu">
-    		<li><a href="#"><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
-    		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> Disconnect </a></li>
-  		</ul>
-	</div> <!--dropdown-->
-	<br />
-      </div><!--boxed-->
-       </div><!--colmd2-->
-
-    
-      <div class = "col-md-2">
-      <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center">
-      <br />
-          <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-
-          <p><b>Harris Walker</b></p>
-          <p style= "font-style:italic;font-size: 15px;"> Software Engineer- Amazon</p> 
-          <div class="dropdown">
-  		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Connected <span class="glyphicon glyphicon-ok"></span>
-  		<span class="caret"></span></button>
-  		<ul class="dropdown-menu">
-    		<li><a href="#"><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
-    		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> Disconnect</a></li>
-  		</ul>
-	</div> <!--dropdown-->
-	<br />
-      </div><!--boxed-->
-       </div><!--colmd2-->
-
-    
-      <div class = "col-md-2">
-      <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center">
-      <br />
-          <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-
-          <p><b>Nelson Parker</b></p>
-          <p style= "font-style:italic; font-size: 15px;"> Software Developer- Ebay</p>
-    <div class="dropdown">
-  		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Connected <span class="glyphicon glyphicon-ok"></span>
-  		<span class="caret"></span></button>
-  		<ul class="dropdown-menu">
-    		<li><a href="#"><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
-    		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> Disconnect</a></li>
-  		</ul>
-	</div> <!--dropdown-->
-	<br />
-       </div>   <!--boxed-->
-       </div> <!--colmd2-->
-
+	</div><!--boxed-->
+</div><!--col-md-2-->
 </div><!--row-->
-    </div> <!--connections-->
+</div> <!--connections-->
 
 <!-- Connection page ends here-->
 

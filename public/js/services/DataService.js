@@ -3,27 +3,23 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	var urlBase = 'http://localhost:8080/api';
     var dataService = {};
 
-		dataService.testService = testService;
-		
-        return dataService;
- 
-		function testService(){
-			return $http({
-						method: 'GET',
-						url: urlBase + '/testService'
-			}).then(handleSuccess, handleError);
-		}
- 
-        //if http success...
-        function handleSuccess(res) {
-        	console.log(JSON.stringify(res.data));
-            return res.data;
-        }
- 
-		//if http fails
-        function handleError(res) {
-            return $q.reject(res.data);
-        }
+	dataService.testService = testService;
 	
-    return dataService;
+	return dataService;	
+  
+ 
+	function testService(){
+		return $http({
+					method: 'GET',
+					url: urlBase + '/testService'
+		}).then(
+			function(res) { //what to on on success call
+				console.log(JSON.stringify(res.data));
+				return res.data;
+			},
+			function(res) { //what to do on failed call
+				return $q.reject(res.data);
+		});
+	}
+    
 }]);

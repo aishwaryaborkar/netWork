@@ -1,15 +1,17 @@
   vvv v<link rel="stylesheet" type="text/css" href="css/search.css">
 
-<body>
+<body onload="myFunction();">
 
 	<!-- FOR THE SEARCH FILEDS-->
   <div class="row">
   <div class="col-lg-4"> </div><!-- /.col-lg-6 -->
   <div class="col-lg-4">
-  
+
     <div class="input-group">
        <form name="form" role="form">
+
         		<div class="form-group">
+        		$scope.premiumUser()
             		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" />
         		</div>
             <div ng-repeat="result in results">
@@ -21,6 +23,28 @@
         <input type="submit" name="submit" ng-click="addResult()" value="Search"/>
        </form>
 
+
+        		<div class="form-group">
+        		    Company: <input type="text" name="company" id="company" class="form-control" ng-model="company" />
+            	</div>
+        		<div class="form-group" id="premiumUser()">
+        		    Job Title: <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="jobtitle"/>
+            	</div>            	
+            	<div class="form-group" >
+            		Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="skill" />
+            	</div>
+            	 <div class="form-group" >
+            		Endorsements: <input type="text" name="endorsement" id="endorsement" class="form-control" ng-model="endorsement" />
+            	</div>
+            	 <div class="form-group" style="display:none;">
+            		Education: <input type="text" name="education" id="education" class="form-control" ng-model="education" />
+            	</div>            	
+          
+    
+		<input type="submit" name="submit" ng-click="handleSubmit()" value="Search"/>
+		</form>
+		
+
     </div><!-- /input-group -->
 	
   </div><!-- /.col-lg-6 -->
@@ -28,24 +52,22 @@
 
 </div>
 
+
 	<!-- FOR THE SEARCH RESULT-->
 <div class="row">
   <div class="col-lg-4">
-
+  
   </div>
   <div class="col-lg-4">
-   <div class="boxed" style = "border: 2px solid #0868A0; border-radius: 5px;" align = "center" ng-repeat="result in searchCtrl.results track by result.id">
-      <br />
+   <div class="boxed" style="border: 2px solid #0868A0; border-radius: 5px;" align="center" ng-repeat="data in results">
           <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-
-          <p style= "font-style:bold;font-size: 18px;">{{result.name}}</p> 
-          <p style= "font-size: 15px;">{{result.jobTitle}}</p> 
-		  <p style= "font-size: 15px;">{{result.company}}</p> 
+          <p style= "font-style:bold;font-size: 18px;">{{data.name}}</p> 
+          <p style= "font-size: 15px;">{{data.jobTitle}}</p> 
+		  <p style= "font-size: 15px;">{{data.company}}</p> 
           <div class="dropdown">
-  		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">View Profile</button>
-	</div> <!--dropdown-->
-	<br />
-      </div><!--boxed-->
+  			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">View Profile</button>
+		  </div> <!--dropdown-->
+   </div><!--boxed-->
   <div class="col-lg-4"></div>
 </div>
 

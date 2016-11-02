@@ -1,27 +1,14 @@
 <link rel="stylesheet" type="text/css" href="css/forumstyle.css">
 
 <div>
-	<div id="forumOptions">
-
-		<div id="forumOptionsWrapper">
-			<ul id="options">
-				<li><a href="#">Connections</a></li>
-				<li>|</li>
-				<li><a href="#">Topics</a></li>
-				<li>|</li>
-				<li><a href="#">FAQs</a></li>
-				<li>|</li>
-				<li><a href="#">Support</a></li>
-			</ul>
-		</div>
-	</div>
-
 <div class="jumbotron text-center">
+
+<a href="createForum"><button type="button" class="btn btn-primary btn-lg">Create Forum</button></a>
 
 	<div class="container">
 		<div class="row">
 				<div class="col-md-8">
-					<div class="media" ng-repeat="post in posts">
+					<div class="media forums" ng-repeat="post in posts">
 						<div class="media-left">
 							<a href="#">
 								<a href="forumTopic"><img class="media-object" src="images/forum/profileFiller.jpg"></a>
@@ -38,8 +25,13 @@
 				</div>
 
 			<div class="col-md-4">
-				<div class="media">
-					<div class="temp">Hello World</div>
+				<div class="media featured">
+					<h2>Featured</h2>
+					<div ng-repeat="post in posts" ng-model="post">
+						<p><span class="glyphicon glyphicon-cloud"></span>{{post.postName}}</p>
+					</div>
+
+					
 				</div>
 			</div>
 
