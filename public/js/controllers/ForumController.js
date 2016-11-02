@@ -39,7 +39,17 @@ angular.module('ForumController', []).controller('ForumController', function($sc
     $scope.posts = posts; 
 
 
+    $scope.title = "";
+    
+    var post =
 
+    [{
+        title : "",
+        forumOwner : "",
+        date : "",
+        description : "",
+
+    }];
 
 
 });
