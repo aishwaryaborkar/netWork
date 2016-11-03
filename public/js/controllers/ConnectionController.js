@@ -27,6 +27,30 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
  
  
  
+ $scope.search = {}
+ $scope.searchBy = '$'
+ $scope.connectionSearch = 
+		[{
+			name:"Tahsin Hossain",
+			jobTitle:"Web Developer",
+			Company:"Amazon"
+		},
+		{
+			name:"Michel Lee",
+			jobTitle:"Software Engineer",
+			Company:"Ebay"
+		},
+		{
+			name:"Michel Randall",
+			jobTitle:"System Engineer",
+			Company:"HP"
+		}];
+ 
+
+ 
+ 
+ 
+ 
  
  var connectionResult=
 		[{
