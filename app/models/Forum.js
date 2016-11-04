@@ -3,13 +3,16 @@ var mongoose = require('mongoose');
 module.exports = mongoose.Schema(  
 	{
 		title : String,
-		forumOwner : String,
+		forumOwnerId : String,
+		forumOwnerName : String,
 		date : String,
 		description : String,
-		comww [{ commentOwner : String,
+		comments: [{ commentOwnerId : String,
+					 commentOwnerNmae : String,
 					  date : String,
 					  description : String,
-					  reply : [{ replyOwner : String,
+					  reply : [{ replyOwnerId : String,
+								 replyOwnerName : String,
 								 date : String,
 								 description : String}]
 					}]

@@ -1,4 +1,4 @@
-  vvv v<link rel="stylesheet" type="text/css" href="css/search.css">
+<link rel="stylesheet" type="text/css" href="css/search.css">
 
 <body onload="myFunction();">
 
@@ -9,41 +9,31 @@
 
     <div class="input-group">
        <form name="form" role="form">
-
+ 
         		<div class="form-group">
             		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" />
         		</div>
-            <div ng-repeat="result in results">
-                <p style= "font-style:bold;font-size: 18px;">{{result.name}}</p> 
-                <p style= "font-size: 15px;">{{result.jobTitle}}</p> 
-                <p style= "font-size: 15px;">{{result.company}}</p> 
-            </div>
-      
-        <input type="submit" name="submit" ng-click="addResult()" value="Search"/>
-       </form>
-
-
         		<div class="form-group">
         		    Company: <input type="text" name="company" id="company" class="form-control" ng-model="company" />
             	</div>
         		<div class="form-group">
         		    Job Title: <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="jobtitle"/>
             	</div>            	
-            	<div class="form-group" ng-show={{isPremiumUser}}>
+            	<div class="form-group" ng-show={{$root.isPremium}}>
             		Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="skill"/>
             	</div>
-            	 <div class="form-group" ng-show={{isPremiumUser}}>
+            	 <div class="form-group" ng-show={{$root.isPremium}}>
             		Endorsements: <input type="text" name="endorsement" id="endorsement" class="form-control" ng-model="endorsement"/>
             	</div>
-            	 <div class="form-group"  ng-show={{isPremiumUser}}>
+            	 <div class="form-group"  ng-show={{$root.isPremium}}>
             		Education: <input type="text" name="education" id="education" class="form-control" ng-model="education"/>
             	</div>            	
           
     
-		<input type="submit" name="submit" ng-click="handleSubmit()" value="Search"/>
+			<input type="submit" name="submit" ng-click="handleSubmit()" value="Search"/>
+			<input type="button" name="submit" ng-click="clearFields({{user|json}})" value="Clear Fields"/>
 		</form>
 		
-
     </div><!-- /input-group -->
 	
   </div><!-- /.col-lg-6 -->

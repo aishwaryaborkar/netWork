@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var serviceFulfiller = require('./services/ServiceFulfiller');
- 
-// routes
-
 
 //===========================================
 //TESTING SERVICE FUNCTIONS TO BE DELETED....
@@ -46,36 +43,125 @@ router.get('/testProfileService', function(req, res){
 router.post('/login', function(req, res){
 	console.log("login service requested : " + req.body.email);
 	console.log("login service requested : " + req.body.password);
-
-	//hardcoded account access for dev/test only will be removed
-	if(req.body.email === "admin" && req.body.password === "password"){
-		data = {message:"OK"};
-		res.status(200).json(data);
-	}
 	
 	serviceFulfiller.checkLoginCredential(req.body)
 		.then(
 		function(result){
+			var data = {};
 			console.log("in promise in apiController");
-			if(result.length == 0){
+			if(result === null){
 				console.log("no result");
-				data = {error:"Error. Login Failed"};
+				data.error = "Error. Login Failed";
 				res.status(200).json(data);
 			}
+			data.message = "OK";
+			data.userInfo = result;
+			res.status(200).json(data);
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+});
+ 
+//===========================================
+//PROFILE RELATED SERVICES.....
+//===========================================
+router.post('/getProfileById', function(req, res){
+	console.log("getProfileById service requested : " + req.body);
+	
+	serviceFulfiller.getProfileById(req.body._id).then(
+		function(result){
+			res.status(200).json(result);
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+});
+
+router.post('/search', function(req, res){
+	console.log("search service requested : " + JSON.stringify(req.body));
+	serviceFulfiller.performSearch(req.body)
+		.then(
+		function(result){
+			var data = {};
+			if(result.length == 0){
+				data.message = "No Search Result";
+			}else{
+				data.message = "OK";
+			}	
 			
-			if(result[0].email == req.body.email && result[0].password == req.body.password){
-				data = {message:"OK"};
-			}		
+			data.resultList = result;
+			res.status(200).json(data);
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+});
+
+//===========================================
+//FORUM RELATED SERVICES.....
+//===========================================
+router.get('/getForumList', function(req, res){
+	console.log("forum service requested : request for forum list");
+	
+	serviceFulfiller.getForumList().then(
+		function(result){
+			res.status(200).json(result);
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+}); 
+
+router.post('/getForumById', function(req, res){
+	console.log("getForumById service requested : " + req.body);
+	
+	serviceFulfiller.getForumById(req.body._id).then(
+		function(result){
+			res.status(200).json(result);
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+}); 
+
+router.get('/getPopularForum', function(req,res){
+	console.log("getPopularPost service requested");
+}); 
+
+router.post('/createForum', function(req, res){
+	console.log("createForum service requested");
+	serviceFulfiller.createForumPost(req.body).then(
+		function(result){
+			res.status(200).json(result);
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+});
+
+/*
+router.post('/createForum', function(req, res){
+	console.log("search service requested : " + JSON.stringify(req.body));
+	serviceFulfiller.performSearch(req.body)
+		.then(
+		function(result){
+			var data = {};
+			if(result.length == 0){
+				data.message = "No Search Result";
+			}else{
+				data.message = "OK";
+			}	
+			
+			data.resultList = result;
 			res.status(200).json(data);
 		},
 		function(result){
 			console.log(JSON.stringify(result));
 			
 		});
-});
- 
- 
- 
+});*/
+
 module.exports = router;
  
 

@@ -7,6 +7,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	dataService.testService = testService;
 	dataService.testForumService = testForumService;
 	dataService.performLoginOperation = performLoginOperation;
+	dataService.performSearch = performSearch;
 	
 	return dataService;	
   
@@ -52,6 +53,23 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 			function(body) { //what to on on success call
 				console.log(body);
 				return body;
+			},
+			function(res){
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+			});
+	}
+	
+	function performSearch(searchCriteria){ 
+		console.log(searchCriteria);
+		return $http({
+				method: 'POST',
+				url: urlBase + '/search',
+				data: searchCriteria
+		}).then(
+			function(body) { //what to on on success call
+				console.log(body);
+				return body.data;
 			},
 			function(res){
 				console.log(JSON.stringify(res.data));
