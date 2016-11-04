@@ -35,7 +35,12 @@ router.get('/testProfileService', function(req, res){
 	var data = serviceFulfiller.testProfileService();		
 	res.status(200).json(data);
 });
- 
+
+router.get('/testMessageService', function(req, res){
+	console.log("in testMessageService call");
+	var data = serviceFulfiller.testMessageService();		
+	res.status(200).json(data);
+}); 
  
 //===========================================
 //LOGIN or REGISTRATION RELATED SERVICES.....
@@ -139,28 +144,6 @@ router.post('/createForum', function(req, res){
 			console.log(JSON.stringify(result));
 		});
 });
-
-/*
-router.post('/createForum', function(req, res){
-	console.log("search service requested : " + JSON.stringify(req.body));
-	serviceFulfiller.performSearch(req.body)
-		.then(
-		function(result){
-			var data = {};
-			if(result.length == 0){
-				data.message = "No Search Result";
-			}else{
-				data.message = "OK";
-			}	
-			
-			data.resultList = result;
-			res.status(200).json(data);
-		},
-		function(result){
-			console.log(JSON.stringify(result));
-			
-		});
-});*/
 
 module.exports = router;
  

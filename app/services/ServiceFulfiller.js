@@ -17,11 +17,11 @@ service.createForumPost = createForumPost;
  
  
 //to be deleted testService calls 
-service.testService = testService;
 service.testForumService = testForumService;
 service.testConnectionService = testConnectionService;
 service.testPendingConnectionService = testPendingConnectionService;
 service.testProfileService = testProfileService;
+service.testMessageService = testMessageService;
  
 module.exports = service;
 
@@ -121,12 +121,6 @@ function testPendingConnectionService(){
 		return [{id: 3,name:"Ash Borkar",jobTitle:"Software Developer",company:"Visa"}];
 }
 
-function testService(){
-		return [{id: 1,name:"JC v1",jobTitle:"Software Consultant",company:"Thomson Reuters"},
-				{id: 2,name:"Stacy Wong",jobTitle:"Software Engineer",company:"net[work]"},
-				{id: 3,name:"Ash Borkar",jobTitle:"Software Developer",company:"Visa"}];
-}
-
 function getProfileById(userId){
 	console.log("IN getProfileById : " + userId);
 	var profile = mongoose.model('Profiles', profileSchema);
@@ -147,9 +141,7 @@ function performSearch(searchInfo){
 			searchObj[key] = new RegExp(searchInfo[key], "g");
 		}
 	}); //so far it only works for normal properties. skills and experience currently not working
-	
 	var profile = mongoose.model('Profiles', profileSchema);
-	//return profile.find(searchInfo, function(err, result){
 	return profile.find(searchObj, function(err, result){
 		if(err) return console.error(err);
 		console.log(result);
@@ -196,10 +188,6 @@ function createForumPost(forumData){
 	});
 }
 
-//===========================================
-//MESSAGE RELATED SERVICES...................
-//===========================================
-
 function testForumService(){
 	return [{title: "LinkedIn or LinkedOut?", 
 				ownerName: "Stacy Wong", //58123f3d1cdd73d423e93971
@@ -233,4 +221,32 @@ function testForumService(){
 				ownerName: "Anna Meng", 
 				date: "October 12, 2016", 
 				description:"Default content"}]; 
+}
+
+//===========================================
+//MESSAGE RELATED SERVICES...................
+//===========================================
+function testMessageService(){
+	return [{participant : [{ _id : '581b810b2376ffc83959ec11',
+								 name: 'admin'},
+								 { _id : '58159b516d7744982fb036d4',
+								 name: 'JC'}],
+			  messageBody : [{ Name : 'admin',
+								 text : 'Hello World...',
+								 date : 'Nov 3, 2016 11:07:00 PM'},
+								{Name : 'admin',
+								 text : '...?',
+								 date : 'Nov 3, 2016 11:08:00 PM'}]
+			},
+			{participant : [{ _id : '581b810b2376ffc83959ec11',
+								 name: 'admin'},
+								 { _id : '58123f3d1cdd73d423e93971',
+								 name: 'Stacy'}],
+			 messageBody : [{ Name : 'Stacy',
+								 text : 'TEEMO!',
+								 date : 'Nov 2, 2016 11:09:00 AM'},
+								{Name : 'admin',
+								 text : 'wrong person!',
+								 date : 'Nov 2, 2016 11:10:00 AM'}]
+			}]
 }
