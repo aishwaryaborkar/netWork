@@ -4,6 +4,8 @@ module.exports = mongoose.Schema(
 	{	
 		email : String,
 		password : String,
-		premium : Boolean
+		premium : Boolean,
+		sQuestion : String,
+		sAnswer : String
 	}
 );

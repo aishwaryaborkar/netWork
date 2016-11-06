@@ -49,8 +49,7 @@ router.post('/login', function(req, res){
 	console.log("login service requested : " + req.body.email);
 	console.log("login service requested : " + req.body.password);
 	
-	serviceFulfiller.checkLoginCredential(req.body)
-		.then(
+	serviceFulfiller.checkLoginCredential(req.body).then(
 		function(result){
 			var data = {};
 			console.log("in promise in apiController");
@@ -66,6 +65,20 @@ router.post('/login', function(req, res){
 		function(result){
 			console.log(JSON.stringify(result));
 		});
+});
+
+router.post('/createAccount', function(req, res){
+	console.log("createAccount service requested: " + JSON.stringify(req.body));
+	serviceFulfiller.createAccount(req.body).then( function(accountResult){ 
+		// finished with creatingAccount, will need to createProfile
+		console.log("created account for: " + accountResult.email);
+		serviceFulfiller.createProfile(req.body, accountResult._id).then(function(profileResult){
+			console.log("created profile for: " + profileResult.name)
+			res.status(200).json({message:"OK"});
+			})
+		})
+	
+
 });
  
 //===========================================
@@ -83,11 +96,41 @@ router.post('/getProfileById', function(req, res){
 		});
 });
 
+router.post('/getConnection', function(req, res){
+	console.log("getConnections service requested : " + req.body);
+	
+	serviceFulfiller.getConnection(req.body.userId).then(function(result){
+		console.log("in getConnection promise...")
+		serviceFulfiller.getProfileList(result.connections).then(function(data){
+			console.log("in getProfileList promise...")
+			res.status(200).json(data);
+			});
+			
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+	});
+});
+
+router.post('/getPendingConnection', function(req, res){
+	console.log("getPendingConnections service requested : " + req.body);
+	
+	serviceFulfiller.getPendingConnection(req.body.userId).then(function(result){
+		console.log("in getPendingConnection promise...")
+		serviceFulfiller.getProfileList(result.pendingConnections).then(function(data){
+			console.log("in getProfileList promise...")
+			res.status(200).json(data);
+			});
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+});
+
+
 router.post('/search', function(req, res){
 	console.log("search service requested : " + JSON.stringify(req.body));
-	serviceFulfiller.performSearch(req.body)
-		.then(
-		function(result){
+	serviceFulfiller.performProfileSearch(req.body).then(function(result){
 			var data = {};
 			if(result.length == 0){
 				data.message = "No Search Result";
@@ -102,6 +145,36 @@ router.post('/search', function(req, res){
 			console.log(JSON.stringify(result));
 		});
 });
+
+/*router.post('/search', function(req, res){
+	var userEmail = req.body.email;
+	delete req.body.email;
+	console.log("search service requested : " + JSON.stringify(req.body));
+	serviceFulfiller.performUserSearch(userEmail).then(function(userResult){
+			var data = {};
+			if(profileResult.length == 0){
+				data.message = "No Search Result";
+			}else{
+				data.message = "OK";
+			}	
+			data.resultList = result;
+			
+			serviceFulfiller.performProfileSearchSearch(req.body).then(function(profileResult){{
+				if(data.length == 0 && userResult.length == 0){
+					data.message = "No Search Result";
+				}else{
+					data.message = "OK";
+					data.resultList.push(userResult[0]);
+				}		
+				res.status(200).json(data);
+			})
+			
+			
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+});*/
 
 //===========================================
 //FORUM RELATED SERVICES.....

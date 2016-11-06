@@ -1,12 +1,19 @@
 var service = {};
+
+service.resultSet = []; 
  
 //account related service
 service.checkLoginCredential = checkLoginCredential;
+service.createAccount = createAccount;
 
 //profile related service
+service.createProfile = createProfile;
 service.getProfileById = getProfileById;
-service.performSearch = performSearch;
-
+service.getProfileList = getProfileList;
+service.getConnection = getConnection;
+service.getPendingConnection = getPendingConnection;
+service.performUserSearch = performUserSearch;
+service.performProfileSearch = performProfileSearch;
  
 //forum related service
 service.getForumList = getForumList;
@@ -84,6 +91,26 @@ var db = mongoose.connection;
 //===========================================
 //ACCOUNT RELATED SERVICES.....
 //===========================================
+function createAccount(accountInfo){
+	var user = mongoose.model('Users', userSchema);
+	var newUser = new user({
+		email : accountInfo.email,
+		password : accountInfo.password,
+		premium : accountInfo.premium
+	});
+	
+	newUser.save(function(err, result){
+		if(err) return console.error(err);
+		return console.log(result);
+	});
+	
+	return user.findOne({email: accountInfo.email},function(err, result){
+		if(err) return console.error(err);
+		console.log(result);
+		return result;
+	});
+}
+
 function checkLoginCredential(loginInfo){
 	var data = JSON.stringify(loginInfo);
 	console.log("IN CHECK LOGIN CREDENTIAL : " + data);
@@ -121,6 +148,25 @@ function testPendingConnectionService(){
 		return [{id: 3,name:"Ash Borkar",jobTitle:"Software Developer",company:"Visa"}];
 }
 
+function createProfile(reqData, userId){
+	console.log("IN createProfile service: "  + reqData.name + "," + userId);
+	var profile = mongoose.model('Profiles', profileSchema);
+	var newProfile = new profile({
+				_id : userId,
+				name : reqData.name,
+				jobTitle : "",
+				company : "",
+				summary : "",
+				education : ".",
+				experience : [],
+				skills : []
+			});
+	return newProfile.save(function (err, result) {
+		if (err) return console.error(err);
+		return console.log(result);			
+	});
+}
+
 function getProfileById(userId){
 	console.log("IN getProfileById : " + userId);
 	var profile = mongoose.model('Profiles', profileSchema);
@@ -131,9 +177,46 @@ function getProfileById(userId){
 	});
 }
 
-function performSearch(searchInfo){
+function getProfileList(userIds){
+	console.log("IN getProfileList : " + userIds);
+	var profile = mongoose.model('Profiles', profileSchema); 
+	return profile.find({_id: {$in:userIds}},'_id name jobTitle company', function(err, result){
+		if(err) return console.error(err)
+		console.log(result);
+	});
+}
+
+function getConnection(userId){
+	console.log("IN getConnection : " + JSON.stringify(userId));
+	var profile = mongoose.model('Profiles', profileSchema);
+	return profile.findById(userId,'connections', function(err, result){
+		if(err) return console.error(err);
+		console.log(result.connections);
+	});
+}
+
+
+function getPendingConnection(userId){
+	console.log("IN getPendingConnection : " + JSON.stringify(userId));
+	var profile = mongoose.model('Profiles', profileSchema);
+	return profile.findById(userId,'pendingConnections', function(err, result){
+		if(err) return console.error(err);
+		console.log(result);
+	});
+}
+
+function performUserSearch(searchInfo){
+	var user = mongoose.model('Users', userSchema);
+	return user.findOne({email: searchInfo},function(err, result){
+		if(err) return console.error(err);
+		console.log(result);
+		return result;
+	});
+}
+
+function performProfileSearch(searchInfo){
 	var data = JSON.stringify(searchInfo);
-	console.log("IN PERFORMSEARCH : " + data);
+	console.log("IN PERFORMPROFILESEARCH : " + data);
 	
 	var searchObj = {};
 	Object.keys(searchInfo).forEach(function(key, index){
