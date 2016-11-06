@@ -17,11 +17,18 @@
     padding-top: 30px;
     font-size: 25px;
 }
+
+.media-body{
+     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
 /*forum description*/
 .media-body > p {
+   
     font-size: 20px;
 }
 .media-left > p {
+
     font-size: 15px;
 }
 /*featured style*/

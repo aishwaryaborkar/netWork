@@ -22,8 +22,8 @@
                     <a href="forumTopic"><img class="media-object" src="images/forum/profileFiller.jpg"></a>
                 </a>
             </div>
-            <div class="media-body" ng-model="heading">
-                <h4 class="media-heading"><a href="forumTopic">{{heading}}</a></h4>
+            <div class="media-body" ng-model="post">
+                <h4 class="media-heading"><a href="forumTopic">{{post.title}}</a></h4>
                 Cras sit amet nibh libero, in gravida nulla.</div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 <div class="media featured">
                     <h2>Featured</h2>
                     <div ng-repeat="post in posts" ng-model="post">
-                        <p><span class="glyphicon glyphicon-cloud"></span>{{post.postName}}</p>
+                        <p><span class="glyphicon glyphicon-cloud"></span>{{post.title}}</p>
                     </div>
 
                     
