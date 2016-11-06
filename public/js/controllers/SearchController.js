@@ -1,6 +1,7 @@
 angular.module('SearchController', ['DataService']).controller('SearchController', function($scope, $rootScope, $http, dataService) {
 	
 	$scope.results = [];
+	$scope.email = '';
 	$scope.name = '';
     $scope.company = '';
     $scope.jobtitle = '';
@@ -9,6 +10,7 @@ angular.module('SearchController', ['DataService']).controller('SearchController
     $scope.education = '';
 
     $scope.clearFields = function() {
+    	$scope.email = '';
         $scope.name = '';
         $scope.company = '';
         $scope.jobtitle = '';
@@ -28,6 +30,7 @@ angular.module('SearchController', ['DataService']).controller('SearchController
     $scope.handleSubmit = function() {
 		//compile info into an searchObject for api
 		var searchCriteria = {};
+		searchCriteria.email = $scope.email;
 		searchCriteria.name = $scope.name;
 		searchCriteria.company = $scope.company;
 		searchCriteria.jobTitle = $scope.jobtitle;
