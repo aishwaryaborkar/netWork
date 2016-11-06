@@ -8,6 +8,7 @@ angular.module('SearchController', ['DataService']).controller('SearchController
     $scope.skill = '';
     $scope.endorsement = '';
     $scope.education = '';
+    $scope.mysearch = '';
 
     $scope.clearFields = function() {
     	$scope.email = '';
@@ -17,6 +18,7 @@ angular.module('SearchController', ['DataService']).controller('SearchController
         $scope.skill = '';
         $scope.endorsement = '';
         $scope.education = '';
+        $scope.mysearch = '';
 	};
 	
 	function isEmpty( obj ) {
@@ -26,6 +28,8 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 		}
 		return true;
 	}
+	
+
 	
     $scope.handleSubmit = function() {
 		//compile info into an searchObject for api
@@ -43,6 +47,12 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 			alert("cannot leave fields empty");
 		}else{
 			dataService.performSearch(searchCriteria).then(function(data){
+				if ((data.resultList).length == 0) {
+					$scope.mysearch = 'No Matches Found';
+				} else {
+					$scope.mysearch = 'Search Results: ' + (data.resultList).length;
+				}
+				
 				$scope.results = [];			
 				var i = 0;
 				for (i = 0; i < (data.resultList).length ;i++) {
