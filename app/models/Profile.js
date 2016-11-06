@@ -8,6 +8,8 @@ module.exports = mongoose.Schema(
 		summary : String,
 		education : String,
 		experience : [{jobTitle : String, company : String, responsibility : String}],
-		skills : [{skillName : String, skillLevel : { type: Number, min: 0, max: 100 }}]
+		skills : [{skillName : String, skillLevel : { type: Number, min: 0, max: 100 }}],
+		connections : [String],
+		pendingConnections : [String]
 	}
 );
