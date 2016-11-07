@@ -8,6 +8,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	dataService.testForumService = testForumService;
 	dataService.performLoginOperation = performLoginOperation;
 	dataService.performSearch = performSearch;
+	dataService.getProfile = getProfile;
 	
 	return dataService;	
   
@@ -77,5 +78,21 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 			});
 	}
     
+	function getProfile(profileID){ 
+		console.log(profileID);
+		return $http({
+				method: 'POST',
+				url: urlBase + '/getProfileById',
+				data: profileID
+		}).then(
+			function(body) { //what to on on success call
+				console.log(body);
+				return body.data;
+			},
+			function(res){
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+			});
+	}
 	
 }]);

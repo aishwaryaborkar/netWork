@@ -35,10 +35,11 @@
 </div>
 
 
+ 
 <div class="row fade-in two">
 	<div class="container" style="width: 80%">
 		<div class="jumbotron">
-	    <div id="editButton"><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+	    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="summaryClick()">
 	        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
 	    </a></div>
 			<h2>Summary</h2> 
@@ -51,7 +52,7 @@
 <div class="row fade-in three">
 	<div class="container" style="width: 80%">
 		<div class="jumbotron">
-	    <div id="editButton"><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+	    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="eduClick()">
 	        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
 	    </a></div>
 			<h2>Education</h2> 
@@ -62,11 +63,11 @@
 </div>
 
 
-<div class="row">
+<div class="row fade-in three" >
 	<div class="container" style="width: 80%">
 		<div class="jumbotron">
 			<h2>Experience</h2> 
-	    <div id="editButton"><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+	    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="expClick()">
 	        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
 	    </a></div>
 			<img src="./images/profile/micosoft.png" class="pull-left" style="width: 250px; height: auto">
@@ -81,11 +82,11 @@
 </div>
 
 
-<div class="row">
+<div class="row fade-in three">
 	<div class="container" style="width: 80%">
 		<div class="jumbotron">
 			<h2>Skills</h2> 
-	    <div id="editButton"><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+	    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="skillsClick()">
 	        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
 	    </a></div>
 			<div class="progress">
@@ -100,4 +101,26 @@
 		</div>
 	</div>
 </div>
-|
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+   	<div class="modal-dialog">
+      <!-- Modal content-->
+    	<div class="modal-content">
+
+        	<div class="modal-header">
+          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+          		<h4 class="modal-title">Edit {{modalHeader}}</h4>
+        	</div>
+
+	        <div class="modal-body">
+	        	<p>Some text in the modal.</p>
+	        </div>
+
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+
+    	</div>
+    </div>
+</div>

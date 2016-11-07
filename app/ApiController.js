@@ -46,8 +46,7 @@ router.get('/testMessageService', function(req, res){
 //LOGIN or REGISTRATION RELATED SERVICES.....
 //===========================================
 router.post('/login', function(req, res){
-	console.log("login service requested : " + req.body.email);
-	console.log("login service requested : " + req.body.password);
+	console.log("login service requested : " + JSON.stringify(req.body));
 	
 	serviceFulfiller.checkLoginCredential(req.body).then(
 		function(result){
@@ -85,9 +84,9 @@ router.post('/createAccount', function(req, res){
 //PROFILE RELATED SERVICES.....
 //===========================================
 router.post('/getProfileById', function(req, res){
-	console.log("getProfileById service requested : " + req.body);
+	console.log("getProfileById service requested : " + JSON.stringify(req.body));
 	
-	serviceFulfiller.getProfileById(req.body._id).then(
+	serviceFulfiller.getProfileById(req.body.userId).then(
 		function(result){
 			res.status(200).json(result);
 		},
@@ -97,7 +96,7 @@ router.post('/getProfileById', function(req, res){
 });
 
 router.post('/getConnection', function(req, res){
-	console.log("getConnections service requested : " + req.body);
+	console.log("getConnections service requested : " + JSON.stringify(req.body));
 	
 	serviceFulfiller.getConnection(req.body.userId).then(function(result){
 		console.log("in getConnection promise...")
@@ -113,7 +112,7 @@ router.post('/getConnection', function(req, res){
 });
 
 router.post('/getPendingConnection', function(req, res){
-	console.log("getPendingConnections service requested : " + req.body);
+	console.log("getPendingConnections service requested : " + JSON.stringify(req.body));
 	
 	serviceFulfiller.getPendingConnection(req.body.userId).then(function(result){
 		console.log("in getPendingConnection promise...")
@@ -192,7 +191,7 @@ router.get('/getForumList', function(req, res){
 }); 
 
 router.post('/getForumById', function(req, res){
-	console.log("getForumById service requested : " + req.body);
+	console.log("getForumById service requested : " + JSON.stringify(req.body));
 	
 	serviceFulfiller.getForumById(req.body._id).then(
 		function(result){
@@ -208,7 +207,7 @@ router.get('/getPopularForum', function(req,res){
 }); 
 
 router.post('/createForum', function(req, res){
-	console.log("createForum service requested");
+	console.log("createForum service requested" + JSON.stringify(req.body));
 	serviceFulfiller.createForumPost(req.body).then(
 		function(result){
 			res.status(200).json(result);
