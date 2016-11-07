@@ -10,6 +10,7 @@ service.createAccount = createAccount;
 service.createProfile = createProfile;
 service.getProfileById = getProfileById;
 service.getProfileList = getProfileList;
+service.updateProfileInfo = updateProfileInfo;
 service.getConnection = getConnection;
 service.getPendingConnection = getPendingConnection;
 service.performUserSearch = performUserSearch;
@@ -184,6 +185,20 @@ function getProfileList(userIds){
 		if(err) return console.error(err)
 		console.log(result);
 	});
+}
+
+function updateProfileInfo(basicProfile){
+	var data = JSON.stringify(basicProfile);
+	console.log("IN updateBasicProfile: " + data);
+	
+	var profile = mongoose.model('Profiles', profileSchema);
+	var query = {_id:basicProfile.userId};
+	delete basicProfile.userId;
+	profile.update(query, {$set: basicProfile}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+	return Promise.resolve({message:"OK"});
 }
 
 function getConnection(userId){
