@@ -11,28 +11,41 @@
        <form name="form" role="form">
  
          		<div class="form-group">
-        		    Email: <input type="text" name="email" id="email" class="form-control" ng-model="email" />
+        		    Email: <input type="text" name="email" id="email" class="form-control" ng-model="email" placeholder="Email ..." />
             	</div>
         		<div class="form-group">
-            		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" />
+            		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" placeholder="Name ..." />
         		</div>
         		<div class="form-group">
-        		    Company: <input type="text" name="company" id="company" class="form-control" ng-model="company" />
+        		    Company: <input type="text" name="company" id="company" class="form-control" ng-model="company" placeholder="Company ..." />
             	</div>
         		<div class="form-group">
-        		    Job Title: <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="jobtitle"/>
+        		    Job Title: <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="jobtitle" placeholder="Job Title ..." />
             	</div>            	
             	<div class="form-group" ng-show={{$root.isPremium}}>
-            		Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="skill"/>
+            		Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="skill" placeholder="Skill ..." />
+            	</div>
+            	
+            	 <div class="form-group" ng-show={{$root.isPremium}}>
+            		>= <input type="text" name="skill" id="skill" class="form-control" ng-model="skill" placeholder="%" />
+            	</div>
+            	
+            	
+            	
+            	 <div class="form-group"  ng-show={{$root.isPremium}}>
+            		Education: 
             	</div>
             	 <div class="form-group" ng-show={{$root.isPremium}}>
-            		Endorsements: <input type="text" name="endorsement" id="endorsement" class="form-control" ng-model="endorsement"/>
+            		School Name: <input type="text" name="schoolName" id="schoolName" class="form-control" ng-model="schoolName" placeholder="School Name ..." />
             	</div>
-            	 <div class="form-group"  ng-show={{$root.isPremium}}>
-            		Education: <input type="text" name="education" id="education" class="form-control" ng-model="education"/>
-            	</div>            	
-          
-    
+            	<div class="form-group" ng-show={{$root.isPremium}}>
+            		Graduation Date: <input type="text" name="graduationDate" id="graduationDate" class="form-control" ng-model="graduationDate" placeholder="Graduation Date ..." />
+            	</div>
+            	<div class="form-group" ng-show={{$root.isPremium}}>
+            		Description: <input type="text" name="Description" id="Description" class="form-control" ng-model="Description" placeholder="Description ..." />
+            	</div>            		
+
+
 			<input type="submit" name="submit" ng-click="handleSubmit()" value="Search"/>
 			<input type="button" name="submit" ng-click="clearFields()" value="Clear Fields"/>
 		</form>

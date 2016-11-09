@@ -7,7 +7,9 @@ angular.module('SearchController', ['DataService']).controller('SearchController
     $scope.jobtitle = '';
     $scope.skill = '';
     $scope.endorsement = '';
-    $scope.education = '';
+    $scope.schoolName = '';
+    $scope.graduationDate = '';
+    $scope.description = '';
     $scope.mysearch = '';
 
     $scope.clearFields = function() {
@@ -17,7 +19,9 @@ angular.module('SearchController', ['DataService']).controller('SearchController
         $scope.jobtitle = '';
         $scope.skill = '';
         $scope.endorsement = '';
-        $scope.education = '';
+    	$scope.schoolName = '';
+   		$scope.graduationDate = '';
+    	$scope.description = '';
         $scope.mysearch = '';
 	};
 	
