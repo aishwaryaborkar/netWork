@@ -1,5 +1,10 @@
 angular.module('MainCtrl', ['DataService'])
 .controller('MainController', function($scope, $rootScope, $location) {	
+
+	$rootScope.isUserLoggedIn = false;
+	$rootScope.isPremiumUser = false;
+	$rootScope.userId = "";
+
 	this.logout = function(){
 		$rootScope.isUserLoggedIn = false;
 		$location.path('/');
@@ -22,17 +27,12 @@ angular.module('MainCtrl', ['DataService'])
 	
 	$scope.validateLogin = function(userIn, passIn){		
 		dataService.performLoginOperation(userIn.$viewValue, passIn.$viewValue).then( function(body){
-			console.log(body)
 			console.log(JSON.stringify(body.data));
 			if(body.data.message !== undefined && body.data.message === "OK"){
-				sessionStorage.setItem('isUserLoggedIn', true);
-				if(userIn.$viewValue === 'admin'){
-					sessionStorage.setItem('isPremiumUser', true);
-				}else{
-					//will eventually determine based on profile...
-					sessionStorage.setItem('isPremiumUser', false);
-				}
-				$rootScope.isUserLoggedIn = sessionStorage.getItem('isUserLoggedIn');
+				console.log(body.data.userInfo);
+				$rootScope.isUserLoggedIn = true;
+				$rootScope.isPremium = body.data.userInfo.premium;
+				$rootScope.userId = body.data.userInfo._id;
 				$location.path('/profile'); // path not hash
 			}else{
 				$rootScope.isUserLoggedIn = false;
