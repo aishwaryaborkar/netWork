@@ -70,9 +70,7 @@ router.post('/createAccount', function(req, res){
 	console.log("createAccount service requested: " + JSON.stringify(req.body));
 	serviceFulfiller.createAccount(req.body).then( function(accountResult){ 
 		// finished with creatingAccount, will need to createProfile
-		console.log("created account for: " + accountResult.email);
 		serviceFulfiller.createProfile(req.body, accountResult._id).then(function(profileResult){
-			console.log("created profile for: " + profileResult.name)
 			res.status(200).json({message:"OK"});
 			})
 		})
@@ -111,9 +109,7 @@ router.post('/getConnection', function(req, res){
 	console.log("getConnections service requested : " + JSON.stringify(req.body));
 	
 	serviceFulfiller.getConnection(req.body.userId).then(function(result){
-		console.log("in getConnection promise...")
 		serviceFulfiller.getProfileList(result.connections).then(function(data){
-			console.log("in getProfileList promise...")
 			res.status(200).json(data);
 			});
 			
@@ -123,19 +119,55 @@ router.post('/getConnection', function(req, res){
 	});
 });
 
+router.post('/removeConnection' , function(req, res){
+	console.log("removeConnection service requested : " + JSON.stringify(req.body));
+	
+	serviceFulfiller.getConnection(req.body.userId).then(function(userConnection){
+		serviceFulfiller.removeConnection(req.body.userId, userConnection.connections, req.body.connectionId).then(function(connectionList){		
+			serviceFulfiller.getProfileList(connectionList).then(function(data){
+				res.status(200).json(data);
+				});
+		})
+	});
+});
+
+
 router.post('/getPendingConnection', function(req, res){
 	console.log("getPendingConnections service requested : " + JSON.stringify(req.body));
 	
 	serviceFulfiller.getPendingConnection(req.body.userId).then(function(result){
-		console.log("in getPendingConnection promise...")
 		serviceFulfiller.getProfileList(result.pendingConnections).then(function(data){
-			console.log("in getProfileList promise...")
 			res.status(200).json(data);
 			});
 		},
 		function(result){
 			console.log(JSON.stringify(result));
 		});
+});
+
+router.post('/approveConnection' , function(req, res){
+	console.log("approveConnection service requested : " + JSON.stringify(req.body));
+	
+	serviceFulfiller.getBothConnections(req.body.userId).then(function(userConnection){
+		serviceFulfiller.approveConnection(req.body.userId, userConnection, req.body.connectionId).then(function(connectionList){		
+			serviceFulfiller.getProfileList(connectionList).then(function(data){
+				res.status(200).json(data);
+				});
+		})
+	});
+});
+
+
+router.post('/declineConnection' , function(req, res){
+	console.log("declineConnection service requested : " + JSON.stringify(req.body));
+	
+	serviceFulfiller.getPendingConnection(req.body.userId).then(function(userConnection){
+		serviceFulfiller.declineConnection(req.body.userId, userConnection.pendingConnections, req.body.connectionId).then(function(connectionList){		
+			serviceFulfiller.getProfileList(connectionList).then(function(data){
+				res.status(200).json(data);
+				});
+		})
+	});
 });
 
 
