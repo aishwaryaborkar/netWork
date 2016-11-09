@@ -1,11 +1,19 @@
 ## THINGS TODO....
-modify pages so it dynamic rendering the content based on passed in values.
-modify controller so it can use dataService.
-modify dataService file so it calls the correct api for specific function
-modify controller so that you use returned data from DataService to be displayed on the UI.
-
---minor UI things to work on--
-Login page needs error message when UI failed to logged in.(the login authentication is completed.)
+0. Landingpage
+    -new images for the slider thingy, new next to put?
+1. CreateAccount/Login/AccountRecovery
+    -need checker on fields(email, password, date?)
+    -required all fields on accountRecovery, date widget, 
+2. Profile
+    -edit profiles, public view(reqest connection, send message)
+3. Connections
+    -display connections from DB, remove connection, approvePending, declinePending, visit profile
+4. Message
+    -load initial page from DB, send message, send new message.
+5. Forum
+    -load specific forum, create forum, add comment, add reply to comment.
+6. Search
+    -partial search on email?, search on skills, education, experience.
 
 ## Installation -- You will need to install Node before hand.
 1. Clone repo(which ever method you prefer)
