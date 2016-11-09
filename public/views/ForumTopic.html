@@ -32,10 +32,8 @@
                 <div class="media featured">
                     <h2>Featured</h2>
                     <div ng-repeat="post in posts" ng-model="post">
-                        <p><span class="glyphicon glyphicon-cloud"></span>{{post.postName}}</p>
+                        <p><span class="glyphicon glyphicon-cloud"></span>{{post.title}}</p>
                     </div>
-
-                    
                 </div>
             </div>
         </div>
@@ -59,15 +57,15 @@
                             <div class="panel panel-default arrow left">
                                 <div class="panel-body">
                                     <header class="text-left">
-                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
+                                        <div class="comment-user" ng-repeat="comment in comments" ng-model="comment"><i class="fa fa-user"></i>{{comment.commentName}}</div>
+                                        <time class="comment-date" ng-repeat="comment in comments" ng-model="comment"><i class="fa fa-clock-o"></i>{{comment.commentDate}}</time>
                                     </header>
-                                    <div class="comment-post">
+                                    <div class="comment-post" ng-repeat="comment in comments" ng-model="comment">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            {{comment.commentDescription}}
                                         </p>
                                     </div>
-                                    <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                    <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i>reply</a></p>
                                 </div>
                             </div>
                         </div>

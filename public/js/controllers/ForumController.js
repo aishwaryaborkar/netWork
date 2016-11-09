@@ -54,6 +54,30 @@ angular.module('ForumController', ['DataService'])
     $scope.posts; 
 
 
+    /*COMMENTS*/
+
+    var d = new Date();
+
+    $scope.comments = 
+
+        [{
+            commentName: "Stacy Wong",
+            commentDate: d,
+            commentDescription: "Hello"
+        },
+
+        {
+            commentName: "Aishwarya Borkar",
+            commentDate: "October 26, 2016",
+            commentDescription: "Hi."    
+        }];
+
+
+
+
+
+
+
         // dataService.testForumService().then( function(forumResult){
 
         //     console.log("In dataService promise function b4 cpy: " + JSON.stringify(forumResult));
@@ -94,12 +118,5 @@ angular.module('ForumController', ['DataService'])
         
         //changing the temp value right under the search criteria for testing purpose....
         console.log("In dataService promise function after: " + JSON.stringify($scope.posts));
-
-  
-
-
-
-    
-
 
 });
