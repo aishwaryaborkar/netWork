@@ -10,8 +10,13 @@ service.createAccount = createAccount;
 service.createProfile = createProfile;
 service.getProfileById = getProfileById;
 service.getProfileList = getProfileList;
+service.updateProfileInfo = updateProfileInfo;
+service.getBothConnections = getBothConnections;
 service.getConnection = getConnection;
+service.removeConnection = removeConnection;
 service.getPendingConnection = getPendingConnection;
+service.approveConnection = approveConnection;
+service.declineConnection = declineConnection;
 service.performUserSearch = performUserSearch;
 service.performProfileSearch = performProfileSearch;
  
@@ -82,17 +87,26 @@ save the object into db
 
 
 var mongoose = require('mongoose');
-var userSchema = require('../models/User.js');
-var profileSchema = require('../models/Profile.js');
-var forumSchema = require('../models/Forum.js');
-var messageSchema = require('../models/Message.js');
 var db = mongoose.connection;
+
+var userSchema = require('../models/User.js');
+var user = mongoose.model('Users', userSchema);
+
+var profileSchema = require('../models/Profile.js');
+var profile = mongoose.model('Profiles', profileSchema);
+
+var forumSchema = require('../models/Forum.js');
+var forum = mongoose.model('Forums', forumSchema);
+
+var messageSchema = require('../models/Message.js');
+
+
 
 //===========================================
 //ACCOUNT RELATED SERVICES.....
 //===========================================
 function createAccount(accountInfo){
-	var user = mongoose.model('Users', userSchema);
+	//var user = mongoose.model('Users', userSchema);
 	var newUser = new user({
 		email : accountInfo.email,
 		password : accountInfo.password,
@@ -114,7 +128,7 @@ function createAccount(accountInfo){
 function checkLoginCredential(loginInfo){
 	var data = JSON.stringify(loginInfo);
 	console.log("IN CHECK LOGIN CREDENTIAL : " + data);
-	var user = mongoose.model('Users', userSchema);
+	//var user = mongoose.model('Users', userSchema);
 	return user.findOne({email: loginInfo.email, password: loginInfo.password}, '_id premium',function(err, result){
 		if(err) return console.error(err);
 		console.log(result);
@@ -150,14 +164,14 @@ function testPendingConnectionService(){
 
 function createProfile(reqData, userId){
 	console.log("IN createProfile service: "  + reqData.name + "," + userId);
-	var profile = mongoose.model('Profiles', profileSchema);
+	//var profile = mongoose.model('Profiles', profileSchema);
 	var newProfile = new profile({
 				_id : userId,
 				name : reqData.name,
 				jobTitle : "",
 				company : "",
 				summary : "",
-				education : ".",
+				education : [],
 				experience : [],
 				skills : []
 			});
@@ -169,7 +183,6 @@ function createProfile(reqData, userId){
 
 function getProfileById(userId){
 	console.log("IN getProfileById : " + userId);
-	var profile = mongoose.model('Profiles', profileSchema);
 	return profile.findById(userId, function(err, result){
 		if(err) return console.error(err);
 		console.log(result);		
@@ -179,22 +192,58 @@ function getProfileById(userId){
 
 function getProfileList(userIds){
 	console.log("IN getProfileList : " + userIds);
-	var profile = mongoose.model('Profiles', profileSchema); 
 	return profile.find({_id: {$in:userIds}},'_id name jobTitle company', function(err, result){
 		if(err) return console.error(err)
 		console.log(result);
 	});
 }
 
+function updateProfileInfo(basicProfile){
+	var data = JSON.stringify(basicProfile);
+	console.log("IN updateBasicProfile: " + data);
+
+	var query = {_id:basicProfile.userId};
+	delete basicProfile.userId;
+	profile.update(query, {$set: basicProfile}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+	return Promise.resolve({message:"OK"});
+}
+
+function getBothConnections(userId){
+	console.log("IN getConnection : " + JSON.stringify(userId));
+	return profile.findById(userId,'connections pendingConnections', function(err, result){
+		if(err) return console.error(err);
+		console.log(result.connections);
+	});
+}
+
 function getConnection(userId){
 	console.log("IN getConnection : " + JSON.stringify(userId));
-	var profile = mongoose.model('Profiles', profileSchema);
 	return profile.findById(userId,'connections', function(err, result){
 		if(err) return console.error(err);
 		console.log(result.connections);
 	});
 }
 
+function removeConnection(userId, connectionList, connectionId){
+	console.log("IN removeConnection : " + connectionList + " : " + connectionId);
+	
+	var query = { _id : userId}
+	var newConnectionsList = connectionList.filter(function(element){
+		return element != connectionId;
+	});
+
+	var newData = {connections : newConnectionsList};
+	profile.update(query, {$set : newData}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+
+	return Promise.resolve(newConnectionsList);
+}
+	
 
 function getPendingConnection(userId){
 	console.log("IN getPendingConnection : " + JSON.stringify(userId));
@@ -203,6 +252,50 @@ function getPendingConnection(userId){
 		if(err) return console.error(err);
 		console.log(result);
 	});
+}
+
+function approveConnection(userId, connectionLists, connectionId){
+	console.log("IN approveConnection : " + connectionLists + " : " + connectionId);
+	
+	var connections = connectionLists.connections;
+	var pendingConnections = connectionLists.pendingConnections;
+	
+	console.log("connections " + connections + ":: pendingConnections " + pendingConnections );
+	
+	var query = { _id : userId}
+	
+	var newPendingConnections = pendingConnections.filter(function(element){
+		return element != connectionId;
+	});
+	
+	connections.push(connectionId);
+
+	var newData = {connections : connections, pendingConnections : newPendingConnections};
+	profile.update(query, {$set : newData}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+	
+	
+
+	return Promise.resolve(newPendingConnections);	
+}
+
+function declineConnection(userId, connectionList, connectionId){
+	console.log("IN declineConnection : " + connectionList + " : " + connectionId);
+	
+	var query = { _id : userId}
+	var newConnectionsList = connectionList.filter(function(element){
+		return element != connectionId;
+	});
+
+	var newData = {pendingConnections : newConnectionsList};
+	profile.update(query, {$set : newData}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+
+	return Promise.resolve(newConnectionsList);
 }
 
 function performUserSearch(searchInfo){
@@ -257,7 +350,6 @@ function getForumById(forumId){
 
 function createForumPost(forumData){
 	console.log("IN createForumPost : " + forumData);
-	var forum = mongoose.model('Forums', forumSchema);
 	
 	//create the forum object`
 	var createForum = new forum(forumData);

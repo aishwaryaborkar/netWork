@@ -4,58 +4,59 @@
 	<div class="main-wrapper">
     		
 			<div class="menu">
-            		<a href="javascript:void(0);" onclick="document.getElementById('pop').style.display = 'block';" class="write"><span>Write New Message</span></a>
+            
+            		<div class="inputs">
+                    	<input type="text" placeholder="Search" />
+                        <button></button>
+                    </div>
+            
 					<div class="icon-list">
-                    	
-						<a href="javascript:void(0);" onclick="document.getElementById('all-msg').style.display = 'block';document.getElementById('new-msg').style.display = 'none';document.getElementById('unread-msg').style.display = 'none';"><span>All Message</span></a>
-						<a href="javascript:void(0);" onclick="document.getElementById('all-msg').style.display = 'none';document.getElementById('new-msg').style.display = 'block';document.getElementById('unread-msg').style.display = 'none';"><span>New Message</span></a>
-						<a href="javascript:void(0);" onclick="document.getElementById('all-msg').style.display = 'none';document.getElementById('new-msg').style.display = 'none';document.getElementById('unread-msg').style.display = 'block';"><span>Unread</span></a>
+						<a href="javascript:void(0);" onclick="document.getElementById('all-msg').style.display = 'block';document.getElementById('new-msg').style.display = 'none';document.getElementById('unread-msg').style.display = 'none';"><span>Jack</span></a>
+						<a href="javascript:void(0);" onclick="document.getElementById('all-msg').style.display = 'none';document.getElementById('new-msg').style.display = 'block';document.getElementById('unread-msg').style.display = 'none';"><span>Phili</span></a>
+						<a href="javascript:void(0);" onclick="document.getElementById('all-msg').style.display = 'none';document.getElementById('new-msg').style.display = 'none';document.getElementById('unread-msg').style.display = 'block';"><span>Bob</span></a>
 					</div>
 			</div>
 			
 			<div id="all-msg" style="display:block;">
-
-				<ol class="myol">
-					<li>Ro,Are you here?<span class="time">2016-10-11</span></li>
-                    <li>Ro,Are you here?<span class="time">2016-10-11</span></li>
-                    <li>Ro,Are you here?<span class="time">2016-10-11</span></li>
-                    <li>Ro,Are you here?<span class="time">2016-10-11</span></li>
-                    <li>Ro,Are you here?<span class="time">2016-10-11</span></li>
-				</ol>
+				<div class="mydialog" id="dialog1">
+                	<div class="item"><span>Someone:</span><br>xxx xxxx</div>
+                    <div class="item"><span>Someone:</span><br>yyyy yyyy</div>
+                    <div class="item"><span>Someone:</span><br>yyyy yyyy</div>
+                    <div class="item"><span>Someone:</span><br>yyyy yyyy</div>
+                    <div class="item"><span>Someone:</span><br>yyyy yyyy</div>
+                    <div class="item"><span>Someone:</span><br>yyyy yyyy</div>
+                </div>
+                
+                <div class="enter">
+                	<textarea id="textarea1" placeholder="say something..."></textarea>
+                    <div class="subb"><button onclick="document.getElementById('dialog1').innerHTML = document.getElementById('dialog1').innerHTML + '<div class=\'item\'><span>Someone:</span><br>'+document.getElementById('textarea1').value+'</div>';document.getElementById('textarea1').value='';">Reply</button></div>
+                </div>
 			</div>
 			
 			<div id="new-msg">
-                <ol class="myol">
-					<li>Yeah,what's up?<span class="time">2016-10-11</span></li>
-				</ol>
+                <div class="mydialog" id="dialog2">
+                	<div class="item"><span>Someone:</span><br>11 111</div>
+                    <div class="item"><span>Someone:</span><br>222 2222</div>
+                </div>
 				
+                <div class="enter">
+                	<textarea id="textarea2" placeholder="say something..."></textarea>
+                    <div class="subb"><button onclick="document.getElementById('dialog2').innerHTML = document.getElementById('dialog2').innerHTML + '<div class=\'item\'><span>Someone:</span><br>'+document.getElementById('textarea2').value+'</div>';document.getElementById('textarea2').value='';">Reply</button></div>
+                </div>
 			</div>
 			
 			<div id="unread-msg">
-				<ol class="myol">
-					<li>Yeah,what's up?<span class="time">2016-10-11</span></li>
-                    <li>Yeah,what's up?<span class="time">2016-10-11</span></li>
-				</ol>
+				<div class="mydialog" id="dialog3">
+                	<div class="item"><span>Someone:</span><br>aaa aaa</div>
+                    <div class="item"><span>Someone:</span><br>bbb bbbb</div>
+                </div>
+                
+                <div class="enter">
+                	<textarea id="textarea3" placeholder="say something..."></textarea>
+                    <div class="subb"><button onclick="document.getElementById('dialog3').innerHTML = document.getElementById('dialog3').innerHTML + '<div class=\'item\'><span>Someone:</span><br>'+document.getElementById('textarea3').value+'</div>';document.getElementById('textarea3').value='';">Reply</button></div>
+                </div>
 			</div>
 		</div>
         
-        <div id="pop">
-        	<div class="line1">
-            	<span>Write New Message</span>
-                <span class="close" onclick="document.getElementById('pop').style.display = 'none';">&times;</span>
-            </div>
-            <div class="content">
-            	<div class="tomail">
-                	<input type="text"  placeholder="to email"/>
-                </div>
-                
-                <div class="message_content">
-                	<textarea placeholder="write something..."></textarea>
-                </div>
-                
-                <div class="submit">
-                	<button onclick="alert('ok');">Sent</button>
-                </div>
-            </div>
-        </div>
+        
 </div>
