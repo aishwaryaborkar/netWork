@@ -5,7 +5,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
     var dataService = {};
 
 	dataService.testService = testService;
-	dataService.testForumService = testForumService;
+	dataService.getForumList = getForumList;
 	dataService.performLoginOperation = performLoginOperation;
 	dataService.performSearch = performSearch;
 	dataService.getProfile = getProfile;
@@ -42,6 +42,33 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 				return $q.reject(res.data);
 		});
 	}
+
+	function getForumList(){
+				return $http({
+				method: 'GET',
+				url: urlBase + '/getForumList'
+		}).then(
+			function(body) { //what to on on success call
+				console.log(body);
+				return body;
+			},
+			function(res){
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+			});
+
+	}
+
+	function getForumById(forumId){
+
+	}
+
+	function createForum(forumData){
+
+
+	}
+
+
 
 		
 	function performLoginOperation(userIn, passIn){ 

@@ -331,7 +331,7 @@ function performProfileSearch(searchInfo){
 function getForumList(){
 	console.log("IN getForumList : requesting data from DB");
 	var forum = mongoose.model('Forums', forumSchema);
-	return forum.findOne( {}, '_id title forumOwnerId forumOwnerName date description',function(err, result){
+	return forum.find( {}, '_id title forumOwnerId forumOwnerName date description',function(err, result){
 		if(err) return console.error(err);
 		console.log(result);		
 		return result;
