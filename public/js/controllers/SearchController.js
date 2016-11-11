@@ -1,32 +1,26 @@
 angular.module('SearchController', ['DataService']).controller('SearchController', function($scope, $rootScope, $http, dataService) {
 
-	var EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
 	$scope.results = [];
 	$scope.email = '';
 	$scope.name = '';
     $scope.company = '';
     $scope.jobtitle = '';
-    $scope.education = '';
     $scope.skill = '';
+    $scope.schoolName = '';
+    $scope.graduationDate = '';
+    $scope.description = '';
     $scope.mysearch = '';
 
-	$scope.testEmail = function() {
-		if ($scope.email == '') {
-		} else if (EMAIL_REGEX.test($scope.email)) { 
-			toastr.success('Correct email');
-		} else {
-			toastr.warning('Incorrect email');
-		}
-	}
 
     $scope.clearFields = function() {
     	$scope.email = '';
         $scope.name = '';
         $scope.company = '';
         $scope.jobtitle = '';
-        $scope.education = '';
         $scope.skill = '';
+    	$scope.schoolName = '';
+   		$scope.graduationDate = '';
+    	$scope.description = '';
         $scope.mysearch = '';
 		$scope.results = [];
 	};
@@ -55,7 +49,9 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 		searchCriteria.company = $scope.company;
 		searchCriteria.jobTitle = $scope.jobtitle;
 		searchCriteria.skill = $scope.skill;
-		searchCriteria.education = $scope.education;
+		searchCriteria.schoolName = $scope.schoolName;
+		searchCriteria.graduationDate = $scope.graduationDate;
+		searchCriteria.description = $scope.description;
 		
 		if(isEmpty(searchCriteria)){
 			$scope.error = "search fields cannot be left empty";
