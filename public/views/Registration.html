@@ -1,139 +1,77 @@
 <div align="center" style="background:url('./images/login/background2.jpg');margin=40px;">
 	<link rel="stylesheet" type="text/css" href="../css/login.css" />
 	<link rel="stylesheet" type="text/css" href="../css/simplegrid.css" />
-
-	
+		
 	<body>
 		
 		<div class="grid grid-pad" style="padding-bottom:50px;">
-			<div class="col-8-12">
+			<div class="col-6-12">
         	   	<img src= "./images/login/logo.jpg" alt="company Logo" style="max-width:100%; margin-top:30px;"/>
     		</div>
             
-    		<div class="col-4-12">
+    		<div class="col-6-12">
             	<h align="center"> Join net<b>[Work]</b> today.</h>
                 
-                
-                
     		    <form name="form" role="form">
-                
-                <div class="form-group" style="text-align:left">
-	            	<label for="firstname">First Name</label>
-    	        	<input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" />
+            
+            	<div class="form-group" ng-class="{ 'has-error': (form.firstname.$pristine || form.firstname.$dirty) && form.firstname.$error.required}">
+            		<label for="firstname">First Name</label>
+    	        	<input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" ng-model="user.firstName" required/>	
         		</div>
-                
-                <div class="form-group" style="text-align:left">
-	            	<label for="lastname">Last Name</label>
-    	        	<input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Names" />
-        		</div>
-                
-        		<div class="form-group" style="text-align:left">
-            		<label for="Email">Email</label>
-	            	<input type="text" name="email" id="email" class="form-control" ng-model="email" placeholder="Email" />
-        		</div>
-        		<div class="form-group" style="text-align:left">
-	            	<label for="password">Password</label>
-    	        	<input type="password" name="password" id="password" class="form-control" ng-model="password" placeholder="Password" />
-        		</div>
-        		<div class="form-group" style="text-align:left">
-	            	<label for="passwordConf">Password Confirmation</label>
-    	        	<input type="password" name="passwordConf" id="passwordConf" class="form-control" ng-model="passwordConf" placeholder="Password Confirmation" />
-        		</div>
-
-                
-                <div class="form-group" style="text-align:left; margin-bottom:0px;">
-	            	<label>Secret Question</label>
-    	        	<select>
-                    	<option>-Select One-</option>
-                        <option>xxxxx xx xx</option>
-                        <option>yyyy yy yyy</option>
-                        <option>zzz zz zz</option>
+            
+	            <div class="form-group" ng-class="{ 'has-error': (form.lastname.$pristine || form.lastname.$dirty) && form.lastname.$error.required}">
+	            <label for="lastname">Last Name</label>
+    	        	<input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Names" ng-model="user.lastName" required/>
+    	        </div>
+            	
+            	<div class="form-group" ng-class="{ 'has-error': form.email.$pristine || (form.email.$dirty && form.email.$error.required) || form.email.$invalid}">
+            	<label for="Email">Email</label>
+	            	<input type="text" name="email" id="email" class="form-control" ng-model="user.email" placeholder="email"
+	            		pattern="[a-zA-Z0-9._+-]{1,63}@([a-zA-Z0-9]{1,63}){1,5}\.[a-zA-Z]{2,10}" required/>
+	            </div>
+	            
+	            <div class="form-group" ng-class="{ 'has-error': {{emailStatus}}}">
+	            	<input type="button" name="checkEmail" ng-disabled="form.email.$invalid" value="check email" ng-click="validateEmail(form.email)"/><span>  {{emailCheckerResult}}</span>
+	            </div>
+	            
+	            <div class="form-group" ng-class="{ 'has-error': form.password.$pristine || (form.password.$dirty && form.password.$error.required) || form.password.$invalid}">
+	            <label for="password">Password</label>
+    	        	<input type="password" name="password" id="password" class="form-control" ng-model="user.password" placeholder="Password" 
+    	        		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\[$&+,:;=?@#|'<>.\-^*()%!\]]).{6,18}" title="does not meet password requirement" required/>
+	            </div>
+	            
+	            <div class="form-group" ng-class="{ 'has-error': form.passwordConf.$pristine || (form.passwordConf.$dirty && form.passwordConf.$error.required) || form.passwordConf.$invalid}">
+	            <label for="passwordConf">Password Confirmation</label>
+    	        	<input type="password" name="passwordConf" id="passwordConf" class="form-control" ng-model="user.passwordConf" placeholder="Password Confirmation"
+    	        		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\[$&+,:;=?@#|'<>.\-^*()%!\]]).{6,18}" title="does not meet password requirement" required/>
+    	        	<span ng-show="validatePasswordConfirmation(form.password, form.passwordConf)" class="help-block">The two password field does not match</span>	
+	            </div>
+	            
+	            <label for="question">Secret Question: </label>
+    	        	<select name="question" id="question" ng-init="user.sQuestion = sQuestionList[0]" ng-model="user.sQuestion" ng-options="options.question for options in sQuestionList">
                     </select>
-        		</div>
-                
-                
-                <div class="form-group" style="text-align:left; margin-top:0px;">
-	            	<label for="answer">Your Answer</label>
-    	        	<input type="text" name="answer" id="answer" class="form-control" placeholder="Your Answer" />
-        		</div>
-                
-        		<label for="day">Day: </label>
-        		<select name=birthday" id="day">
-        		<option>1</option>
-        		<option>2</option>
-        		<option>3</option>
-        		<option>4</option>
-        		<option>5</option>
-        		<option>6</option>
-        		<option>7</option>
-        		<option>8</option>
-        		<option>9</option>
-        		<option>10</option>
-        		<option>11</option>
-        		<option>12</option>
-        		<option>13</option>
-        		<option>14</option>
-        		<option>15</option>
-        		<option>16</option>
-        		<option>17</option>
-        		<option>18</option>
-        		<option>19</option>
-        		<option>20</option>
-        		<option>21</option>
-        		<option>22</option>
-        		<option>23</option>
-        		<option>24</option>
-        		<option>25</option>
-        		<option>26</option>
-        		<option>27</option>
-        		<option>28</option>
-        		<option>29</option>
-        		<option>30</option>
-        		<option>31</option>
-        		</select>
-        		
-        		<label for="month">Month: </label>
-        		<select name=birthday" id="month">
-        		<option>January</option>
-        		<option>February</option>
-        		<option>March</option>
-        		<option>April</option>
-        		<option>May</option>
-        		<option>June</option>
-        		<option>July</option>
-        		<option>August</option>
-        		<option>September</option>
-        		<option>October</option>
-        		<option>November</option>
-        		<option>December</option>
-        		</select>
-        		
-        		<label for="year">Year: </label>
-        		<select name=birthday" id="year">
-				<option>1990</option>
-				<option>1991</option>
-				<option>1992</option>
-				<option>1993</option>
-				<option>1994</option>
-				<option>1995</option>
-				<option>1996</option>
-				<option>1997</option>
-				<option>1998</option>
-        		</select>
-        		
-        		<br>
-        		
-        		<input type="checkbox" name="premium">Premium User<br>
-        		
-        		<br>
-        		
-        		<div class="form-group">
-            		<button type="submit" ng-click=" " class="btn btn-primary" value="Login" title="Login">
-           				<span>Begin Work Journey!</span>
-         			</button>
-            	</div>
-   				</form>
+	            <br>
+	            
+	            <div class="form-group" ng-class="{ 'has-error': (form.answer.$pristine || form.answer.$dirty) && form.answer.$error.required}">
+	            <label for="answer">Security Question's Answer</label>
+    	        	<input type="text" name="answer" id="answer" class="form-control" placeholder="Your Answer" ng-model="user.sAnswer" required/>
+	            </div>
+	            
+	            
+	            <div class="form-group" ng-class="{ 'has-error': form.birthDate.$pristine || (form.birthDate.$dirty && form.birthDate.$error.required) }">
+	            	<label for="birthday">Date Of Birth</label>
+	            	<md-content layout-padding="">
+	            		<md-datepicker ng-model="user.birthDate" md-placeholder="YYYY/MM/DD" ng-required="true"></md-datepicker>
+	            	</md-content>
+	            </div>
+            
+        		<input type="checkbox" name="premium" ng-model="user.isPremium">Premium User<br><br>
+            	<button ng-click="createUserAccount(user)" ng-disabled="form.$invalid" class="btn btn-primary">
+           			<span>Begin Work Journey!</span>
+         		</button>
+   				</form> 				
     		</div>
+  </body>
 		</div>
 	<br />
 	</body>

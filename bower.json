@@ -5,7 +5,9 @@
     "bootstrap": "latest",
     "angular": "latest",
     "angular-route": "latest",
-    "toastr" : "latest"
+    "toastr": "latest",
+    "angular-material": "^1.1.1",
+    "ng-debounce": "^0.1.7"
   },
   "homepage": "https://github.com/aishwaryaborkar/cmpe133fall16",
   "description": "",
