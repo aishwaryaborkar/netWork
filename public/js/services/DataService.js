@@ -9,6 +9,8 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	dataService.performLoginOperation = performLoginOperation;
 	dataService.performSearch = performSearch;
 	dataService.getProfile = getProfile;
+	dataService.getPendingConnection = getPendingConnection;
+	dataService.getConnection = getConnection;
 	
 	return dataService;	
   
@@ -121,5 +123,41 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 				return $q.reject(res.data);
 			});
 	}
+	
+    function getPendingConnection(pendingConnection){
+		return $http({
+				method: 'POST',
+				url: urlBase + '/getPendingConnection',
+				data: {userId:pendingConnection}
+		}).then(
+			function(res) { //what to on on success call
+				console.log(JSON.stringify(res.data));
+				return res.data;
+			},
+			function(res) { //what to do on failed call
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+		});
+	}
+
+
+    function getConnection(user){
+		return $http({
+				method: 'POST',
+				url: urlBase + '/getConnection',
+				data: {userId:user}
+				
+		}).then(
+			function(res) { //what to on on success call
+				console.log(JSON.stringify(res.data));
+				return res.data;
+			},
+			function(res) { //what to do on failed call
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+		});
+	}
+	
+	
 	
 }]);
