@@ -4,7 +4,7 @@
 <div class="container">
 <ul class="nav nav-pills">
   <li class="active"><a href="#connected" data-toggle="tab">Connections</a></li>
-  <li><a href="#request" data-toggle="tab">Requests <span class="label label-info"">3</span></a></li>
+  <li><a href="#request" data-toggle="tab">Requests <span class="label label-info""></span></a></li>
   </ul>
   </div>
   
@@ -12,11 +12,11 @@
   
   <div id="request" class = "tab-pane">
   
-<h2 align="center">Connection Requests <span class="label label-info"">3</span></h2>
+<h2 align="center">Connection Requests <span class="label label-info"">{{connectList.length}}</span></h2>
 <br />
 <!--Connection Request bubbles utilizing Bootstrap-->
 <div class = "row">
-      <div class = "col-md-2" ng-repeat="connection in queryResult">
+      <div class = "col-md-2" ng-repeat="connection in queryResult| filter:search as connectList">
       <div class="boxed" align = "center">
       <br />
           <img src= "./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
@@ -45,7 +45,7 @@
 
 <div id="connected" class="tab-pane active">
 <!--Actual connections user has-->
-<h2 align = "center">Connections <span class="label label-info"">3</span></h2>
+<h2 align = "center">Connections <span class="label label-info"">{{pendingConnect.length}}</span></h2>
 
     <br />
     <div class = "row">
@@ -61,7 +61,7 @@
         <br />
    <div class = "row">
 
-<div class = "col-md-2" ng-repeat="connection in connectionResult  | filter:search">
+<div class = "col-md-2" ng-repeat="connection in connectionResult  | filter:req as pendingConnect">
       <div class="boxed" align = "center">
      	  <br />
           <img src="./images/connection/woman1.jpg" class="img-rounded" width = 100px height = 100px>

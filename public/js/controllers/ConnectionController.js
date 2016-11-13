@@ -5,6 +5,7 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
  }
  
  
+ $scope.req={}
  var queryResult=
 		[{
 			name:"Tom Lee",
