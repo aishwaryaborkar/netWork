@@ -16,7 +16,7 @@
 <br />
 <!--Connection Request bubbles utilizing Bootstrap-->
 <div class = "row">
-      <div class = "col-md-2" ng-repeat="connection in queryResult| filter:search as connectList">
+      <div class = "col-md-2" ng-repeat="connection in queryResult| filter:req as connectList">
       <div class="boxed" align = "center">
       <br />
           <img src= "./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
@@ -61,7 +61,7 @@
         <br />
    <div class = "row">
 
-<div class = "col-md-2" ng-repeat="connection in connectionResult  | filter:req as pendingConnect">
+<div class = "col-md-2" ng-repeat="connection in connectionResult  | filter:search as pendingConnect">
       <div class="boxed" align = "center">
      	  <br />
           <img src="./images/connection/woman1.jpg" class="img-rounded" width = 100px height = 100px>
