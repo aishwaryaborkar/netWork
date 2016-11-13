@@ -10,18 +10,18 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
 		[{
 			name:"Tom Lee",
 			jobTitle:"Software Engineer",
-			Company:"Cisco"
+			company:"Cisco"
 		},
 		{
 			img: "./images/connection/man1.png",
 			name:"William John",
 			jobTitle:"Software Consultant",
-			Company:"Ebay"
+			company:"Ebay"
 		},
 		{
 			name:"Tina Parker",
 			jobTitle:"Software Developer",
-			Company:"Amazon"
+			company:"Amazon"
 		}];
  $scope.queryResult;
 
@@ -55,17 +55,17 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
      [{ 
          name:"Stacy Wong",
          jobTitle:"Software Engineer",
-         Company:"net[work]"
+         company:"net[work]"
      },
      {    
          name:"Jonathan Chen",
          jobTitle:"Software Consultant",
-         Company:"Thomson Reuters"
+         company:"Thomson Reuters"
      },
      {
          name:"Ash Borkar",
          jobTitle:"Software Developer",
-         Company:"Visa"
+         company:"Visa"
      }];
  	$scope.connectionResult;
  	
