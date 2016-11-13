@@ -11,7 +11,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		
 		.when('/login', {
 			templateUrl: 'views/login.html',
-			controller: 'MainController'
+			controller: 'LoginController'
 		})
 		
 		.when('/recoveraccount', {

@@ -66,6 +66,43 @@ router.post('/login', function(req, res){
 		});
 });
 
+router.post('/validateEmail', function(req, res){
+	console.log("validateEmail service requested: " + JSON.stringify(req.body));
+	serviceFulfiller.validateEmail(req.body).then( function(result){
+		if(result === null){
+			res.status(200).json({message:"OK"});
+		}else{
+			res.status(200).json({error: "Email already in use"});
+		}
+	});
+});
+
+router.post('/getAccount', function(req, res){
+	console.log("validateEmail service requested: " + JSON.stringify(req.body));
+	serviceFulfiller.getAccount(req.body).then( function(result){
+		if(result !== null){
+			res.status(200).json(result);
+		}else{
+			res.status(200).json({error: "Account Does Not Exist..."});
+		}
+	});
+});
+
+router.post('/resetPassword', function(req, res){
+	console.log("resetPassword service requested: " + JSON.stringify(req.body));
+	
+	serviceFulfiller.checkSecurityAnswer(req.body).then(function(result){
+		if(result == null){
+			res.status(200).json({error: "Wrong Security Answer.."});
+		}
+		serviceFulfiller.resetPassword(req.body).then( function(result){
+			res.status(200).json(result);
+		});
+		
+	})
+	
+});
+
 router.post('/createAccount', function(req, res){
 	console.log("createAccount service requested: " + JSON.stringify(req.body));
 	serviceFulfiller.createAccount(req.body).then( function(accountResult){ 
@@ -170,7 +207,6 @@ router.post('/declineConnection' , function(req, res){
 	});
 });
 
-
 router.post('/search', function(req, res){
 	console.log("search service requested : " + JSON.stringify(req.body));
 	serviceFulfiller.performProfileSearch(req.body).then(function(result){
@@ -189,35 +225,7 @@ router.post('/search', function(req, res){
 		});
 });
 
-/*router.post('/search', function(req, res){
-	var userEmail = req.body.email;
-	delete req.body.email;
-	console.log("search service requested : " + JSON.stringify(req.body));
-	serviceFulfiller.performUserSearch(userEmail).then(function(userResult){
-			var data = {};
-			if(profileResult.length == 0){
-				data.message = "No Search Result";
-			}else{
-				data.message = "OK";
-			}	
-			data.resultList = result;
-			
-			serviceFulfiller.performProfileSearchSearch(req.body).then(function(profileResult){{
-				if(data.length == 0 && userResult.length == 0){
-					data.message = "No Search Result";
-				}else{
-					data.message = "OK";
-					data.resultList.push(userResult[0]);
-				}		
-				res.status(200).json(data);
-			})
-			
-			
-		},
-		function(result){
-			console.log(JSON.stringify(result));
-		});
-});*/
+
 
 //===========================================
 //FORUM RELATED SERVICES.....

@@ -7,3 +7,16 @@ h{
 	font-size: 24px;
 	color: #0868A0;
 }
+
+ .form.ng-invalid {
+   border:1px solid #f00;
+ }
+ 
+ .datepickerdemoBasicUsage {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 12px;
+    color: #dd2c00;
+    margin-left: 15px; }

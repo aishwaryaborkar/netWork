@@ -5,6 +5,10 @@ service.resultSet = [];
 //account related service
 service.checkLoginCredential = checkLoginCredential;
 service.createAccount = createAccount;
+service.validateEmail = validateEmail;
+service.getAccount = getAccount;
+service.checkSecurityAnswer = checkSecurityAnswer;
+service.resetPassword = resetPassword;
 
 //profile related service
 service.createProfile = createProfile;
@@ -110,7 +114,10 @@ function createAccount(accountInfo){
 	var newUser = new user({
 		email : accountInfo.email,
 		password : accountInfo.password,
-		premium : accountInfo.premium
+		premium : accountInfo.premium,
+		sQuestion : accountInfo.sQuestion,
+		sAnswer : accountInfo.sAnswer,
+		birthday : accountInfo.birthday
 	});
 	
 	newUser.save(function(err, result){
@@ -135,6 +142,47 @@ function checkLoginCredential(loginInfo){
 		return result;
 	});
 }
+
+function validateEmail(userEmail){
+	console.log("IN validateEmail : " + userEmail);
+	return user.findOne(userEmail, function(err, result){
+		if(err) return console.error(err);
+		console.log(result);
+		return result;
+	});
+}
+
+function getAccount(accoutnInfo){
+	console.log("IN getAccount : " + accoutnInfo);
+	return user.findOne(accoutnInfo, 'sQuestion', function(err, result){
+		if(err) return console.error(err);
+		console.log(result);
+		return result;
+	});
+}
+
+function checkSecurityAnswer(accountInfo){
+	return user.findOne({_id:accountInfo._id, sAnswer:accountInfo.sAnswer}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+}
+
+function resetPassword(accountInfo){
+	var data = JSON.stringify(accountInfo);
+	console.log("IN resetPassword: " + data);
+
+	var query = {_id:accountInfo._id, sAnswer:accountInfo.sAnswer};
+	delete accountInfo._id;
+	delete accountInfo.sAnswer;
+	delete accountInfo.passwordConf;
+	user.update(query, {$set: accountInfo}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+	return Promise.resolve({message:"OK"});
+}
+
 
 //===========================================
 //PROFILE RELATED SERVICES...................
