@@ -27,10 +27,11 @@
             	<div class="form-group" ng-class="{ 'has-error': form.email.$pristine || (form.email.$dirty && form.email.$error.required) || form.email.$invalid}">
             	<label for="Email">Email</label>
 	            	<input type="text" name="email" id="email" class="form-control" ng-model="user.email" placeholder="email"
-	            		pattern="[a-zA-Z0-9._+-]{1,63}@([a-zA-Z0-9]{1,63}){1,5}\.[a-zA-Z]{2,10}" required/>
+	            		pattern="[a-zA-Z0-9._+-]{1,63}@([a-zA-Z0-9]{1,63}){1,5}\.[a-zA-Z]{2,10}" ng-change="resetChecker()" required/>
 	            </div>
 	            
-	            <div class="form-group" ng-class="{ 'has-error': {{emailStatus}}}">
+	            <div class="form-group" ng-class="{ 'has-error': mailChecker.$invalid}">
+					<input type="text" name="mailChecker" id="mailChecker" ng-hide="true" ng-model="mailChecker" required>
 	            	<input type="button" name="checkEmail" ng-disabled="form.email.$invalid" value="check email" ng-click="validateEmail(form.email)"/><span>  {{emailCheckerResult}}</span>
 	            </div>
 	            
@@ -57,13 +58,11 @@
     	        	<input type="text" name="answer" id="answer" class="form-control" placeholder="Your Answer" ng-model="user.sAnswer" required/>
 	            </div>
 	            
-	            
-	            <div class="form-group" ng-class="{ 'has-error': form.birthDate.$pristine || (form.birthDate.$dirty && form.birthDate.$error.required) }">
-	            	<label for="birthday">Date Of Birth</label>
-	            	<md-content layout-padding="">
-	            		<md-datepicker ng-model="user.birthDate" md-placeholder="YYYY/MM/DD" ng-required="true"></md-datepicker>
-	            	</md-content>
-	            </div>
+	            <div class="form-group" ng-class="{ 'has-error': form.birthday.$pristine || (form.birthday.$dirty && form.birthday.$error.required) || form.birthday.$invalid}">
+					<label for="birthday">Date Of Birth</label>
+					<input type="text" name="birthday" name="birthday" class="form-control" ng-model="user.birthday" 
+						pattern="^\d{4}-\d{2}-\d{2}$" placeholder="YYYY/MM/DD" required>
+				</div>
             
         		<input type="checkbox" name="premium" ng-model="user.isPremium">Premium User<br><br>
             	<button ng-click="createUserAccount(user)" ng-disabled="form.$invalid" class="btn btn-primary">

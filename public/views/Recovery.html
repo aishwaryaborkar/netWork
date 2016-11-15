@@ -21,12 +21,11 @@
 	            				pattern="[a-zA-Z0-9._+-]{1,63}@([a-zA-Z0-9]{1,63}){1,5}\.[a-zA-Z]{2,10}" required/>
 	            		</div>
             	
-            			<div class="form-group" ng-class="{ 'has-error': form1.birthDate.$pristine || (form1.birthDate.$dirty && form1.birthDate.$error.required) }">
-	            			<label for="birthday">Date Of Birth</label>
-	            			<md-content layout-padding="">
-	            				<md-datepicker ng-model="user.birthDate" md-placeholder="YYYY/MM/DD" ng-required="true"></md-datepicker>
-	            			</md-content>
-	            		</div>
+            			<div class="form-group" ng-class="{ 'has-error': form1.birthday.$pristine || (form1.birthday.$dirty && form1.birthday.$error.required) || form1.birthday.$invalid}">
+							<label for="birthday">Date Of Birth</label>
+							<input type="text" name="birthday" name="birthday" class="form-control" ng-model="user.birthday" 
+								pattern="^\d{4}-\d{2}-\d{2}$" placeholder="YYYY/MM/DD" required>
+						</div>
             	
             			<div class="form-group">
             				<button type="submit" ng-click="accountLookup(user)" class="btn btn-primary" ng-disabled="form1.$invalid">
