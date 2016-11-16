@@ -4,12 +4,24 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	$http.defaults.headers.post["Content-Type"] = 'application/JSON';
     var dataService = {};
 
+    /*
+      LOGIN SERVICE CALLS 
+    */
 	dataService.validateEmail = validateEmail;
 	dataService.getAccount = getAccount;
 	dataService.createAccount = createAccount;
 	dataService.resetPassword = resetPassword;
-	dataService.getForumList = getForumList;
 	dataService.performLoginOperation = performLoginOperation;
+
+	/*
+	  FORUM SERVICE CALLS
+	*/
+	dataService.getForumList = getForumList;
+	dataService.createForum = createForum;
+
+	/*
+	  PROFILE SERVICE CALLS
+	*/
 	dataService.performSearch = performSearch;
 	dataService.getProfile = getProfile;
 	dataService.getPendingConnection = getPendingConnection;

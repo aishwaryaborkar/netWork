@@ -3,8 +3,6 @@ angular.module('MainCtrl', ['DataService'])
 .controller('MainController', function($scope, $rootScope, $location) {	
 
 	$rootScope.isUserLoggedIn = (sessionStorage.getItem('loggedIn') == 'true');
-	$rootScope.userId = sessionStorage.getItem('userId');
-	$rootScope.isPremiumUser;
 
 	this.logout = function(){
 		sessionStorage.setItem('loggedIn', false);
@@ -36,6 +34,8 @@ angular.module('MainCtrl', ['DataService'])
 				$rootScope.userId = body.data.userInfo._id;
 				$location.path('/profile'); // path not hash
 				sessionStorage.setItem('loggedIn', true);
+				sessionStorage.setItem('userId', body.data.userInfo._id);
+				sessionStorage.setItem('isPremium', body.data.userInfo.premium);
 			}else{
 				$rootScope.isUserLoggedIn = false;
 				console.log(body.data)
@@ -73,11 +73,9 @@ angular.module('MainCtrl', ['DataService'])
 	$scope.createUserAccount = function(user){
 		var newUser = user;
 		newUser.name = user.firstName + " " + user.lastName;
-		newUser.birthday = JSON.stringify(user.birthDate).split('T')[0].slice(1);
 		newUser.sQuestion = user.sQuestion.question; 
 		delete newUser.firstName;
 		delete newUser.lastName;
-		delete newUser.birthDate
 		
 		dataService.createAccount(newUser).then(function(body){
 			console.log(JSON.stringify(body.data));
@@ -95,6 +93,12 @@ angular.module('MainCtrl', ['DataService'])
 		return (pass.$viewValue !== passConf.$viewValue);
 	};
 	
+	$scope.resetChecker = function(){
+		$scope.emailCheckerResult = '';
+		$scope.emailFailed = true;
+		$scope.mailChecker = '';
+	};
+	
 	$scope.validateEmail = function(newEmail){
 		console.log("attempting to validate email..." + newEmail.$viewValue);
 		if(newEmail.$viewValue == undefined || newEmail.$viewValue == ''){
@@ -105,14 +109,13 @@ angular.module('MainCtrl', ['DataService'])
 				if(body.data.message !== undefined && body.data.message === "OK"){
 					$scope.emailCheckerResult = "email can be used.";
 					$scope.emailFailed = false;
+					$scope.mailChecker = 'pass';
 				}else{
 					$scope.emailCheckerResult = body.data.error;
 					$scope.emailFailed = true;
 				}
 			});
 		}
-		
-		
 	}
 })
 
@@ -123,12 +126,7 @@ $scope.accountError = '';
 $scope.userAccount;
 
 	$scope.accountLookup = function(data){
-		
-		var accountInfo = data;
-		accountInfo.birthday = JSON.stringify(accountInfo.birthDate).split('T')[0].slice(1);
-		delete accountInfo.birthDate
-		
-		dataService.getAccount(accountInfo).then(function(body){
+		dataService.getAccount(data).then(function(body){
 			if(body.data.sQuestion !== undefined){
 				$scope.userAccount = body.data._id;
 				$scope.sQuestions = body.data.sQuestion + "?";

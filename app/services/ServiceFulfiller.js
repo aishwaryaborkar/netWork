@@ -13,6 +13,7 @@ service.resetPassword = resetPassword;
 //profile related service
 service.createProfile = createProfile;
 service.getProfileById = getProfileById;
+service.getNameById = getNameById;
 service.getProfileList = getProfileList;
 service.updateProfileInfo = updateProfileInfo;
 service.getBothConnections = getBothConnections;
@@ -234,6 +235,15 @@ function getProfileById(userId){
 	return profile.findById(userId, function(err, result){
 		if(err) return console.error(err);
 		console.log(result);		
+		return result;
+	});
+}
+
+function getNameById(userId){
+	console.log("IN getNameById : " + userId);
+	return profile.findOne({_id: userId}, 'name', function(err, result){
+		if(err) return console.error(err);
+		console.log(result)
 		return result;
 	});
 }

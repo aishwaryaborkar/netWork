@@ -260,13 +260,18 @@ router.get('/getPopularForum', function(req,res){
 
 router.post('/createForum', function(req, res){
 	console.log("createForum service requested" + JSON.stringify(req.body));
-	serviceFulfiller.createForumPost(req.body).then(
-		function(result){
-			res.status(200).json(result);
-		},
-		function(result){
-			console.log(JSON.stringify(result));
-		});
+	serviceFulfiller.getNameById(req.body.forumOwnerId).then(function(userName){
+		var newForum = req.body;
+		newForum.forumOwnerName = userName.name;
+		serviceFulfiller.createForumPost(newForum).then(
+			function(result){
+				res.status(200).json(result);
+			},
+			function(result){
+				console.log(JSON.stringify(result));
+		});	
+	});
+	
 });
 
 module.exports = router;

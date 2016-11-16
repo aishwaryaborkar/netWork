@@ -4,11 +4,10 @@ angular.module('ForumController', ['DataService'])
     //Forum attributes 
 
     $scope.title; 
-
-
     $scope.heading = "How do I leverage my network?";
     $scope.posts; 
 
+        //Populates the Forum page with existing forums on page load.
         dataService.getForumList().then( function(searchResult){
 
             
@@ -31,21 +30,27 @@ angular.module('ForumController', ['DataService'])
            // console.log("In dataService promise function after: " + JSON.stringify($scope.posts));
         });
 
-        $scope.createForum = function(forum){
 
-            forum= {
-             title : "", 
-             forumOwnerId: "", 
-             forumOwnerName: "",
-             date: "", 
-             description: ""
-         }
+        // Saves the Forum created by the user. 
+        $scope.createForum = function(forum){       
+         var monthNames = [
+              "January", "February", "March",
+              "April", "May", "June", "July",
+              "August", "September", "October",
+              "November", "December"
+            ];
+
+         var date = new Date();
+         var day = date.getDate();
+         var monthIndex = date.getMonth();
+         var year = date.getFullYear();
+
+         var fullDate = monthNames[monthIndex] + ' ' + day + ', ' + year; 
 
          forum.forumOwnerId = sessionStorage.getItem('userId');
-         forum.date = 
+         forum.date = fullDate;
 
-
-
+         dataService.createForum(forum);
 
         }
 

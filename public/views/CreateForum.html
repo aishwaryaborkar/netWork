@@ -7,11 +7,11 @@
   <form>
     <div class="form-group">
       <label for="title">Title of Forum:</label>
-      <input type="title" class="form-control" id="title" placeholder="Title of Forum" ng-model="forum.title">
+      <input type="title" class="form-control" id="title" placeholder="Title of Forum" ng-model="forum.title" required>
     </div>
     <div class="form-group input-mysize">
       <label for="description">Description:</label>
-      <input type="description" class="form-control" id="description" placeholder="Description" ng-model="forum.description">
+      <input type="description" class="form-control" id="description" placeholder="Description" ng-model="forum.description" required>
     </div>
     <button type="submit" class="btn btn-primary" ng-click="createForum(forum)">Create</button>
   </form>
