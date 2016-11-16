@@ -1,6 +1,11 @@
 angular.module('ForumController', ['DataService'])
 .controller('ForumController', function($scope, $http, dataService) {
 
+    //Forum attributes 
+
+    $scope.title; 
+
+
     $scope.heading = "How do I leverage my network?";
     $scope.posts; 
 
@@ -25,6 +30,28 @@ angular.module('ForumController', ['DataService'])
 
            // console.log("In dataService promise function after: " + JSON.stringify($scope.posts));
         });
+
+        $scope.createForum = function(forum){
+
+            forum= {
+             title : "", 
+             forumOwnerId: "", 
+             forumOwnerName: "",
+             date: "", 
+             description: ""
+         }
+
+         forum.forumOwnerId = sessionStorage.getItem('userId');
+         forum.date = 
+
+
+
+
+        }
+
+        $scope.addComment = function(){
+
+        }
         
         
 

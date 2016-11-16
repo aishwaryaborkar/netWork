@@ -53,6 +53,19 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	}
 
 	function createForum(forumData){
+		return $http({
+				method: 'POST',
+				url: urlBase + '/createForum', 
+				data: forumData
+		}).then(
+			function(body) { //what to on on success call
+				console.log(body);
+				return body;
+			},
+			function(res){
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+			});
 
 
 	}
