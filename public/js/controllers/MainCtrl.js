@@ -3,8 +3,6 @@ angular.module('MainCtrl', ['DataService'])
 .controller('MainController', function($scope, $rootScope, $location) {	
 
 	$rootScope.isUserLoggedIn = (sessionStorage.getItem('loggedIn') == 'true');
-	$rootScope.userId = sessionStorage.getItem('userId');
-	$rootScope.isPremiumUser;
 
 	this.logout = function(){
 		sessionStorage.setItem('loggedIn', false);
@@ -36,6 +34,8 @@ angular.module('MainCtrl', ['DataService'])
 				$rootScope.userId = body.data.userInfo._id;
 				$location.path('/profile'); // path not hash
 				sessionStorage.setItem('loggedIn', true);
+				sessionStorage.setItem('userId', body.data.userInfo._id);
+				sessionStorage.setItem('isPremium', body.data.userInfo.premium);
 			}else{
 				$rootScope.isUserLoggedIn = false;
 				console.log(body.data)
