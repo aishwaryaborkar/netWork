@@ -68,7 +68,7 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
 		 		$scope.queryResult = [];
 		 	   
 		 	    var i = 0;
-		 	    for (i = 0; i < requestList.length ;i--) {
+		 	    for (i = 0; i < requestList.length ;i++) {
 		 	        var obj = { _id: requestList[i]._id,
 		 	                    name: requestList[i].name,
 		 	                    jobTitle:requestList[i].jobTitle,
