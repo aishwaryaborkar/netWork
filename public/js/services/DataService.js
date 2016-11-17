@@ -24,8 +24,16 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	*/
 	dataService.performSearch = performSearch;
 	dataService.getProfile = getProfile;
+	
+	/*
+	  CONNECTION SERVICE CALLS
+	*/
+	
 	dataService.getPendingConnection = getPendingConnection;
 	dataService.getConnection = getConnection;
+	dataService.removeConnection= removeConnection;
+	dataService.approveConnection= approveConnection;
+	dataService.declineConnection= declineConnection;
 	
 	return dataService;	
 	
@@ -233,5 +241,60 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	}
 	
 	
+    function removeConnection(currentUser, selectedConnection){
+		return $http({
+				method: 'POST',
+				url: urlBase + '/removeConnection',
+				data: {userId:currentUser ,connectionId:selectedConnection}
+				
+		}).then(
+			function(res) { //what to on on success call
+				console.log(JSON.stringify(res.data));
+				return res.data;
+			},
+			function(res) { //what to do on failed call
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+		});
+	}
+    
+    
+    function approveConnection(currentUser1, selectedConnection1){
+		return $http({
+				method: 'POST',
+				url: urlBase + '/approveConnection',
+				data: {userId:currentUser1 ,connectionId:selectedConnection1}
+				
+		}).then(
+			function(res) { //what to on on success call
+				console.log(JSON.stringify(res.data));
+				return res.data;
+			},
+			function(res) { //what to do on failed call
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+		});
+	}
+    
+    function declineConnection(currentUser2, selectedConnection2){
+		return $http({
+				method: 'POST',
+				url: urlBase + '/declineConnection',
+				data: {userId:currentUser2 ,connectionId:selectedConnection2}
+				
+		}).then(
+			function(res) { //what to on on success call
+				console.log(JSON.stringify(res.data));
+				return res.data;
+			},
+			function(res) { //what to do on failed call
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+		});
+	}
+    
+    
+    
+    
 	
 }]);

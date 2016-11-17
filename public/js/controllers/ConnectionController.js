@@ -4,28 +4,11 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
  $scope.sendRequest = function(){	 
  }
  
+
  
  $scope.req={}
- var queryResult=
-		[{
-			name:"Tom Lee",
-			jobTitle:"Software Engineer",
-			company:"Cisco"
-		},
-		{
-			img: "./images/connection/man1.png",
-			name:"William John",
-			jobTitle:"Software Consultant",
-			company:"Ebay"
-		},
-		{
-			name:"Tina Parker",
-			jobTitle:"Software Developer",
-			company:"Amazon"
-		}];
- $scope.queryResult;
 
- dataService.getPendingConnection($rootScope.userId).then( function(pendingConnections){
+ dataService.getPendingConnection(sessionStorage.getItem('userId')).then( function(pendingConnections){
 	    
 	    $scope.queryResult = [];
 	    
@@ -34,7 +17,7 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
 	    
 	    var i = 0;
 	    for (i = 0; i < pendingConnections.length ;i++) {
-	        var obj = { id: pendingConnections[i].id,
+	        var obj = { _id: pendingConnections[i]._id,
 	                    name: pendingConnections[i].name,
 	                    jobTitle: pendingConnections[i].jobTitle,
 	                    company:pendingConnections[i].company};
@@ -42,45 +25,84 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
 	    }
 	});
  
+ //approveConnection
  
+ $scope.approveConnection = function(connection) {
+	    
+	 	console.log(connection);
+
+	 	dataService.approveConnection(sessionStorage.getItem('userId'), connection._id).then( function(updatedRequests){
+	 		console.log(updatedRequests);
+
+	 		$scope.queryResult = [];
+	 	   
+	 	    var i = 0;
+	 	    for (i = 0; i < updatedRequests.length ;i++) {
+	 	        var obj = { _id: updatedRequests[i]._id,
+	 	                    name: updatedRequests[i].name,
+	 	                    jobTitle: updatedRequests[i].jobTitle,
+	 	                    company: updatedRequests[i].company};
+	 	        $scope.queryResult.push(obj);
+	 	    }	
+	 		
+	 		
+	 		
+	 	});
+	     
+	 };
+	 
+//approve connection ends here
  
+
+	 
+	 
+//declineConnection
+	 
+   $scope.declineConnection = function(connection) {
+		    
+		 	console.log(connection);
+
+		 	dataService.declineConnection(sessionStorage.getItem('userId'), connection._id).then( function(requestList){
+		 		console.log(requestList);
+
+		 		$scope.queryResult = [];
+		 	   
+		 	    var i = 0;
+		 	    for (i = 0; i < requestList.length ;i--) {
+		 	        var obj = { _id: requestList[i]._id,
+		 	                    name: requestList[i].name,
+		 	                    jobTitle:requestList[i].jobTitle,
+		 	                    company: requestList[i].company};
+		 	        $scope.queryResult.push(obj);
+		 	    }	
+		 		
+		 		
+		 		
+		 	});
+		     
+	};
+		 
+//decline connection ends here
+	 
+	 
+	 
+	 
+	 
  
  
  $scope.search = {}
  $scope.searchBy = '$'
-	 
-	 
- 
- var connectionResult=
-     [{ 
-         name:"Stacy Wong",
-         jobTitle:"Software Engineer",
-         company:"net[work]"
-     },
-     {    
-         name:"Jonathan Chen",
-         jobTitle:"Software Consultant",
-         company:"Thomson Reuters"
-     },
-     {
-         name:"Ash Borkar",
-         jobTitle:"Software Developer",
-         company:"Visa"
-     }];
- 	$scope.connectionResult;
- 	
-
-	dataService.getConnection($rootScope.userId).then( function(connections){
+	dataService.getConnection(sessionStorage.getItem('userId')).then( function(connections){
     
     $scope.connectionResult = [];
     
-    // need something to show you cant have it empty   
+     
     
     console.log("In dataService promise function before: " + connections);
     
     var i = 0;
     for (i = 0; i < connections.length ;i++) {
-        var obj = { id: connections[i].id,
+        var obj = { _id: connections[i]._id,
                     name: connections[i].name,
                     jobTitle: connections[i].jobTitle,
                     company:connections[i].company};
@@ -88,7 +110,32 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
     }
 });
 
+ //remove connection
+ $scope.removeConnection = function(connection) {
+	    
+ 	console.log(connection);
 
+ 	dataService.removeConnection(sessionStorage.getItem('userId'), connection._id).then( function(updatedList){
+ 		console.log(updatedList);
+
+ 	    $scope.connectionResult = [];
+ 	   
+ 	    var i = 0;
+ 	    for (i = 0; i < updatedList.length ;i++) {
+ 	        var obj = { _id: updatedList[i]._id,
+ 	                    name: updatedList[i].name,
+ 	                    jobTitle: updatedList[i].jobTitle,
+ 	                    company: updatedList[i].company};
+ 	        $scope.connectionResult.push(obj);
+ 	    }	
+ 		
+ 		
+ 		
+ 	});
+     
+ };
+ 
+ 
 
 
 

@@ -1,36 +1,109 @@
 <link rel="stylesheet" type="text/css" href="css/Connection.css">
 <div class="jumbotron text-center" style = "background-color: white;">
-<!-- Connection page-->
+
+<!-- Connection page tab main-->
 <div class="container">
-<ul class="nav nav-pills">
-  <li class="active"><a href="#connected" data-toggle="tab">Connections</a></li>
-  <li><a href="#request" data-toggle="tab">Requests <span class="label label-info""></span></a></li>
-  </ul>
-  </div>
+	  <ul class="nav nav-pills">
+    		 <li class="active"><a data-toggle="pill" href="#connections">Connections</a></li>
+    		 <li><a data-toggle="pill" href="#requests">Requests</a></li>
+      </ul>
+</div>
   
-  <div class="tab-content">
-  
-  <div id="request" class = "tab-pane">
-  
-<h2 align="center">Connection Requests <span class="label label-info"">{{connectList.length}}</span></h2>
-<br />
-<!--Connection Request bubbles utilizing Bootstrap-->
+
+<!-- Connection tab-->
+	<div class="tab-content">
+	<div id="connections" class="tab-pane fade in active">
+   
+   
+<!--Connections-->
+<h2 align = "center">Connections <span class="label label-info"">{{pendingConnect.length}}</span></h2>
+
+
+<!-- Search box-->
+ <br />
+    <div class = "row">
+  			<div class="col-sm-4">
+    			<div class="input-group">
+     				 <input type="text"  ng-model="search[searchBy]" class="form-control" placeholder="Search Connections">
+     			       <div class="input-group-btn">
+      	 			  <button type="button" class="btn btn-default" title="Search"><span class="glyphicon glyphicon-search"></span></button>
+        		 </div><!--row-->
+       		   </div><!--col-sm-4-->
+           </div><!--inputgroup-->
+    </div><!--input group button-->
+    
+ <br />
+
+<!-- Connection main-->
 <div class = "row">
-      <div class = "col-md-2" ng-repeat="connection in queryResult| filter:req as connectList">
+<div class = "col-md-2" ng-repeat="connection in connectionResult  | filter:search as pendingConnect">
       <div class="boxed" align = "center">
-      <br />
-          <img src= "./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
-	<br />
-          <p1><b>{{connection.name}}</b></p1>
+     	  <br />
+          		<img src="./images/connection/woman1.jpg" class="img-rounded" width = 100px height = 100px>
           <br />
-          <p2>{{connection.jobTitle}}</p2>
+          		<p1><b>{{connection._id}}</b></p1>
+          <br />
+         		 <p1><b>{{connection.name}}</b></p1>
+          <br />
+          		 <p2>{{connection.jobTitle}}</p2> 
+          <br />
+                 <p2>{{connection.company}}</p2> 
+  
+    
+<!-- Dropdown manu-->         
+	<div class="dropdown" >
+  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Connected <span class="glyphicon glyphicon-ok"></span>
+  					<span class="caret"></span></button>
+  				      <ul class="dropdown-menu" role="menu">
+    		    		 <li><a href="#"><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
+    		    		 <li><a ng-href="#" ng-click="removeConnection(connection)"><span class="glyphicon glyphicon-trash"></span> Disconnect</a></li>
+  		              </ul>
+	  </div> <!--dropdown-->
+      <br /> 
+ 
+
+      </div><!--boxed-->    
+    </div><!--col-md-2-->   
+  </div><!--row-->
+</div> 
+
+<!--connections ends here-->
+
+
+
+
+
+
+<!-- Requests Tab-->
+<div id="requests" class ="tab-pane fade">
+  
+		<h2 align="center">Connection Requests <span class="label label-info"">{{connectList.length}}</span></h2>
+		  <br />
+<!--Connection Request bubbles utilizing Bootstrap-->
+
+
+
+<!-- Requests main-->
+<div class = "row">
+      	<div class = "col-md-2" ng-repeat="connection in queryResult| filter:req as connectList">
+     		 <div class="boxed" align = "center">
+     		  <br />
+                <img src= "./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
+	      
+	      <br />
+          		 <p1><b>{{connection._id}}</b></p1>
+		  <br/>
+         		 <p1><b>{{connection.name}}</b></p1>
+          <br />
+         		 <p2>{{connection.jobTitle}}</p2>
           <br /> 
-          <p2>{{connection.company}}</p2> 
-           <br />
-           
-            <button type="button" class="btn btn-primary btn-xs" onclick="">Accept </button>
-            <button type="button" class="btn btn-primary btn-xs" onclick="">Deny</button>
-            <br />
+        		 <p2>{{connection.company}}</p2> 
+          <br />
+          
+<!-- Requests buttons-->                   
+           	 <button type="button" class="btn btn-primary btn-xs" ng-click="approveConnection(connection)">Accept </button>
+           	 <button type="button" class="btn btn-primary btn-xs" ng-click="declineConnection(connection)">Deny</button>
+               <br />
             <br />
 		</div><!--boxed-->
       </div><!--colmd2-->
@@ -38,55 +111,12 @@
 </div>
 
 
-<!--request-->
+<!--request ends here-->
 
 
 
 
-<div id="connected" class="tab-pane active">
-<!--Actual connections user has-->
-<h2 align = "center">Connections <span class="label label-info"">{{pendingConnect.length}}</span></h2>
+</div> <!-- tab content ends here-->
 
-    <br />
-    <div class = "row">
-  <div class="col-sm-4">
-    <div class="input-group">
-      <input type="text"  ng-model="search[searchBy]" class="form-control" placeholder="Search Connections">
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-default" title="Search"><span class="glyphicon glyphicon-search"></span></button>
-        </div><!--row-->
-        </div><!--col-sm-4-->
-        </div><!--inputgroup-->
-        </div><!--input group button-->
-        <br />
-   <div class = "row">
-
-<div class = "col-md-2" ng-repeat="connection in connectionResult  | filter:search as pendingConnect">
-      <div class="boxed" align = "center">
-     	  <br />
-          <img src="./images/connection/woman1.jpg" class="img-rounded" width = 100px height = 100px>
-          <br />
-          <p1><b>{{connection.name}}</b></p1>
-          <br />
-          <p2>{{connection.jobTitle}}</p2> 
-          <br />
-          <p2>{{connection.company}}</p2> 
-          <div class="dropdown">
-  		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Connected <span class="glyphicon glyphicon-ok"></span>
-  		<span class="caret"></span></button>
-  		<ul class="dropdown-menu" role="menu">
-    		<li><a href="#"><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
-    		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> Disconnect</a></li>
-  		</ul>
-	</div> <!--dropdown-->
-	<br /> 
-	</div><!--boxed-->
-</div><!--col-md-2-->
-</div><!--row-->
-</div> <!--connections-->
-
-<!-- Connection page ends here-->
-
-
-    </div><!--jumbo-->
+</div><!--jumbo-->
 
