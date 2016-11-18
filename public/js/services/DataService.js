@@ -24,7 +24,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	*/
 	dataService.performSearch = performSearch;
 	dataService.getProfile = getProfile;
-	
+	dataService.updateProfile = updateProfile;
 	/*
 	  CONNECTION SERVICE CALLS
 	*/
@@ -293,7 +293,22 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 		});
 	}
     
-    
+	function updateProfile(data){ 
+		console.log(data);
+		return $http({
+				method: 'POST',
+				url: urlBase + '/updateProfileInfo',
+				data: data
+		}).then(
+			function(body) { //what to on on success call
+				console.log(body);
+				return body.data;
+			},
+			function(res){
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+			});
+	}
     
     
 	
