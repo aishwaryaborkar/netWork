@@ -31,14 +31,13 @@ service.getForumById = getForumById;
 service.createForumPost = createForumPost;
 
 //message related service
- 
+service.testMessageService = testMessageService;
  
 //to be deleted testService calls 
 service.testForumService = testForumService;
 service.testConnectionService = testConnectionService;
 service.testPendingConnectionService = testPendingConnectionService;
 service.testProfileService = testProfileService;
-service.testMessageService = testMessageService;
  
 module.exports = service;
 
@@ -104,7 +103,7 @@ var forumSchema = require('../models/Forum.js');
 var forum = mongoose.model('Forums', forumSchema);
 
 var messageSchema = require('../models/Message.js');
-
+var message = mongoose.model('Messages', messageSchema);
 
 
 //===========================================
@@ -243,7 +242,7 @@ function getNameById(userId){
 	console.log("IN getNameById : " + userId);
 	return profile.findOne({_id: userId}, 'name', function(err, result){
 		if(err) return console.error(err);
-		console.log(result)
+		console.log(result);
 		return result;
 	});
 }
@@ -272,8 +271,8 @@ function updateProfileInfo(basicProfile){
 function getBothConnections(userId){
 	console.log("IN getConnection : " + JSON.stringify(userId));
 	return profile.findById(userId,'connections pendingConnections', function(err, result){
-		if(err) return console.error(err);
-		console.log(result.connections);
+			if(err) return console.error(err);
+			console.log(result.connections);
 	});
 }
 
@@ -333,9 +332,6 @@ function approveConnection(userId, connectionLists, connectionId){
 		if(err) return console.err(err);
 		return console.log(result);
 	});
-	
-	
-
 	return Promise.resolve(newPendingConnections);	
 }
 
@@ -358,7 +354,7 @@ function declineConnection(userId, connectionList, connectionId){
 
 function performUserSearch(searchInfo){
 	var user = mongoose.model('Users', userSchema);
-	return user.findOne({email: searchInfo},function(err, result){
+	return user.findOne({email:searchInfo.email},function(err, result){
 		if(err) return console.error(err);
 		console.log(result);
 		return result;
@@ -369,18 +365,29 @@ function performProfileSearch(searchInfo){
 	var data = JSON.stringify(searchInfo);
 	console.log("IN PERFORMPROFILESEARCH : " + data);
 	
+	//prepare normal search
 	var searchObj = {};
 	Object.keys(searchInfo).forEach(function(key, index){
-		if(searchInfo[key] !== ''){
-			searchObj[key] = new RegExp(searchInfo[key], "g");
+			if(searchInfo[key] !== ''){
+			searchObj[key] = new RegExp(searchInfo[key], "ig");
 		}
 	}); //so far it only works for normal properties. skills and experience currently not working
-	var profile = mongoose.model('Profiles', profileSchema);
-	return profile.find(searchObj, function(err, result){
-		if(err) return console.error(err);
-		console.log(result);
-		return result;
-	});
+	
+	//search by email
+	if(searchInfo.email != undefined){
+		return user.findOne(searchObj, function(err, result){
+			if(err) return console.error(err);
+			console.log(result);
+			return result;
+		});
+	}else{
+		//search by standard values
+		return profile.find(searchObj, '_id name company jobTitle skills education', function(err, result){
+			if(err) return console.error(err);
+			console.log(result);
+			return result;
+		});	
+	}
 }
 
 //===========================================

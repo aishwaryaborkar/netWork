@@ -11,9 +11,10 @@ module.exports = mongoose.Schema(
 						graduationDate: String,
 						description: String
 					}],
-		experience : [{
+		experience :[{
 						jobTitle : String,
 						company : String,
+						yearsOfExp: Number,
 						responsibility : String
 					 }],
 		skills : [{

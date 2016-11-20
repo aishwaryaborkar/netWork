@@ -209,20 +209,108 @@ router.post('/declineConnection' , function(req, res){
 
 router.post('/search', function(req, res){
 	console.log("search service requested : " + JSON.stringify(req.body));
-	serviceFulfiller.performProfileSearch(req.body).then(function(result){
-			var data = {};
-			if(result.length == 0){
-				data.message = "No Search Result";
+	
+	if((req.body).hasOwnProperty("email")){	
+		serviceFulfiller.performUserSearch(req.body).then(function(result){
+			serviceFulfiller.getProfileById(result._id).then(function(result){
+				var data = {};
+				if(result.length == 0){
+					data.message = "No Search Result";
+				}else{
+					data.message = "OK";
+				}	
+					data.resultList = [result];
+				res.status(200).json(data);
+			});
+		},
+		function(err){
+			console.error(err);
+		});
+	}else{
+		
+		var skillQuery = req.body.skills;
+		delete req.body.skills;
+		var educationQuery = req.body.education;
+		delete req.body.education;
+		
+		serviceFulfiller.performProfileSearch(req.body).then(function(result){
+		
+			//basic search is done....
+			if(skillQuery == undefined && educationQuery == undefined){
+				var data = {};
+				if(result.length == 0){
+					data.message = "No Search Result";
+				}else{
+					data.message = "OK";
+				}	
+				data.resultList = result;
+				res.status(200).json(data);
 			}else{
-				data.message = "OK";
-			}	
-			
-			data.resultList = result;
-			res.status(200).json(data);
+				//premium filtering service requested
+				console.log("performing premium filter");
+				
+				var finalResult = result;
+				//perform filter by education
+				if(educationQuery != undefined){
+					console.log("check education query");
+					finalResult = finalResult.filter(function(profileObj){
+						var keepData = false;
+						var profileEdu = profileObj.education
+						var numHits = 0;
+						profileEdu.forEach(function(eduEntry){	
+							educationQuery.forEach(function(edu){		
+								if(eduEntry.schoolName.toLowerCase() == edu.schoolName.toLowerCase()){
+										numHits++
+									} 
+							})
+							//if all skills input matches, then we keep data
+							if(educationQuery.length == numHits){
+								keepData = true;
+							}
+						})
+						return keepData;
+					});
+				}
+				
+				if(skillQuery != undefined){
+				//have skill query
+					finalResult = finalResult.filter(function(profileObj){
+						var keepData = false;
+						var profileSkills = profileObj.skills
+						var numHits = 0;
+						console.log(profileSkills);
+						profileSkills.forEach(function(skillEntry){	
+							skillQuery.forEach(function(skill){	
+								console.log(skillEntry.skillName + "<::>" + skill.skillName);
+								console.log(skillEntry.skillLevel + "<::>" + skill.skillLevel);
+								if(skillEntry.skillName.toLowerCase() == skill.skillName.toLowerCase() && 
+									skillEntry.skillLevel >= skill.skillLevel){
+										numHits++
+									} 
+							})
+							console.log(numHits);
+							//if all skills input matches, then we keep data
+							if(skillQuery.length == numHits){
+								keepData = true;
+							}
+						})
+						return keepData;
+					});
+				}	
+				var data = {};
+				if(finalResult.length == 0){
+					data.message = "No Search Result";
+				}else{
+					data.message = "OK";
+				}	
+				data.resultList = finalResult;
+				res.status(200).json(data);
+			}
 		},
 		function(result){
 			console.log(JSON.stringify(result));
 		});
+	}
 });
 
 
