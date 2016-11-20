@@ -22,8 +22,10 @@ service.removeConnection = removeConnection;
 service.getPendingConnection = getPendingConnection;
 service.approveConnection = approveConnection;
 service.declineConnection = declineConnection;
+service.addConnection = addConnection;
 service.performUserSearch = performUserSearch;
 service.performProfileSearch = performProfileSearch;
+ 
  
 //forum related service
 service.getForumList = getForumList;
@@ -350,6 +352,24 @@ function declineConnection(userId, connectionList, connectionId){
 	});
 
 	return Promise.resolve(newConnectionsList);
+}
+
+function addConnection(userId, pendingConnection, connectionId){
+	console.log("IN addConnection..." + userId + " & " + connectionId);
+	var pendingList = [];
+	pendingConnection.forEach(function(element){
+		pendingList.push(element);
+	})
+	pendingList.push(userId);
+	
+	var newData = {pendingConnections : pendingList};
+	var query = {_id:connectionId};
+	profile.update(query, {$set : newData}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+	
+	return Promise.resolve(pendingList);
 }
 
 function performUserSearch(searchInfo){

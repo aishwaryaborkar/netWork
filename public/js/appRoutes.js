@@ -31,8 +31,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		
 		.when('/profile', {
 			templateUrl: 'views/Profile.html',
-			// controller: 'SearchController'
 			controller: 'ProfileController'
+		})
+		
+		.when('/viewprofile/:userId', {
+			templateUrl: 'views/PublicProfile.html',
+			controller: 'PublicProfileController'
 		})
 		
 		.when('/message', {
