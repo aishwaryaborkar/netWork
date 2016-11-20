@@ -207,6 +207,16 @@ router.post('/declineConnection' , function(req, res){
 	});
 });
 
+router.post('/requestConnection', function(req, res){
+	console.log("requestConnection service requested : " + JSON.stringify(req.body));
+	
+	serviceFulfiller.getPendingConnection(req.body.connectionId).then(function(userConnection){
+		serviceFulfiller.addConnection(req.body.userId, userConnection.pendingConnections, req.body.connectionId).then(function(data){		
+			res.status(200).json(data);
+		})
+	});
+});
+
 router.post('/search', function(req, res){
 	console.log("search service requested : " + JSON.stringify(req.body));
 	

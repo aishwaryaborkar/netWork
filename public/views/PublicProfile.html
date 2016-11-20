@@ -31,8 +31,8 @@
 	<div class="row nav">    
         <!-- <div class="col-md-4"></div> -->
         <div class="col-md-12 col-xs-12" style="margin: 0px;padding: 0px;">
-            <div class="col-md-3 col-xs-3 well" ng-click="addButton()"><i class="fa fa-plus fa-lg"></i></div>
-            <div class="col-md-3 col-xs-3 well" ng-click="addButton()"><i class="fa fa-forumbee fa-lg"></i></div>
+            <div class="col-md-3 col-xs-3 well" ng-disabled="{{allowRequest}}" ng-click="requestConnection()"><i class="fa fa-plus fa-lg"></i></div>
+            <div class="col-md-3 col-xs-3 well" ng-click="testing()"><i class="fa fa-forumbee fa-lg"></i></div>
             <div class="col-md-3 col-xs-3 well"><i class="fa fa-weixin fa-lg"></i></div>
             <div class="col-md-3 col-xs-3 well"><i class="fa fa-envelope-o fa-lg"></i></div>
         </div>

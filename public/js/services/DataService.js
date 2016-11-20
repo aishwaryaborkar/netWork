@@ -31,9 +31,10 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	
 	dataService.getPendingConnection = getPendingConnection;
 	dataService.getConnection = getConnection;
-	dataService.removeConnection= removeConnection;
-	dataService.approveConnection= approveConnection;
-	dataService.declineConnection= declineConnection;
+	dataService.removeConnection = removeConnection;
+	dataService.approveConnection = approveConnection;
+	dataService.declineConnection = declineConnection;
+	dataService.requestConnection = requestConnection;
 	
 	return dataService;	
 	
@@ -286,6 +287,22 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 			function(res) { //what to on on success call
 				console.log(JSON.stringify(res.data));
 				return res.data;
+			},
+			function(res) { //what to do on failed call
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+		});
+	}
+	
+	function requestConnection(data){
+		$http({
+				method: 'POST',
+				url: urlBase + '/requestConnection',
+				data: data
+				
+		}).then(
+			function(res) { //what to on on success call
+				console.log(JSON.stringify(res.data));
 			},
 			function(res) { //what to do on failed call
 				console.log(JSON.stringify(res.data));
