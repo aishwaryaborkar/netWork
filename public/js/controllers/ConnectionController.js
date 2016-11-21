@@ -43,12 +43,9 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
 	 	                    jobTitle: updatedRequests[i].jobTitle,
 	 	                    company: updatedRequests[i].company};
 	 	        $scope.queryResult.push(obj);
-	 	    }	
-	 		
-	 		
-	 		
+	 	    }		 		
 	 	});
-	     
+	    dataService.approveConnection(connection._id, sessionStorage.getItem('userId')); 
 	 };
 	 
 //approve connection ends here
