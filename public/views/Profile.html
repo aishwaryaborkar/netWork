@@ -84,7 +84,7 @@
 	<div class="container" style="width: 80%">
 		<div class="jumbotron">
 			<h2 style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-briefcase" aria-hidden="true" style="padding-right: 10px;"></i>Experience</h2> 
-		    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="expClick()">
+		    <div id="editButton"><a data-toggle="modal" data-target="#myModalEXP" class="btn btn-default" ng-click="expClick()">
 	        <span><i class="fa fa-pencil" aria-hidden="true"></i></span></a></div>
 			<div ng-repeat='x in user.experience'>
 				<div class="row">
@@ -107,12 +107,18 @@
 		<div class="jumbotron">
 
 			<h2 style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-wrench" aria-hidden="true" style="padding-right: 10px;"></i>Skills</h2> 
-		    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="skillsClick()"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a></div>
+		    <div id="editButton"><a data-toggle="modal" data-target="#myModalSkills" class="btn btn-default" ng-click="skillsClick()"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a></div>
+
+		    <div ng-repeat='x in user.skills' >
+		    	<h2>{{x.skillName}}</h2>
+		    	<h4>{{x.skillLevel}}</h4>
+		    </div>
 
 		</div>
 	</div>
 </div>
 
+<!-- Summary modal -->
 <div class="modal fade" id="myModal" role="dialog">
 	<div class="modal-dialog">
 	    <div class="modal-content">
@@ -133,6 +139,8 @@
 	</div>
 </div>
 
+
+<!-- Education modal -->
 <div class="modal fade" id="myModalEDU" role="dialog">
 	<div class="modal-dialog">
 	    <div class="modal-content">
@@ -168,4 +176,70 @@
 	</div>
 </div>
 
+<!-- Experience modal -->
+<div class="modal fade" id="myModalEXP" role="dialog">
+	<div class="modal-dialog">
+	    <div class="modal-content">
+	        <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	            <h4 class="modal-title">Edit {{modalHeader}}</h4>
+	        </div>
+	        <div class="modal-body">
+				<div ng-repeat='exp in editBody track by $index'>
+					<div class="row">
+						<div class="col-md-12">
+					    	<label for="email">Company:</label>
+				    		<input ng-model="exp.company" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
+						    <label for="email">Job Title:</label>
+						    <input ng-model="exp.jobTitle" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
+						    <label for="email">Responsibilities:</label>
+						    <input ng-model="exp.responsibility" type="text" class="form-control">
+						</div>
+					</div>
+					<div><h2>&nbsp</h2></div>
+				</div>
+	        </div>
+	        <div class="modal-footer">
+	            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+	            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update()">Save changes</button>
+	        </div>
+	    </div>
+	    <!-- /.modal-content -->
+	</div>
+</div>
 
+<!-- Education modal -->
+<div class="modal fade" id="myModalSkills" role="dialog">
+	<div class="modal-dialog">
+	    <div class="modal-content">
+	        <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	            <h4 class="modal-title">Edit {{modalHeader}}</h4>
+	        </div>
+	        <div class="modal-body">
+				<div ng-repeat='skill in editBody track by $index'>
+					<div class="row">
+						<div class="col-md-6">
+					    	<label for="email">Skill Name:</label>
+				    		<input ng-model="skill.skillName" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
+						    <label for="email">Skill Level:</label>
+						    <input ng-model="skill.skillLevel" type="text" class="form-control">
+						</div>
+					</div>
+					<div><h2>&nbsp</h2></div>
+				</div>
+	        </div>
+	        <div class="modal-footer">
+	            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+	            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update()">Save changes</button>
+	        </div>
+	    </div>
+	    <!-- /.modal-content -->
+	</div>
+</div>

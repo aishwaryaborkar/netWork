@@ -10,11 +10,10 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 	$scope.user = []
 	var editField = '';
 	dataService.getProfile({'userId': $rootScope.userId}).then(function(data){
-		console.log(data);
 		$scope.user = data;
+		console.log(data)
 	});
 
-	console.log($rootScope.userId);
 	$scope.addButton = function(){
 		// window.location.href = "/forum";
 	};
@@ -33,14 +32,14 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 
 	$scope.expClick = function(){
 		$scope.modalHeader = 'Experience'
-		$scope.editBody = $scope.user.experience
-		// $scope.editField = 'experience'
+		$scope.editBody = $.extend(true,{},$scope.user.experience)
+		editField = 'experience'
 	};
 
 	$scope.skillsClick = function(){
 		$scope.modalHeader = 'Skills'
-		$scope.editBody = $scope.user.skills
-		// $scope.editField = 'skills'
+		$scope.editBody = $.extend(true,{},$scope.user.skills)
+		editField = 'skills'
 	};
 
 	$scope.update = function(){
@@ -53,16 +52,67 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 			$scope.user.summary = $scope.editBody
 		}
 		if(editField == 'education'){
+			var educationInfo = []
+			for(var key in $scope.editBody){
+				var obj = $scope.editBody[key]
+				delete obj._id
+				delete obj.$$hashKey
+				educationInfo.push(obj)
+			}
 			var params = {
 				"userId" : $rootScope.userId,
-				"education": $scope.editBody
+				"education": educationInfo
 			}
 			$scope.user.education = $scope.editBody
 		}
+		if(editField == 'experience'){
+			var experienceInfo = []
+			for(var key in $scope.editBody){
+				var obj = $scope.editBody[key]
+				delete obj._id
+				delete obj.$$hashKey
+				experienceInfo.push(obj)
+			}
+			var params = {
+				"userId" : $rootScope.userId,
+				"experience": experienceInfo
+			}
+			$scope.user.experience = $scope.editBody
+		}
+		if(editField == 'skills'){
+			var skillsInfo = []
+			for(var key in $scope.editBody){
+				var obj = $scope.editBody[key]
+				delete obj._id
+				delete obj.$$hashKey
+				skillsInfo.push(obj)
+			}
+			var params = {
+				"userId" : $rootScope.userId,
+				"skills": skillsInfo
+			}
+			$scope.user.skills = $scope.editBody
+		}	
+		// var params = {
+		// 	userId: "581ff07eda0427b81de36544",
+		// 	education: [
+		// 	{
+		// 		description: "Ranked #1 (in reverse order)",
+		// 		graduationDate: "Class of 2016",
+		// 		schoolName: "Space Camp Test"	
+		// 	},
+		// 	{
+		// 		description: "Ranked #1 (in reverse order)",
+		// 		graduationDate: "Class of 2016",
+		// 		schoolName: "SJSU"	
+		// 	}
+		// 	]
+		// }
 		console.log(params)
-		// dataService.updateProfile(params).then(function(data){
-		// 	console.log('ok');
-		// });
+		dataService.updateProfile(params).then(function(data){
+			console.log(params)
+			console.log('ok');
+		});
 	}
 
 	$scope.close = function(){
