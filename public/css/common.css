@@ -20,13 +20,19 @@ ul li {
 
 .main-wrapper .menu .icon-list {
 	background:#ccc;
-	height:400px;
+	height:50px;
 	margin-top:5px;
-	overflow:auto;
+	overflow:hidden;
+}
+
+#dir {
+	height:431px;
+	margin-top:5px;
+	overflow: auto;
 }
 
 .menu a {
-	background:#ccc;
+	background:#aba9ad;
 	font-weight:bold;
 	display:block;
 	color:#fff;
@@ -93,15 +99,19 @@ ul li {
 
 .mydialog .item {
 	text-align:left;
+	word-break:break-all;
+　　word-wrap:break-word;
 }
 
 .mydialog .item span {
 	color:#0CF;
 }
 
+/*
 .mydialog .item:nth-child(2n) {
 	text-align:right;
 }
+*/
 
 .enter {
 	margin-top:10px;
@@ -112,7 +122,7 @@ ul li {
 	width:100%;
 	box-sizing:border-box;
 	resize:none;
-	height:50px;
+	height:100px;
 }
 
 .enter .subb {

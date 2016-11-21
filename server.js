@@ -1,6 +1,8 @@
 // modules =================================================
 var express        = require('express');
 var app            = express();
+var debug          = require('debug');
+var http           = require('http');
 var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
@@ -10,6 +12,7 @@ var methodOverride = require('method-override');
 	
 //DB CONFIG
 var mongoURL = 'dev:dev@ds033116.mlab.com:33116/cmpe133_fall16_network'
+//var mongoURL = 'mongodb://localhost:27017/test';
 var port = process.env.PORT || 8080; // set our port
 
 var db = mongoose.connect(mongoURL).connection;
@@ -30,17 +33,68 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 	// server routes ===========================================================
 	// handle things like api calls
 	// authentication routes
-	app.use('/api', require('./app/ApiController'));
-	
-	
-	
-	// frontend routes =========================================================
-	// route to handle all angular requests	
-	app.get('*', function(req, res) {
-		res.sendfile('./public/index.html');
-	});
+app.use('/api', require('./app/ApiController'));
+app.get('*', function(req, res) {
+	res.sendfile('./public/index.html');
+});
 
-// start app ===============================================
-app.listen(port);	
-console.log('Magic happens on port ' + port); 			// shoutout to the user
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+var publicMessageSocket = require('./app/socket/PublicMessageSocket');
+
+
+io.on('connection', function(socket) {
+   console.log("websocket connection build");
+   publicMessageSocket.publicMessage(socket);
+});
+
 exports = module.exports = app; 						// expose app

@@ -36,8 +36,33 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	dataService.declineConnection = declineConnection;
 	dataService.requestConnection = requestConnection;
 	
+
+
+	dataService.getAllUsers = getAllUsers;
+	
 	return dataService;	
 	
+
+	function getAllUsers(id){
+		var data = { 
+			id: id
+		};
+		return $http({
+			method: 'GET',
+			url: urlBase + '/listUsers',
+			params: data
+		}).then(
+		    function(res) {
+		    	console.log(JSON.stringify(res.data));
+		    	return res.data;
+		    },
+		    function(res) {
+		    	console.log(JSON.stringify(res.data));
+		    	return $q.reject(res.data);
+		    }
+		)
+	}
+
 	function testForumService(){
 		return $http({
 				method: 'GET',
@@ -293,8 +318,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 				return $q.reject(res.data);
 		});
 	}
-	
-	function requestConnection(data){
+    function requestConnection(data){
 		$http({
 				method: 'POST',
 				url: urlBase + '/requestConnection',

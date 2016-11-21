@@ -41,7 +41,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		
 		.when('/message', {
 			templateUrl: 'views/Message.html',
-			controller: 'SearchController'
+			controller: 'MessageController'
 		})
 		
 		.when('/forum', {
