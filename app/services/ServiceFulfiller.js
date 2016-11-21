@@ -1,7 +1,7 @@
 var service = {};
 
 service.resultSet = []; 
- 
+service.connection = new Array(); //save connection socket
 //account related service
 service.checkLoginCredential = checkLoginCredential;
 service.createAccount = createAccount;
@@ -26,21 +26,25 @@ service.addConnection = addConnection;
 service.performUserSearch = performUserSearch;
 service.performProfileSearch = performProfileSearch;
  
- 
 //forum related service
 service.getForumList = getForumList;
 service.getForumById = getForumById;
 service.createForumPost = createForumPost;
 
 //message related service
-service.testMessageService = testMessageService;
+ 
  
 //to be deleted testService calls 
 service.testForumService = testForumService;
 service.testConnectionService = testConnectionService;
 service.testPendingConnectionService = testPendingConnectionService;
 service.testProfileService = testProfileService;
+service.testMessageService = testMessageService;
  
+service.publicMessage = publicMessage;
+service.getAllUsers = getAllUsers;
+service.getUsersByName = getUsersByName;
+
 module.exports = service;
 
 
@@ -105,7 +109,7 @@ var forumSchema = require('../models/Forum.js');
 var forum = mongoose.model('Forums', forumSchema);
 
 var messageSchema = require('../models/Message.js');
-var message = mongoose.model('Messages', messageSchema);
+var message = mongoose.model('Message', messageSchema);
 
 
 //===========================================
@@ -129,7 +133,6 @@ function createAccount(accountInfo){
 	
 	return user.findOne({email: accountInfo.email},function(err, result){
 		if(err) return console.error(err);
-		console.log(result);
 		return result;
 	});
 }
@@ -273,8 +276,8 @@ function updateProfileInfo(basicProfile){
 function getBothConnections(userId){
 	console.log("IN getConnection : " + JSON.stringify(userId));
 	return profile.findById(userId,'connections pendingConnections', function(err, result){
-			if(err) return console.error(err);
-			console.log(result.connections);
+		if(err) return console.error(err);
+		console.log(result.connections);
 	});
 }
 
@@ -334,6 +337,9 @@ function approveConnection(userId, connectionLists, connectionId){
 		if(err) return console.err(err);
 		return console.log(result);
 	});
+	
+	
+
 	return Promise.resolve(newPendingConnections);	
 }
 
@@ -374,7 +380,7 @@ function addConnection(userId, pendingConnection, connectionId){
 
 function performUserSearch(searchInfo){
 	var user = mongoose.model('Users', userSchema);
-	return user.findOne({email:searchInfo.email},function(err, result){
+	return user.findOne({email: searchInfo.email},function(err, result){
 		if(err) return console.error(err);
 		console.log(result);
 		return result;
@@ -385,15 +391,12 @@ function performProfileSearch(searchInfo){
 	var data = JSON.stringify(searchInfo);
 	console.log("IN PERFORMPROFILESEARCH : " + data);
 	
-	//prepare normal search
 	var searchObj = {};
 	Object.keys(searchInfo).forEach(function(key, index){
-			if(searchInfo[key] !== ''){
+		if(searchInfo[key] !== ''){
 			searchObj[key] = new RegExp(searchInfo[key], "ig");
 		}
 	}); //so far it only works for normal properties. skills and experience currently not working
-	
-	//search by email
 	if(searchInfo.email != undefined){
 		return user.findOne(searchObj, function(err, result){
 			if(err) return console.error(err);
@@ -408,6 +411,53 @@ function performProfileSearch(searchInfo){
 			return result;
 		});	
 	}
+	
+}
+
+function getAllUsers(id, callback) {
+    console.log("get all user list");
+    var count = 0;
+	profile.find({}, function(err, data){
+		if(err) {
+			console.log('get all users error');
+			return console.error(err);
+		}
+		console.log('get all user');
+		var result =[];
+		
+        for(i = 0; i < data.length; i++){
+        	//console.log(data[i]._id);
+        	if(id != data[i]._id) {
+        		console.log(data[i].name);
+        		result.push({"name": data[i].name});
+        	}
+        		/*
+        	   var result = getProfileById(data[i]._id);
+        	   console.log(result.name);
+        	   
+        	   resultList.push({"name": result.name});*/
+        	
+            //var name = getProfileById(data[i]._id);  //get name
+        }
+        return callback(result);
+        
+    });
+}
+
+function getUsersByName(name, callback) {
+	console.log('get user by name');
+	user.find({email: name}, function(err, data) {
+		if(err) {
+			callback(err);
+		} else {
+			if(data.length == 0) { 
+				console.log('false');
+				callback(false);
+			} else {
+				callback(null);
+			}
+		}
+	})
 }
 
 //===========================================
@@ -447,6 +497,37 @@ function createForumPost(forumData){
 			return {message:"OK"};
 	});
 }
+
+function publicMessage(message, callback) {
+    var newMessage = new messageschema({
+		name : message.name,
+		text : message.content,
+		date : message.date
+    });
+    newMessage.save(function(err, result){
+    	//get id
+        user.findOne({email: message.name}, '_id premium',function(err, result){
+		    if(err) return console.error(err);
+		    console.log(result);
+		    if(result) {
+		    	console.log('result');
+		   	    callback(err , result);
+		   	} else {
+                var data = {
+              	    name: 'jack',
+                  	text: "default reply",
+              	    data: message.date,
+              	    _id:  1
+                };
+                callback(err , data);
+		   	}
+		   
+	    });
+	});
+}
+
+
+
 
 function testForumService(){
 	return [{title: "LinkedIn or LinkedOut?", 

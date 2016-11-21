@@ -5,6 +5,30 @@ var serviceFulfiller = require('./services/ServiceFulfiller');
 //===========================================
 //TESTING SERVICE FUNCTIONS TO BE DELETED....
 //===========================================
+router.get('/listUsers', function(req, res){
+	var id = req.query.id;
+	console.log(req.query.id);
+	console.log('list user ' + id);
+	serviceFulfiller.getAllUsers(id, function(result) {
+		console.log('list users in listusers');
+		console.log(result);
+		/*
+	    var data = [];
+	    data = result;
+	    
+		if(result.length == 0){
+			data.push({
+				name: 'jack'
+			});
+		} else {
+            data = result;
+		}	*/
+		res.status(200).json(result);
+	},
+	function(result){
+		console.log(JSON.stringify(result));
+	});
+});
 
 router.get('/testService', function(req, res) {
 	console.log("in testService call");
@@ -322,8 +346,6 @@ router.post('/search', function(req, res){
 		});
 	}
 });
-
-
 
 //===========================================
 //FORUM RELATED SERVICES.....
