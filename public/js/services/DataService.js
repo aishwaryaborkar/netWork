@@ -18,6 +18,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	*/
 	dataService.getForumList = getForumList;
 	dataService.createForum = createForum;
+	dataService.getForumById = getForumById;
 
 	/*
 	  PROFILE SERVICE CALLS
@@ -95,7 +96,20 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	}
 
 	function getForumById(forumId){
-
+		console.log(forumId);
+		return $http({
+				method: 'POST',
+				url: urlBase + '/getForumById',
+				data: forumId
+		}).then(
+			function(body) { //what to on on success call
+				console.log(body);
+				return body.data;
+			},
+			function(res){
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+			});
 	}
 
 	function createForum(forumData){
