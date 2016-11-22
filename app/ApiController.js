@@ -343,7 +343,7 @@ router.post('/updateForum', function(req, res){
 		function(result){
 			console.log(JSON.stringify(result));
 		});
-}
+});
 
 
 
