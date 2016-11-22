@@ -1,7 +1,7 @@
-angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
+angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 
 
-.controller('ProfileController', function($scope, $rootScope, dataService, Upload) {
+.controller('ProfileController', function($scope, $rootScope, dataService, Upload, $timeout) {
     console.log('ProfileController loaded[]');
 	toastr.success('Welcome to netWork!');
 	var curUser = sessionStorage.getItem('userId');
@@ -16,6 +16,14 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 		console.log(data)
 	});
 	$scope.imgURL = 'https://www.colourbox.com/preview/3603416-portrait-of-a-professional-business-executive.jpg'
+	
+	
+	$scope.profileImageClick = function(){
+		$scope.modalHeader = 'ProfileImage'
+		editField = 'Profile Image'
+	};
+	
+	
 	$scope.addButton = function(){
 		// window.location.href = "/forum";
 	};
