@@ -5,70 +5,6 @@ var serviceFulfiller = require('./services/ServiceFulfiller');
 var mongoose = require('mongoose');
 var chatMsgSchema = require('./models/ChatMessage.js');
 var ChatMessage = mongoose.model('ChatMessage', chatMsgSchema);
-
-//===========================================
-//TESTING SERVICE FUNCTIONS TO BE DELETED....
-//===========================================
-router.get('/listUsers', function(req, res){
-	var id = req.query.id;
-	console.log(req.query.id);
-	console.log('list user ' + id);
-	serviceFulfiller.getAllUsers(id, function(result) {
-		console.log('list users in listusers');
-		console.log(result);
-		/*
-	    var data = [];
-	    data = result;
-	    
-		if(result.length == 0){
-			data.push({
-				name: 'jack'
-			});
-		} else {
-            data = result;
-		}	*/
-		res.status(200).json(result);
-	},
-	function(result){
-		console.log(JSON.stringify(result));
-	});
-});
-
-router.get('/testService', function(req, res) {
-	console.log("in testService call");
-	var data = serviceFulfiller.testService();		
-	res.status(200).json(data);
-});
-
-router.get('/testForumService', function(req, res) {
-	console.log("in testForumService call");
-	var data = serviceFulfiller.testForumService();		
-	res.status(200).json(data);
-});
-
-router.get('/testConnectionService', function(req, res){
-	console.log("in testConnectionService call");
-	var data = serviceFulfiller.testConnectionService();		
-	res.status(200).json(data);
-});
-
-router.get('/testPendingConnectionService', function(req, res){
-	console.log("in testPendingConnectionService call");
-	var data = serviceFulfiller.testPendingConnectionService();		
-	res.status(200).json(data);
-});
-
-router.get('/testProfileService', function(req, res){
-	console.log("in testProfileService call");
-	var data = serviceFulfiller.testProfileService();		
-	res.status(200).json(data);
-});
-
-router.get('/testMessageService', function(req, res){
-	console.log("in testMessageService call");
-	var data = serviceFulfiller.testMessageService();		
-	res.status(200).json(data);
-}); 
  
 //===========================================
 //LOGIN or REGISTRATION RELATED SERVICES.....
@@ -395,8 +331,25 @@ router.post('/createForum', function(req, res){
 				console.log(JSON.stringify(result));
 		});	
 	});
-	
 });
+
+router.post('/updateForum', function(req, res){
+	console.log("updateForum service requested : " + JSON.stringify(req.body));
+	
+	serviceFulfiller.updateForum(req.body).then(
+		function(result){
+			res.status(200).json(result);
+		},
+		function(result){
+			console.log(JSON.stringify(result));
+		});
+}
+
+
+
+//===========================================
+//MESSAGE RELATED SERVICE....
+//===========================================
 
 router.post("/saveChatMessage/", function (req, res) {
 	var chatMsg = new ChatMessage({
@@ -435,6 +388,30 @@ router.post("/getHistoryChatMsg", function (req, res) {
 	});
 });
 
+router.get('/listUsers', function(req, res){
+	var id = req.query.id;
+	console.log(req.query.id);
+	console.log('list user ' + id);
+	serviceFulfiller.getAllUsers(id, function(result) {
+		console.log('list users in listusers');
+		console.log(result);
+		/*
+	    var data = [];
+	    data = result;
+	    
+		if(result.length == 0){
+			data.push({
+				name: 'jack'
+			});
+		} else {
+            data = result;
+		}	*/
+		res.status(200).json(result);
+	},
+	function(result){
+		console.log(JSON.stringify(result));
+	});
+});
 
 module.exports = router;
  

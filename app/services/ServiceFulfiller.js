@@ -2,6 +2,7 @@ var service = {};
 
 service.resultSet = []; 
 service.connection = new Array(); //save connection socket
+
 //account related service
 service.checkLoginCredential = checkLoginCredential;
 service.createAccount = createAccount;
@@ -30,17 +31,9 @@ service.performProfileSearch = performProfileSearch;
 service.getForumList = getForumList;
 service.getForumById = getForumById;
 service.createForumPost = createForumPost;
+servive.updateForum = updateForum;
 
-//message related service
- 
- 
-//to be deleted testService calls 
-service.testForumService = testForumService;
-service.testConnectionService = testConnectionService;
-service.testPendingConnectionService = testPendingConnectionService;
-service.testProfileService = testProfileService;
-service.testMessageService = testMessageService;
- 
+//message related service 
 service.publicMessage = publicMessage;
 service.getAllUsers = getAllUsers;
 service.getUsersByName = getUsersByName;
@@ -192,29 +185,6 @@ function resetPassword(accountInfo){
 //===========================================
 //PROFILE RELATED SERVICES...................
 //===========================================
-function testProfileService(){
-	return 	{
-				name : "Ash Borkar",
-				jobTitle : "Project Manager",
-				company : "net[Work]",
-				summary : "HI!",
-				education : "SJSU Class of 2017",
-				experience : [{jobTitle : "President", company : "SWE", responsibility : "BE THE BOSS"},
-							  {jobTitle : "Intern", company : "Visa", responsibility : "anything and everything"}],
-				skills : [{skillName : "Java", skillLevel : 100},
-						  {skillname : "Angular", skillLevel : 50}]
-			}
-}
-
-function testConnectionService(){
-		return [{id: 1,name:"JC v1",jobTitle:"Software Consultant",company:"Thomson Reuters"},
-				{id: 2,name:"Stacy Wong",jobTitle:"Software Engineer",company:"net[work]"}];
-}
-
-function testPendingConnectionService(){
-		return [{id: 3,name:"Ash Borkar",jobTitle:"Software Developer",company:"Visa"}];
-}
-
 function createProfile(reqData, userId){
 	console.log("IN createProfile service: "  + reqData.name + "," + userId);
 	//var profile = mongoose.model('Profiles', profileSchema);
@@ -337,9 +307,6 @@ function approveConnection(userId, connectionLists, connectionId){
 		if(err) return console.err(err);
 		return console.log(result);
 	});
-	
-	
-
 	return Promise.resolve(newPendingConnections);	
 }
 
@@ -379,7 +346,6 @@ function addConnection(userId, pendingConnection, connectionId){
 }
 
 function performUserSearch(searchInfo){
-	var user = mongoose.model('Users', userSchema);
 	return user.findOne({email: searchInfo.email},function(err, result){
 		if(err) return console.error(err);
 		console.log(result);
@@ -414,6 +380,59 @@ function performProfileSearch(searchInfo){
 	
 }
 
+//===========================================
+//FORUM RELATED SERVICES.....................
+//===========================================
+function getForumList(){
+	console.log("IN getForumList : requesting data from DB");
+	var forum = mongoose.model('Forums', forumSchema);
+	return forum.find( {}, '_id title ownerId forumOwnerName date description',function(err, result){
+		if(err) return console.error(err);
+		console.log(result);		
+		return result;
+	});	
+}
+
+function getForumById(forumId){
+	console.log("IN getForumById : " + forumId);
+	var forum = mongoose.model('Forums', forumSchema);
+	return forum.findById(forumId, function(err, result){
+		if(err) return console.error(err);
+		console.log(result);		
+		return result;
+	});	
+}
+
+function createForumPost(forumData){
+	console.log("IN createForumPost : " + forumData);
+	
+	//create the forum object`
+	var createForum = new forum(forumData);
+	
+	//saving the forum object
+	return createForum.save(function (err, createForum) {
+		if (err) 
+			return console.error(err);
+		else
+			return {message:"OK"};
+	});
+}
+
+function updateForum(forumData){
+	console.log("IN updateForumPost : " + JSON.stringify(forumData));
+	
+	var query = {_id:forumData._id};
+	delete forumData_id;
+	forum.update(query, {$set: forumData}, function(err, result){
+		if(err) return console.err(err);
+		return console.log(result);
+	});
+	return Promise.resolve({message:"OK"});
+}
+
+//===========================================
+//MESSAGE RELATED SERVICES...................
+//===========================================
 function getAllUsers(id, callback) {
     console.log("get all user list");
     var count = 0;
@@ -460,43 +479,6 @@ function getUsersByName(name, callback) {
 	})
 }
 
-//===========================================
-//FORUM RELATED SERVICES.....................
-//===========================================
-function getForumList(){
-	console.log("IN getForumList : requesting data from DB");
-	var forum = mongoose.model('Forums', forumSchema);
-	return forum.find( {}, '_id title forumOwnerId forumOwnerName date description',function(err, result){
-		if(err) return console.error(err);
-		console.log(result);		
-		return result;
-	});	
-}
-
-function getForumById(forumId){
-	console.log("IN getForumById : " + forumId);
-	var forum = mongoose.model('Forums', forumSchema);
-	return forum.findById(forumId, function(err, result){
-		if(err) return console.error(err);
-		console.log(result);		
-		return result;
-	});	
-}
-
-function createForumPost(forumData){
-	console.log("IN createForumPost : " + forumData);
-	
-	//create the forum object`
-	var createForum = new forum(forumData);
-	
-	//saving the forum object
-	return createForum.save(function (err, createForum) {
-		if (err) 
-			return console.error(err);
-		else
-			return {message:"OK"};
-	});
-}
 
 function publicMessage(message, callback) {
     var newMessage = new messageschema({
@@ -524,70 +506,4 @@ function publicMessage(message, callback) {
 		   
 	    });
 	});
-}
-
-
-
-
-function testForumService(){
-	return [{title: "LinkedIn or LinkedOut?", 
-				ownerName: "Stacy Wong", //58123f3d1cdd73d423e93971
-				date: "July 27, 2016", 
-				description:"Default content",
-				comments : [{ ownerName : "JC",
-								date : "October 26, 2016",
-								description : "#1troll strikes with some spams",
-								reply : [{ replyOnwer : "Stacy Wong",
-											date : "October 26, 2016",
-											description : "OMG..."}]},
-							{ ownerName : "JC",
-								date : "October 26, 2016",
-								description : "some more spams",
-								reply : [{ replyOnwer : "Stacy Wong",
-											date : "October 26, 2016",
-											description : "STAHP"}]},
-							{ ownerName : "JC",
-								date : "October 26, 2016",
-								description : "and a bit more than some more spams"}]}, 
-			{title: "MEAN Stack, Play Nice", 
-				ownerName: "Jonathan Chen", 
-				date: "August 18, 2016", 
-				description:"Default content"}, 
-			{title: "My Reaction to React.js", 
-				ownerName: "Aishwarya Borkar", 
-				date: "October 5, 2016", 
-				description:"Default content"}, 
-			{
-				title: "Big Data, Big Problems", 
-				ownerName: "Anna Meng", 
-				date: "October 12, 2016", 
-				description:"Default content"}]; 
-}
-
-//===========================================
-//MESSAGE RELATED SERVICES...................
-//===========================================
-function testMessageService(){
-	return [{participant : [{ _id : '581b810b2376ffc83959ec11',
-								 name: 'admin'},
-								 { _id : '58159b516d7744982fb036d4',
-								 name: 'JC'}],
-			  messageBody : [{ Name : 'admin',
-								 text : 'Hello World...',
-								 date : 'Nov 3, 2016 11:07:00 PM'},
-								{Name : 'admin',
-								 text : '...?',
-								 date : 'Nov 3, 2016 11:08:00 PM'}]
-			},
-			{participant : [{ _id : '581b810b2376ffc83959ec11',
-								 name: 'admin'},
-								 { _id : '58123f3d1cdd73d423e93971',
-								 name: 'Stacy'}],
-			 messageBody : [{ Name : 'Stacy',
-								 text : 'TEEMO!',
-								 date : 'Nov 2, 2016 11:09:00 AM'},
-								{Name : 'admin',
-								 text : 'wrong person!',
-								 date : 'Nov 2, 2016 11:10:00 AM'}]
-			}]
 }
