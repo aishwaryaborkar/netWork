@@ -31,7 +31,7 @@ service.performProfileSearch = performProfileSearch;
 service.getForumList = getForumList;
 service.getForumById = getForumById;
 service.createForumPost = createForumPost;
-servive.updateForum = updateForum;
+service.updateForum = updateForum;
 
 //message related service 
 service.publicMessage = publicMessage;
