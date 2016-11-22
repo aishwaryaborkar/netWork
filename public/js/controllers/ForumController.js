@@ -1,5 +1,5 @@
 angular.module('ForumController', ['DataService'])
-.controller('ForumController', function($scope, $http, dataService) {
+.controller('ForumController', function($scope, $http, dataService, $location) {
 
     //Forum attributes 
 
@@ -22,7 +22,8 @@ angular.module('ForumController', ['DataService'])
                 var obj = { title: searchResult.data[i].title,
                             forumOwnerName: searchResult.data[i].forumOwnerName,
                             date: searchResult.data[i].date,
-                            description: searchResult.data[i].description};
+                            description: searchResult.data[i].description,
+                            _id: searchResult.data[i]._id};
                 $scope.posts.push(obj);
                 //console.log("Element " + i + " in searchResult" + JSON.stringify(searchResult.data[i])); 
             }
@@ -57,12 +58,18 @@ angular.module('ForumController', ['DataService'])
         $scope.addComment = function(){
 
         }
-        
-        
 
-  
+        $scope.loadForumById = function(post) {
+            var postId = post._id;
+            $location.path('/forumTopic/' + postId);
+        }
+})
 
-
-
+.controller('ForumTopicController', function($scope, $routeParams, dataService, Upload) {
+        var forumId = $routeParams._id;
+        dataService.getForumById({'_id': forumId}).then(function(data){
+        $scope.forum = data;
+        console.log(data);
+});
 
 });

@@ -11,7 +11,7 @@
 4. Message
     -load initial page from DB, send message, send new message.
 5. Forum
-    -load specific forum, create forum, add comment, add reply to comment.
+    -add comment, add reply to comment.
 6. Search
     -partial search on email?, search on skills, education, experience.
 
