@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var serviceFulfiller = require('./services/ServiceFulfiller');
 
+var mongoose = require('mongoose');
+var chatMsgSchema = require('./models/ChatMessage.js');
+var ChatMessage = mongoose.model('ChatMessage', chatMsgSchema);
+
 //===========================================
 //TESTING SERVICE FUNCTIONS TO BE DELETED....
 //===========================================
@@ -393,6 +397,44 @@ router.post('/createForum', function(req, res){
 	});
 	
 });
+
+router.post("/saveChatMessage/", function (req, res) {
+	var chatMsg = new ChatMessage({
+		fromUserId: req.body.id,
+		toUserName: req.body.name,
+		msgContent: req.body.content,
+	});
+	chatMsg.save(function (error, result) {
+		if (error)
+			return res.status(400).json(error);
+		else {
+			console.log("/saveChatMessage/", JSON.stringify(result));
+			return res.status(200).json(JSON.stringify(result));
+		}
+	});
+});
+
+router.get("/getAllChatMessage", function (req, res) {
+	ChatMessage.find({}, function (err, result) {
+		if (err)
+			return res.status(400).json(err);
+		else
+			return res.status(200).json(result);
+	});
+});
+
+router.post("/getHistoryChatMsg", function (req, res) {
+	var fronUserId = req.body.fromUserId;
+	var toUserName = req.body.toUserName;
+	console.log("getHistoryChatMsg: fromUserId = %s, toUserName = %s", fronUserId, toUserName);
+	ChatMessage.find({fromUserId: fronUserId, toUserName: toUserName}, function (err, result) {
+		if (err)
+			return res.status(400).json(err);
+		else
+			return res.status(200).json(result);
+	});
+});
+
 
 module.exports = router;
  

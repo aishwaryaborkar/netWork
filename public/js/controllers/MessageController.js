@@ -24,8 +24,8 @@ app.factory('socket', function($rootScope) {
     };
 })
 
-app.controller('MessageController', function($scope, $rootScope, dataService, Upload, $sce, socket) {
-    console.log('MessageController loaded[]');
+app.controller('MessageController', function($scope, $rootScope, $http, dataService, Upload, $sce, socket) {
+console.log('MessageController loaded[]');
     var isLoggedIn = (sessionStorage.getItem('loggedIn') == 'true');
     var id = sessionStorage.getItem('userId');
     console.log('loggedIn user id ' + id);
@@ -54,17 +54,50 @@ app.controller('MessageController', function($scope, $rootScope, dataService, Up
         $scope.myVal =  $sce.trustAsHtml(out);
     });
 
+    dataService.getHistoryChatMsg(sessionStorage.getItem('userId'),
+            sessionStorage.getItem('chatName')).then(function (data) {
+                console.log("getHistoryChatMsg: %s",  JSON.stringify(data));
+                
+                for (var i = 0; i < data.length; i++) {
+                    $scope.chatMessage = $scope.chatMessage + '<div class=\'item\'><span>' +
+                    (data[i].fromUserId ==sessionStorage.getItem('userId') ? "You" : data[i].toUserName)+
+                        ':</span><br>' + data[i].msgContent
+                        + '</div>';
+                }
+
+            });
+    
     $scope.chat = function(user) {
         $scope.chatMessage = '';
         console.log('chat user is ' + user);
         $scope.username = user;
         sessionStorage.setItem('chatName', user);
+    
+        var id = sessionStorage.getItem('userId');
+        var name = sessionStorage.getItem('chatName');        
+        $http.post("/api/getHistoryChatMsg/", { fromUserId: id, toUserName: name })
+            .success(function (data, status) {
+                console.log("/api/saveChatMessage/", data, status);
+
+                for (var i = 0; i < data.length; i++) {
+                    $scope.chatMessage = $scope.chatMessage + '<div class=\'item\'><span>' +
+                        (data[i].fromUserId == id ? "You" : data[i].toUserName) +
+                        ':</span><br>' + data[i].msgContent
+                        + '</div>';
+                }
+
+            });
+        
     };
 
     $scope.reply = function() {
         console.log($scope.replyMessage);
         var id = sessionStorage.getItem('userId');
         var name = sessionStorage.getItem('chatName');
+        
+        
+
+        console.log("reply", id, name);
         console.log('chat user is ' + name);
         var message = {
             id: id,
@@ -79,6 +112,11 @@ app.controller('MessageController', function($scope, $rootScope, dataService, Up
             + '</div>';
 
         $scope.replyMessage = '';
+        
+        $http.post("/api/saveChatMessage/", message).success(function (data, status) {
+            console.log("/api/saveChatMessage/", data, status);
+        });
+        
     };
 })
 

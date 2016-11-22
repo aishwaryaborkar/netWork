@@ -38,7 +38,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	dataService.requestConnection = requestConnection;
 	
 
-
+	dataService.getHistoryChatMsg = getHistoryChatMsg;
 	dataService.getAllUsers = getAllUsers;
 	
 	return dataService;	
@@ -364,7 +364,23 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 				return $q.reject(res.data);
 			});
 	}
-    
+	function getHistoryChatMsg(fromUserId, toUserName) {
+		console.log("getHistoryChatMsg: %s, %s", fromUserId, toUserName);
+		return $http({
+			method: "POST",
+			url: urlBase + "/getHistoryChatMsg",
+			data: { fromUserId: fromUserId, toUserName: toUserName }
+		}).then(function (result) {
+			console.log(result.data);
+			return result.data;
+		},
+			function (error) {
+				console.log(JSON.stringify(error.data));
+				return $q.reject(error.data);
+			}
+			);
+	}
+
     
 	
 }]);
