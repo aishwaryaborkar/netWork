@@ -19,6 +19,7 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 	dataService.getForumList = getForumList;
 	dataService.createForum = createForum;
 	dataService.getForumById = getForumById;
+	dataService.addComment = addComment;
 
 	/*
 	  PROFILE SERVICE CALLS
@@ -126,8 +127,22 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 				console.log(JSON.stringify(res.data));
 				return $q.reject(res.data);
 			});
+	}
 
-
+	function addComment(commentData){
+		return $http({
+				method: 'POST',
+				url: urlBase + '/addComment', 
+				data: forumData
+		}).then(
+			function(body) { //what to on on success call
+				console.log(body);
+				return body;
+			},
+			function(res){
+				console.log(JSON.stringify(res.data));
+				return $q.reject(res.data);
+			});
 	}
 
 	function validateEmail(newEmail){

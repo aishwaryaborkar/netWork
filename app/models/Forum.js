@@ -8,7 +8,7 @@ module.exports = mongoose.Schema(
 		date : String,
 		description : String,
 		comments: [{ ownerId : String,
-					 commentOwnerNmae : String,
+					 commentOwnerName : String,
 					  date : String,
 					  description : String,
 					  reply : [{ ownerId : String,
