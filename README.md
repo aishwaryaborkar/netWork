@@ -10,9 +10,7 @@
     -display connections from DB, remove connection, approvePending, declinePending, visit profile
 4. Message
     -load initial page from DB, send message, send new message.
-5. Forum
-    -add comment, add reply to comment.
-6. Search
+5. Search
     -partial search on email?, search on skills, education, experience.
 
 ## Installation -- You will need to install Node before hand.
