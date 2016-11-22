@@ -4,7 +4,15 @@ body {
   background: #eee;
 }
 
-
+.form-group{
+	font-family: Arial, Gadget, sans-serif;
+    font-size:18px;
+}
+form-control{
+	border-radius: 15px;
+	font-size: 18px;
+	font-family: Arial, Gadget, sans-serif;
+}
 li:hover {
   background: #eee;
   cursor: pointer;
@@ -20,7 +28,7 @@ li:hover {
 
 
 .col-lg-4 h3 {
-  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+  font: bold 20px/1.5 Arial, Gadget, sans-serif;
 }
 
 .col-lg-4 li {
@@ -34,7 +42,7 @@ li:hover {
 }
 
 .col-lg-4 li p {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+  font: 200 12px/1.5 Arial, Gadget, sans-serif;
 }
 
 .col-lg-4 li img {

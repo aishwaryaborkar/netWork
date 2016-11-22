@@ -1,6 +1,7 @@
 /*border around divs*/
 .media {
     border-radius: 10px;
+    font-family: Arial, Gadget, sans-serif;
 }
 /*forum size*/
 .forum {

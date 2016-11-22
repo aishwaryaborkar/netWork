@@ -1,6 +1,11 @@
-<div align="center" style="background:url('./images/login/background2.jpg');margin=40px;">
+<div align="center" style="margin=40px;">
 	<link rel="stylesheet" type="text/css" href="../css/login.css" />
 	<link rel="stylesheet" type="text/css" href="../css/simplegrid.css" />
+	<script type="text/javascript">
+		$(document).ready(function(){
+    	$('[data-toggle="tooltip"]').tooltip();   
+	});
+</script>
 		
 	<body>
 		
@@ -21,12 +26,12 @@
             
 	            <div class="form-group" ng-class="{ 'has-error': (form.lastname.$pristine || form.lastname.$dirty) && form.lastname.$error.required}">
 	            <label for="lastname">Last Name</label>
-    	        	<input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Names" ng-model="user.lastName" required/>
+    	        	<input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name" ng-model="user.lastName" required/>
     	        </div>
             	
             	<div class="form-group" ng-class="{ 'has-error': form.email.$pristine || (form.email.$dirty && form.email.$error.required) || form.email.$invalid}">
             	<label for="Email">Email</label>
-	            	<input type="text" name="email" id="email" class="form-control" ng-model="user.email" placeholder="email"
+	            	<input type="text" name="email" id="email" class="form-control" ng-model="user.email" placeholder="Email"
 	            		pattern="[a-zA-Z0-9._+-]{1,63}@([a-zA-Z0-9]{1,63}){1,5}\.[a-zA-Z]{2,10}" ng-change="resetChecker()" required/>
 	            </div>
 	            
@@ -37,7 +42,7 @@
 	            
 	            <div class="form-group" ng-class="{ 'has-error': form.password.$pristine || (form.password.$dirty && form.password.$error.required) || form.password.$invalid}">
 	            <label for="password">Password</label>
-    	        	<input type="password" name="password" id="password" class="form-control" ng-model="user.password" placeholder="Password" 
+    	        	<input type="password" name="password" id="password" class="form-control tooltip" ng-model="user.password" placeholder="Password" 
     	        		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\[$&+,:;=?@#|'<>.\-^*()%!\]]).{6,18}" title="does not meet password requirement" required/>
 	            </div>
 	            

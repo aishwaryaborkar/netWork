@@ -19,7 +19,7 @@
 }
 
 .media-body{
-     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+     font-family: Arial, Gadget, sans-serif;
 
 }
 /*forum description*/
@@ -35,6 +35,10 @@
 .featured{
     background-color: #0868A0;
     color: white;
+}
+
+.textcolor{
+	color:white;
 }
 /*glyphicon style*/
 .glyphicon {

@@ -1,55 +1,65 @@
 <link rel="stylesheet" type="text/css" href="css/search.css">
+<body onload="myFunction();">
 
-<body>
 
-  <!-- FOR THE SEARCH FILEDS-->
-  <div class="row">
+	<!-- FOR THE SEARCH FILEDS-->
+  <div class="row" align="center">
   <div class="col-lg-4"> </div><!-- /.col-lg-6 -->
   <div class="col-lg-4">
 
     <div class="input-group">
        <form name="form" role="form">
-            <div class="form-group">
-                Email: <input type="text" name="email" id="email" class="form-control" ng-model="criteria.email" placeholder="Email ..." />
-              </div>
-            <div class="form-group">
-                Name: <input type="text" name="name" id="name" class="form-control" ng-model="criteria.name" placeholder="Name ..." />
-            </div>
-            <div class="form-group">
-                Company: <input type="text" name="company" id="company" class="form-control" ng-model="criteria.company" placeholder="Company ..." />
-              </div>
-            <div class="form-group">
-                Job Title: <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="criteria.jobtitle" placeholder="Job Title ..." />
-              </div>              
-              <div class="form-group" ng-show={{isPremium}}>
-                Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="criteria.skillString" placeholder="<ex. java 100, javascript 50" />
-              </div>
-               <div class="form-group" ng-show={{isPremium}}>
-                School Name: <input type="text" name="schoolName" id="schoolName" class="form-control" ng-model="criteria.educationString" placeholder="School Name ..." />
-              </div>
-      <input type="submit" class="btn btn-primary" name="submit" ng-click="handleSubmit(criteria)" value="Search"/>
-      <input type="button" class="btn btn-primary" name="submit" ng-click="criteria = null; results = null;mysearch = null" value="Clear"/>
-    </form>
-    
+ 
+         		<div class="form-group">
+        		    Email: <input type="text" name="email" id="email" class="form-control" ng-model="email" placeholder="Email ..." />
+            	</div>
+        		<div class="form-group">
+            		Name: <input type="text" name="name" id="name" class="form-control" ng-model="name" placeholder="Name ..." />
+        		</div>
+        		<div class="form-group">
+        		    Company: <input type="text" name="company" id="company" class="form-control" ng-model="company" placeholder="Company ..." />
+            	</div>
+        		<div class="form-group">
+        		    Job Title: <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="jobtitle" placeholder="Job Title ..." />
+            	</div>            	
+            	<div class="form-group" ng-show={{$root.isPremium}}>
+            		Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="skill" placeholder="Skill ..." />
+            	</div>
+            		
+            	 <div class="form-group" ng-show={{$root.isPremium}}>
+            		School Name: <input type="text" name="schoolName" id="schoolName" class="form-control" ng-model="schoolName" placeholder="School Name ..." />
+            	</div>
+            	
+            	<div class="form-group" ng-show={{$root.isPremium}}>
+            		Graduation Date: <input type="text" name="graduationDate" id="graduationDate" class="form-control" ng-model="graduationDate" placeholder="Graduation Date ..." />
+            	</div>
+            	<div class="form-group" ng-show={{$root.isPremium}}>
+            		School Description: <input type="text" name="Description" id="Description" class="form-control" ng-model="Description" placeholder="Description ..." />
+            	</div>            		
+			<br /><br />
+			<input type="submit" class="btn btn-primary" name="submit" ng-click="handleSubmit()" value="Search"/>
+			<input type="button" class="btn btn-primary" name="submit" ng-click="clearFields()" value="Clear"/>
+		</form>
+		
     </div><!-- /input-group -->
-  
+	
   </div><!-- /.col-lg-6 -->
   <div class="col-lg-4"></div>
 
 
 </div>
 <div class="row">
-  <div class="col-lg-4"> </div>
-    <div  class="col-lg-4">
-      <h4>
-        {{ mysearch }}
-      </h4>
-    </div>
-  <div class="col-lg-4"> </div>
+	<div class="col-lg-4"> </div>
+		<div  class="col-lg-4">
+			<h4>
+				{{ mysearch }}
+			</h4>
+		</div>
+	<div class="col-lg-4"> </div>
 </div>
 
 
-  <!-- FOR THE SEARCH RESULT-->
+	<!-- FOR THE SEARCH RESULT-->
 <div class="row">
   <div class="col-lg-4">
   
@@ -57,15 +67,13 @@
   <div class="col-lg-4">
    <div class="boxed" style="border: 2px solid #0868A0; border-radius: 5px;" align="center" ng-repeat="data in results">
           <img src="./images/connection/man1.png" class="img-rounded" alt="Cinque Terre" width = 100px height = 100px >
-		  <p style= "font-style:bold;font-size: 18px;">{{data._id}}</p>
-          <p style= "font-style:bold;font-size: 18px;">{{data.name}}</p>
+          <p style= "font-style:bold;font-size: 18px;">{{data.name}}</p> 
           <p style= "font-size: 15px;">{{data.jobTitle}}</p> 
 		  <p style= "font-size: 15px;">{{data.company}}</p> 
           <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" ng-click="visitProfile(data)">View Profile</button>
-      </div> <!--dropdown-->
+  			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">View Profile</button>
+		  </div> <!--dropdown-->
    </div><!--boxed-->
   <div class="col-lg-4"></div>
 </div>
-
 </body>
