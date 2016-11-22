@@ -1,17 +1,12 @@
 ## THINGS TODO....
-0. Landingpage
-    -new images for the slider thingy, new next to put?
-1. CreateAccount/Login/AccountRecovery
-    -need checker on fields(email, password, date?)
-    -required all fields on accountRecovery, date widget, 
-2. Profile
-    -edit profiles, public view(reqest connection, send message)
-3. Connections
-    -display connections from DB, remove connection, approvePending, declinePending, visit profile
-4. Message
+0. Landing page
+    -new images for the slider thingy
+1. Profile
+    -edit profiles, public view(reqest connection, send message), image uploading
+2. Message
     -load initial page from DB, send message, send new message.
-5. Search
-    -partial search on email?, search on skills, education, experience.
+3. Ensure font and color scheme is consistent across all pages
+
 
 ## Installation -- You will need to install Node before hand.
 1. Clone repo(which ever method you prefer)
