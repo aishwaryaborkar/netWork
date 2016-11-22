@@ -4,16 +4,17 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 .controller('ProfileController', function($scope, $rootScope, dataService, Upload) {
     console.log('ProfileController loaded[]');
 	toastr.success('Welcome to netWork!');
+	var curUser = sessionStorage.getItem('userId');
 
 	$scope.modalHeader = ''
 	$scope.editBody = ''
 	$scope.user = []
 	var editField = '';
-	dataService.getProfile({'userId': $rootScope.userId}).then(function(data){
+	dataService.getProfile({'userId': curUser}).then(function(data){
 		$scope.user = data;
 		console.log(data)
 	});
-
+	$scope.imgURL = 'https://www.colourbox.com/preview/3603416-portrait-of-a-professional-business-executive.jpg'
 	$scope.addButton = function(){
 		// window.location.href = "/forum";
 	};
