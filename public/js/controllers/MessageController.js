@@ -55,6 +55,7 @@ app.controller('MessageController', function($scope, $rootScope, dataService, Up
     });
 
     $scope.chat = function(user) {
+        $scope.chatMessage = '';
         console.log('chat user is ' + user);
         $scope.username = user;
         sessionStorage.setItem('chatName', user);
@@ -73,8 +74,11 @@ app.controller('MessageController', function($scope, $rootScope, dataService, Up
         }
         socket.emit('message', message);
         var h = $scope.myDialog;
+
         $scope.chatMessage = $scope.chatMessage + '<div class=\'item\'><span>You:</span><br>' + $scope.replyMessage 
             + '</div>';
+
+        $scope.replyMessage = '';
     };
 })
 

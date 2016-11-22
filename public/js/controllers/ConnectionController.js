@@ -1,4 +1,4 @@
-angular.module('ConnectionController', []).controller('ConnectionController', function($scope,$rootScope, $http, dataService) {
+angular.module('ConnectionController', []).controller('ConnectionController', function($scope,$rootScope, $location, $http, dataService) {
  $scope.heading = "Friends";
  
  $scope.sendRequest = function(){	 
@@ -43,12 +43,9 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
 	 	                    jobTitle: updatedRequests[i].jobTitle,
 	 	                    company: updatedRequests[i].company};
 	 	        $scope.queryResult.push(obj);
-	 	    }	
-	 		
-	 		
-	 		
+	 	    }		 		
 	 	});
-	     
+	    dataService.approveConnection(connection._id, sessionStorage.getItem('userId')); 
 	 };
 	 
 //approve connection ends here
@@ -110,6 +107,14 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
     }
 });
 
+ //view profile
+	$scope.visitProfile = function(connection){
+		console.log(connection._id);
+		$location.path('/viewprofile/' + connection._id);
+	}
+
+ 
+ 
  //remove connection
  $scope.removeConnection = function(connection) {
 	    

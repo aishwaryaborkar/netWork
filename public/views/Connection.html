@@ -38,12 +38,11 @@
 <div class = "row">
 <div class = "col-md-2" ng-repeat="connection in connectionResult  | filter:search as pendingConnect">
       <div class="boxed" align = "center">
+          <br />
      	  <br />
-          		<img src="./images/connection/woman1.jpg" class="img-rounded" width = 100px height = 100px>
+          		<img src="./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
           <br />
-          		<p1><b>{{connection._id}}</b></p1>
-          <br />
-         		 <p1><b>{{connection.name}}</b></p1>
+         		<p1><a href="#" ng-click="visitProfile(connection)"><b>{{connection.name}}</b></a></p1>
           <br />
           		 <p2>{{connection.jobTitle}}</p2> 
           <br />
@@ -55,7 +54,6 @@
   				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Connected <span class="glyphicon glyphicon-ok"></span>
   					<span class="caret"></span></button>
   				      <ul class="dropdown-menu" role="menu">
-    		    		 <li><a href="#"><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
     		    		 <li><a ng-href="#" ng-click="removeConnection(connection)"><span class="glyphicon glyphicon-trash"></span> Disconnect</a></li>
   		              </ul>
 	  </div> <!--dropdown-->
@@ -89,11 +87,9 @@
      		 <div class="boxed" align = "center">
      		  <br />
                 <img src= "./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
-	      
-	      <br />
-          		 <p1><b>{{connection._id}}</b></p1>
+	      	      
 		  <br/>
-         		 <p1><b>{{connection.name}}</b></p1>
+         		 <p1><a href="#" ng-click="visitProfile(connection)"><b>{{connection.name}}</b></a></p1>
           <br />
          		 <p2>{{connection.jobTitle}}</p2>
           <br /> 
