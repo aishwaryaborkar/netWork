@@ -11,8 +11,8 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 	$scope.user = []
 	var editField = '';
 	dataService.getProfile({'userId': curUser}).then(function(data){
-		$scope.user = data.name;
-		sessionStorage.setItem('userName', $scope.user);
+		$scope.user = data;
+		sessionStorage.setItem('userName', data.name);
 		console.log(data)
 	});
 	$scope.imgURL = 'https://www.colourbox.com/preview/3603416-portrait-of-a-professional-business-executive.jpg'
@@ -161,7 +161,8 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 	
 	$scope.requestConnection = function(){
 		console.log("in requesting connection");
-		dataService.requestConnection({userId:curUser,connectionId:visitUserId});
+		dataService.requestConnection({userId:curUser,connectionId:visitUserId})
+		toastr.success('Connection requested')
 		$scope.allowRequest = false;
 	}
 });
