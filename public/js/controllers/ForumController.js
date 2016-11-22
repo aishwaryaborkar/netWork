@@ -88,7 +88,7 @@ angular.module('ForumController', ['DataService'])
                 $scope.comments.push(obj);
 
             }
-});
+        });
 
         $scope.addComment = function(comment){
          var monthNames = [
@@ -107,11 +107,13 @@ angular.module('ForumController', ['DataService'])
 
          comment.ownerId = sessionStorage.getItem('userId');
          comment.commentOwnerName = sessionStorage.getItem('userName');
+
+         console.log("commentOwnerName: " + comment.commentOwnerName);
          comment.date = fullDate;
 
          $scope.comments.push(comment);
 
-         //dataService.addComment(comments);
+         dataService.addComment(forumId, $scope.comments);
         }
 
 });

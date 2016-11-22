@@ -12,7 +12,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 	var editField = '';
 	dataService.getProfile({'userId': curUser}).then(function(data){
 		$scope.user = data.name;
-		sessionStorage.setItem('userName');
+		sessionStorage.setItem('userName', $scope.user);
 		console.log(data)
 	});
 	$scope.imgURL = 'https://www.colourbox.com/preview/3603416-portrait-of-a-professional-business-executive.jpg'

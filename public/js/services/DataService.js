@@ -129,11 +129,11 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 			});
 	}
 
-	function addComment(commentData){
+	function addComment(forumId, forumComments){
 		return $http({
 				method: 'POST',
-				url: urlBase + '/addComment', 
-				data: forumData
+				url: urlBase + '/updateForum', 
+				data: {_id: forumId, comments: forumComments}
 		}).then(
 			function(body) { //what to on on success call
 				console.log(body);
