@@ -148,8 +148,10 @@ $scope.userAccount;
 				$location.path('/recoveraccount');
 			}
 		})
-		
-		
+	};
+	
+	$scope.validatePasswordConfirmation = function(pass, passConf){
+		return (pass.$viewValue !== passConf.$viewValue);
 	};
 });
 

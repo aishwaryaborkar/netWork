@@ -49,13 +49,15 @@
 	            <div class="form-group" ng-class="{ 'has-error': form.password.$pristine || (form.password.$dirty && form.password.$error.required) || form.password.$invalid}">
 	            <label for="password">Password</label>
     	        	<input style="width:60%; margin-top:10px;" type="password" name="password" id="password" class="form-control" ng-model="user.password" placeholder="Password" 
-    	        		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\[$&+,:;=?@#|'<>.\-^*()%!\]]).{6,18}" title="does not meet password requirement" required/>
+    	        		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\[$&+,:;=?@#|'<>.\-^*()%!\]]).{6,18}"
+						title="Password Requirements(Minimum):&#xA;1 Upper Case Letter.&#xA;1 Lower Case Letter.&#xA;1 Special Character.&#xA;1 Numeric Character.&#xA;6-18 Characters.&#xA;MUST MATCH WITH PASSWORD CONFIRMATION."required/>
 	            </div>
 	            
 	            <div class="form-group" ng-class="{ 'has-error': form.passwordConf.$pristine || (form.passwordConf.$dirty && form.passwordConf.$error.required) || form.passwordConf.$invalid}">
 	            <label for="passwordConf">Password Confirmation</label>
     	        	<input style="width:60%; margin-top:10px;" type="password" name="passwordConf" id="passwordConf" class="form-control" ng-model="user.passwordConf" placeholder="Password Confirmation"
-    	        		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\[$&+,:;=?@#|'<>.\-^*()%!\]]).{6,18}" title="does not meet password requirement" required/>
+    	        		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\[$&+,:;=?@#|'<>.\-^*()%!\]]).{6,18}"
+						title="Password Requirements(Minimum):&#xA;1 Upper Case Letter.&#xA;1 Lower Case Letter.&#xA;1 Special Character.&#xA;1 Numeric Character.&#xA;6-18 Characters.&#xA;MUST MATCH WITH PASSWORD." required/>
     	        	<span ng-show="validatePasswordConfirmation(form.password, form.passwordConf)" class="help-block">The two password field does not match</span>	
 	            </div>
 	            
@@ -72,11 +74,12 @@
 	            <div class="form-group" ng-class="{ 'has-error': form.birthday.$pristine || (form.birthday.$dirty && form.birthday.$error.required) || form.birthday.$invalid}">
 					<label for="birthday">Date Of Birth</label>
 					<input style="width:60%; margin-top:10px;" type="text" name="birthday" name="birthday" class="form-control" ng-model="user.birthday" 
-						pattern="^\d{4}-\d{2}-\d{2}$" placeholder="YYYY/MM/DD" required>
+						pattern="^\d{4}-\d{2}-\d{2}$" placeholder="YYYY-MM-DD" title="Date Format : YYYY-MM-DD" required>
 				</div>
             
         		<input type="checkbox" name="premium" ng-model="user.isPremium">Premium User<br><br>
-            	<button ng-click="createUserAccount(user)" ng-disabled="form.$invalid" class="btn btn-primary">
+            	<button ng-click="createUserAccount(user)" title="Missing or Invalid Required Field(s) Value."
+				ng-disabled="form.$invalid || validatePasswordConfirmation(form.password, form.passwordConf)" class="btn btn-primary">
            			<span>Begin Work Journey!</span>
          		</button>
    				</form> 				
