@@ -1,4 +1,4 @@
-<div class="jumbotron text-center">
+<div align="center" style="background:url('./images/login/background2.jpg');margin=40px;">
 	<link rel="stylesheet" type="text/css" href="../css/login.css" />
 	<link rel="stylesheet" type="text/css" href="../css/simplegrid.css" />
 
@@ -6,28 +6,38 @@
 	<body>
 		<div class="grid grid-pad">
     		<div class="col-6-12">
-        	   	<img src= "./images/login/logo.jpg" alt="company Logo" style="max-width:100%"/>
+        	   	<img src= "./images/login/logo.jpg" alt="company Logo" style="max-width:100%; margin-top:20px"/>
+
+                <div style="margin-top:20px">
+                    <marquee behavior="" direction="LEFT" hspace="0" vspace="0" loop="INFINITE" scrollamount="15">
+                        <img src="./images/1.png">
+                    </marquee>
+                </div>
     		</div>
     		<div class="col-6-12">
     		    <form name="form" ng-controller="LoginController" role="form">
         		<div class="form-group" ng-class="{ 'has-error': (form.email.$pristine || form.email.$dirty) && form.email.$error.required}">
             		<label for="Email">Email</label>
-	            	<input type="text" name="email" id="email" class="form-control" ng-model="email" placeholder="Email" required />
+	            	<input style="width:60%; margin-top:10px;" type="text" name="email" id="email" class="form-control" ng-model="email" placeholder="email" required />
         		</div>
         		<div class="form-group" ng-class="{ 'has-error': (form.password.$pristine || form.password.$dirty) && form.password.$error.required }">
 	            	<label for="password">Password</label>
-    	        	<input type="password" name="password" id="password" class="form-control" ng-model="password" placeholder="Password" required />
+    	        	<input style="width:60%; margin-top:10px;" type="password" name="password" id="password" class="form-control" ng-model="password" placeholder="password" required />
 	    	        <span ng-show="form.password.$error.required" class="help-block"></span>
         		</div>
      			<div class="form-group">
-     			    <div class="col-1-2">
-            			<button type="submit" ng-click="validateLogin(form.email,form.password)" class="btn btn-primary pull-right" value="Login" title="Login" ng-disabled="!form.$valid">
-           				<span>Login</span>
-         			</button>
+     			    <div style="text-align:center;">
+                		<button type="submit" ng-click="validateLogin(form.email,form.password)" class="btn btn-primary" value="Login" title="Login" ng-disabled="!form.$valid">
+               			  <span>Login</span>
+             			</button>
+                        <a href="/recoveraccount"><strong><u>Forgot My Login</u><strong></a>
             		</div>
+
+                    <!--
          			<div class="col-1-2">
             			<a href="/recoveraccount"><strong><u>Forgot My Login</u><strong></a>
             		</div>
+                    -->
      			</div>
    			</form>
     		</div>
