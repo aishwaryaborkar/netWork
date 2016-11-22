@@ -44,7 +44,7 @@
 
  
 <div class="row fade-in two">
-	<div class="container" style="width: 80%">
+	<div class="container" style="width: 70%">
 		<div class="jumbotron">
 	    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="summaryClick()">
 	        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
@@ -57,7 +57,7 @@
 
 
 <div class="row fade-in three">
-	<div class="container" style="width: 80%">
+	<div class="container" style="width: 70%">
 		<div class="jumbotron">
 	    <div id="editButton"><a data-toggle="modal" data-target="#myModalEDU" class="btn btn-default" ng-click="eduClick()">
 	        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
@@ -81,7 +81,7 @@
 
 
 <div class="row fade-in three" >
-	<div class="container" style="width: 80%">
+	<div class="container" style="width: 70%">
 		<div class="jumbotron">
 			<h2 style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-briefcase" aria-hidden="true" style="padding-right: 10px;"></i>Experience</h2> 
 		    <div id="editButton"><a data-toggle="modal" data-target="#myModalEXP" class="btn btn-default" ng-click="expClick()">
@@ -103,7 +103,7 @@
 
 
 <div class="row fade-in three" >
-	<div class="container" style="width: 80%; padding-bottom: 10px;">
+	<div class="container" style="width: 70%; padding-bottom: 10px;">
 		<div class="jumbotron">
 
 			<h2 style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-wrench" aria-hidden="true" style="padding-right: 10px;"></i>Skills</h2> 
@@ -151,7 +151,12 @@
 	        <div class="modal-body">
 				<div ng-repeat='edu in editBody track by $index'>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-1">
+						<a href="#">
+							<i class="fa fa-minus-square fa-2x" aria-hidden="true" style="color: red;" ng-click='minusClick($index)'></i>
+						</a>
+						</div>
+						<div class="col-md-11">
 					    	<label for="email">School Name:</label>
 				    		<input ng-model="edu.schoolName" type="text" class="form-control">
 						</div>
@@ -187,7 +192,12 @@
 	        <div class="modal-body">
 				<div ng-repeat='exp in editBody track by $index'>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-1">
+						<a href="#">
+							<i class="fa fa-minus-square fa-2x" aria-hidden="true" style="color: red;" ng-click='minusClick($index)'></i>
+						</a>
+						</div>
+						<div class="col-md-11">
 					    	<label for="email">Company:</label>
 				    		<input ng-model="exp.company" type="text" class="form-control">
 						</div>
@@ -204,6 +214,9 @@
 				</div>
 	        </div>
 	        <div class="modal-footer">
+				<a href="#">
+	    			<i class="fa fa-plus-square fa-2x pull-left" aria-hidden="true" style="color: green;" ng-click='plusClick($index)'></i>
+	    		</a>
 	            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
 	            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update()">Save changes</button>
 	        </div>
@@ -217,17 +230,22 @@
 	<div class="modal-dialog">
 	    <div class="modal-content">
 	        <div class="modal-header">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	            <button href="#" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	            <h4 class="modal-title">Edit {{modalHeader}}</h4>
 	        </div>
 	        <div class="modal-body">
 				<div ng-repeat='skill in editBody track by $index'>
 					<div class="row">
+						<div class="col-md-1">
+						<a href="#">
+							<i class="fa fa-minus-square fa-2x" aria-hidden="true" style="color: red;" ng-click='minusClick($index)'></i>
+						</a>
+						</div>
 						<div class="col-md-6">
 					    	<label for="email">Skill Name:</label>
 				    		<input ng-model="skill.skillName" type="text" class="form-control">
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-5">
 						    <label for="email">Skill Level:</label>
 						    <input ng-model="skill.skillLevel" type="text" class="form-control">
 						</div>
@@ -236,6 +254,9 @@
 				</div>
 	        </div>
 	        <div class="modal-footer">
+				<a href="#">
+	    			<i class="fa fa-plus-square fa-2x pull-left" aria-hidden="true" style="color: green;" ng-click='plusClick($index)'></i>
+	    		</a>
 	            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
 	            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update()">Save changes</button>
 	        </div>

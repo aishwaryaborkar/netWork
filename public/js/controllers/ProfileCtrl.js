@@ -42,6 +42,29 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload'])
 		editField = 'skills'
 	};
 
+	$scope.minusClick = function(index){
+		var newBody = [];
+		for(var key in $scope.editBody){
+			if(key != index){
+				var obj = $scope.editBody[key]
+				newBody.push(obj)
+			}
+		}
+		$scope.editBody = newBody;
+	}
+
+	$scope.plusClick = function(index){
+		var newBody = [];
+
+		for(var key in $scope.editBody){
+			var obj = $scope.editBody[key]
+			newBody.push(obj)
+		}
+		var newObj = {}
+		newBody.push(newObj)
+		$scope.editBody = newBody;
+	}
+
 	$scope.update = function(){
 
 		if(editField == 'summary'){
