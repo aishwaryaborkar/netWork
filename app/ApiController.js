@@ -357,7 +357,7 @@ router.get('/getPopularForum', function(req,res){
 
 router.post('/createForum', function(req, res){
 	console.log("createForum service requested" + JSON.stringify(req.body));
-	serviceFulfiller.getNameById(req.body.forumOwnerId).then(function(userName){
+	serviceFulfiller.getNameById(req.body.ownerId).then(function(userName){
 		var newForum = req.body;
 		newForum.forumOwnerName = userName.name;
 		serviceFulfiller.createForumPost(newForum).then(
