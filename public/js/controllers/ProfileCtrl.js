@@ -19,8 +19,15 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 	
 	
 	$scope.profileImageClick = function(){
-		$scope.modalHeader = 'ProfileImage'
-		editField = 'Profile Image'
+		$scope.modalHeader = 'Profile Header'
+		var aBody = []
+		aBody.push({name: $scope.user.name.slice(0),
+					company: $scope.user.company.slice(0),
+					jobTitle: $scope.user.jobTitle.slice(0)
+
+			})
+		$scope.editBody = aBody
+		editField = 'pfHeader'
 	};
 	
 	
@@ -125,6 +132,17 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 				"skills": skillsInfo
 			}
 			$scope.user.skills = $scope.editBody
+		}
+		if(editField == 'pfHeader'){
+			var params = {
+				"userId" : $rootScope.userId,
+				"name": $scope.editBody[0].name,
+				"jobTitle": $scope.editBody[0].jobTitle,
+				"company": $scope.editBody[0].company
+			}
+			$scope.user.name = $scope.editBody[0].name
+			$scope.user.jobTitle = $scope.editBody[0].jobTitle
+			$scope.user.company = $scope.editBody[0].company
 		}	
 		// var params = {
 		// 	userId: "581ff07eda0427b81de36544",
@@ -140,6 +158,13 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 		// 		schoolName: "SJSU"	
 		// 	}
 		// 	]
+		// }
+
+		// var params = {
+		// 	userId: "581ff07eda0427b81de36544",
+		// 	name: 'Navjot Bola',
+		// 	jobTitle: 'Software Developer',
+		// 	company: 'net[Work]'
 		// }
 		console.log(params)
 		dataService.updateProfile(params).then(function(data){
