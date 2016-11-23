@@ -40,7 +40,7 @@
       <div class="boxed" align = "center">
           <br />
      	  <br />
-          		<img src="./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
+          		<img ng-src="{{'http://localhost:8080/api/userImage/' + connection._id}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
           <br />
          		<p1><a href="#" ng-click="visitProfile(connection)"><b>{{connection.name}}</b></a></p1>
           <br />
@@ -86,7 +86,7 @@
       	<div class = "col-md-2" ng-repeat="connection in queryResult| filter:req as connectList">
      		 <div class="boxed" align = "center">
      		  <br />
-                <img src= "./images/connection/man1.png" class="img-rounded" width = 100px height = 100px>
+                <img ng-src="{{'http://localhost:8080/api/userImage/' + connection._id}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
 	      	      
 		  <br/>
          		 <p1><a href="#" ng-click="visitProfile(connection)"><b>{{connection.name}}</b></a></p1>
