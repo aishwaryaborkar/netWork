@@ -19,7 +19,9 @@ module.exports = mongoose.Schema(
 					 }],
 		skills : [{
 					skillName : String,
-					skillLevel : { type: Number, min: 0, max: 100 }
+					skillLevel : { type: Number, min: 0, max: 100 },
+					endorsementLevel: { type: Number, min: 0},
+					endorsementList: []
 				 }],
 		connections : [String],
 		pendingConnections : [String]
