@@ -18,7 +18,7 @@
 				<div class="col-md-8">
 					<div class="media forums" ng-repeat="post in posts">
 						<div class="media-left">
-								<img class="media-object" src="images/forum/defaultProfile.jpg">
+								<img class="media-object" ng-src="{{'http://localhost:8080/api/userImage/' + post.ownerId}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
 								<a href="#" ng-click="visitProfile(post)"><p>By: {{post.forumOwnerName}}</p></a>
 								<p>Date: {{post.date}}</p>
 						</div>
