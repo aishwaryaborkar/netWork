@@ -30,8 +30,7 @@
                 </div>
            </div>
         </div>
-    </div>    
-	
+    </div>    	
 	<div class="row nav">    
         <!-- <div class="col-md-4"></div> -->
         <div class="col-md-12 col-xs-12" style="margin: 0px;padding: 0px;">
@@ -130,8 +129,8 @@
 	        <div class="modal-body">
 				<div class="row">
 					<div class="col-md-6">
-			          <form name="myForm">
-				        <div>Crop Image and Upload</div>
+			            <form method="post" enctype="multipart/form-data" action="{{'/api/uploadProfileImage/' + user._id }}" name="myForm">
+				            <!--<div>Crop Image and Upload</div>
 					        <button ngf-select ng-model="picFile" accept="image/*">
 					            Select Picture
 					        </button>
@@ -144,12 +143,14 @@
 					        <div>
 					            <img ng-src="{{croppedDataUrl}}" />
 					        </div>
-							<button ng-click="upload(croppedDataUrl, picFile.name)">Upload image</button>     
+							<input type="submit" value="Upload image"/>   
 					        <span class="progress" ng-show="progress >= 0">
 					        	<div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
 					        </span>
 					        <span ng-show="result">Upload Successful</span>
-					        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+					        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
+							<input type="file" name="file">
+							<input type="submit" name="upload">
 						</form>
 					</div>
 					<div class="col-md-5">
@@ -177,42 +178,6 @@
 	    <!-- /.modal-content -->
 	</div>
 </div>
-
-<!-- Profile Image Modal -->
-<!-- <div class="modal fade" id="myModalImage" role="dialog">
-	<div class="modal-dialog">
-	    <div class="modal-content">
-		
-		<div class="modal-body">
-	          <form name="myForm">
-        <div>Crop Image and Upload</div>
-        <button ngf-select ng-model="picFile" accept="image/*">
-            Select Picture</button>
-        <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
-             class="cropArea">
-            <img-crop image="picFile  | ngfDataUrl"                 
-				result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
-            </img-crop>
-        </div>
-        <div>
-            <img ng-src="{{croppedDataUrl}}" />
-        </div>
-		    <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button> 
-            
-        <span class="progress" ng-show="progress >= 0">
-          <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
-        </span>
-        <span ng-show="result">Upload Successful</span>
-        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-		
-		</form>
-		</div>
-		<div class="modal-footer">
-	            <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-	            <button type="button" class="btn btn-primary" ng-click="update()">Save changes</button>
-	    </div>
-	</div>
-</div> -->
 
 <!-- Summary modal -->
 <div class="modal fade" id="myModal" role="dialog">

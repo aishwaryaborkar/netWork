@@ -1,10 +1,48 @@
 var express = require('express');
+var path = require('path');
+var fs = require('fs');
 var router = express.Router();
 var serviceFulfiller = require('./services/ServiceFulfiller');
-
+var pathExists = require('path-exists');
 var mongoose = require('mongoose');
 var chatMsgSchema = require('./models/ChatMessage.js');
 var ChatMessage = mongoose.model('ChatMessage', chatMsgSchema);
+
+
+
+
+
+//===========================================
+//IMAGE UPLOAD API.....
+//===========================================
+router.post('/uploadProfileImage/:id', function(req, res) {
+	console.log(req);
+    var fstream;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        console.log("Uploading: " + filename); 
+        fstream = fs.createWriteStream(__dirname + '/profileImage/' + req.params.id + '.png');
+        file.pipe(fstream);
+        fstream.on('close', function () {
+            res.redirect('back');
+        });
+    });
+});
+
+router.get('/userImage/:id', function (req, res) {
+	var profileDir = __dirname.concat('/profileImage/').concat(req.params.id).concat('.png');
+	var defaultDir = __dirname.concat('/profileImage/').concat('default').concat('.png');
+	var path = require('path'); 
+
+	if(pathExists.sync(profileDir)){
+		res.sendfile(path.resolve(profileDir));
+	}else{
+		res.sendfile(path.resolve(defaultDir));
+	} 
+    
+}); 
+
+
  
 //===========================================
 //LOGIN or REGISTRATION RELATED SERVICES.....
