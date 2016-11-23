@@ -181,24 +181,24 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 .controller('PublicProfileController', function($scope, $routeParams, dataService, Upload) {
 	var visitUserId = $routeParams.userId;
 	var curUser = sessionStorage.getItem('userId');
-	console.log(curUser);
+	$scope.imgURL = 'http://localhost:8080/api/userImage/' + visitUserId;
 	dataService.getProfile({'userId': visitUserId}).then(function(data){
 		console.log(data);
 		$scope.user = data;
 		//$scope.allowRequest = ((data.connections).includes(curUser) || (data.pendingConnections).includes(curUser));
 	});
-		var alreadyReq = false
+	var alreadyReq = false
 
-		dataService.getPendingConnection(visitUserId).then(function(data){
-			console.log(data)
-			$scope.thisUsersConnections = data;
+	dataService.getPendingConnection(visitUserId).then(function(data){
+		console.log(data)
+		$scope.thisUsersConnections = data;
 
-			for(var i = 0; i < data.length; i++){
-				if(curUser == data[i]._id){
-					alreadyReq = true
-				}
+		for(var i = 0; i < data.length; i++){
+			if(curUser == data[i]._id){
+				alreadyReq = true
 			}
-		});
+		}
+	});
 
 	$scope.testing = function(){
 		console.log("IN DUMMY TEST CLICKER");
