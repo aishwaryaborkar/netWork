@@ -108,9 +108,16 @@
 			<h2 style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-wrench" aria-hidden="true" style="padding-right: 10px;"></i>Skills</h2> 
 		    <div id="editButton"><a data-toggle="modal" data-target="#myModalSkills" class="btn btn-default" ng-click="skillsClick()"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a></div>
 
-		    <div ng-repeat='x in user.skills' >
-		    	<h2>{{x.skillName}}</h2>
-		    	<h4>{{x.skillLevel}}</h4>
+		    <div class="row" ng-repeat='x in user.skills'>
+		    	<div class="col-md-1">
+		    		<h4>+{{x.endorsementLevel}}</h4>
+		    	</div>	
+		    	<div class="col-md-5">
+		  		    <h4>{{x.skillName}}</h4>
+		    	</div>
+		    	<div class="col-md-2">
+		    		<h4>{{x.skillLevel}}</h4>
+		    	</div>	    	
 		    </div>
 
 		</div>
@@ -149,6 +156,9 @@
 					        </span>
 					        <span ng-show="result">Upload Successful</span>
 					        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
+							<div class="bg_blur img-circle" ng-style="{'background-image':'url('+imgURL+')'}" style="display: block; margin: 0 auto;">
+							</div>
+							<div>&nbsp</div>
 							<input type="file" name="file">
 							<input type="submit" name="upload">
 						</form>

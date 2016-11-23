@@ -39,7 +39,7 @@ background-color: #F1F1F1;
 
 .bg_blur
 {
-    background-image:url('http://previews.123rf.com/images/vgstudio/vgstudio1006/vgstudio100600027/7268969-Portrait-of-happy-smiling-man-isolated-on-white-Stock-Photo-face.jpg');
+    /*background-image:url('http://previews.123rf.com/images/vgstudio/vgstudio1006/vgstudio100600027/7268969-Portrait-of-happy-smiling-man-isolated-on-white-Stock-Photo-face.jpg');*/
     /*height: 300px;*/
     background-size: cover;
     width: 250px;

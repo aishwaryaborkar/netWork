@@ -86,7 +86,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 
 		if(editField == 'summary'){
 			var params = {
-				"userId" : $rootScope.userId,
+				"userId" : curUser,
 				"summary": $scope.editBody
 			}
 			$scope.user.summary = $scope.editBody
@@ -100,7 +100,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 				educationInfo.push(obj)
 			}
 			var params = {
-				"userId" : $rootScope.userId,
+				"userId" : curUser,
 				"education": educationInfo
 			}
 			$scope.user.education = $scope.editBody
@@ -114,7 +114,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 				experienceInfo.push(obj)
 			}
 			var params = {
-				"userId" : $rootScope.userId,
+				"userId" : curUser,
 				"experience": experienceInfo
 			}
 			$scope.user.experience = $scope.editBody
@@ -128,14 +128,14 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 				skillsInfo.push(obj)
 			}
 			var params = {
-				"userId" : $rootScope.userId,
+				"userId" : curUser,
 				"skills": skillsInfo
 			}
 			$scope.user.skills = $scope.editBody
 		}
 		if(editField == 'pfHeader'){
 			var params = {
-				"userId" : $rootScope.userId,
+				"userId" : curUser,
 				"name": $scope.editBody[0].name,
 				"jobTitle": $scope.editBody[0].jobTitle,
 				"company": $scope.editBody[0].company
