@@ -187,15 +187,34 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 		$scope.user = data;
 		//$scope.allowRequest = ((data.connections).includes(curUser) || (data.pendingConnections).includes(curUser));
 	});
-	
+		var alreadyReq = false
+
+		dataService.getPendingConnection(visitUserId).then(function(data){
+			console.log(data)
+			$scope.thisUsersConnections = data;
+
+			for(var i = 0; i < data.length; i++){
+				if(curUser == data[i]._id){
+					alreadyReq = true
+				}
+			}
+		});
+
 	$scope.testing = function(){
 		console.log("IN DUMMY TEST CLICKER");
 	}
 	
 	$scope.requestConnection = function(){
-		console.log("in requesting connection");
-		dataService.requestConnection({userId:curUser,connectionId:visitUserId})
-		toastr.success('Connection requested')
+		$scope.thisUsersConnections = [];
+
+		if(!alreadyReq){
+			dataService.requestConnection({userId:curUser,connectionId:visitUserId})
+			toastr.success('Connection requested')
+		}
+		else{
+			toastr.error('Connection already requested')
+		}
 		$scope.allowRequest = false;
+
 	}
 });
