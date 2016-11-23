@@ -1,39 +1,63 @@
 /*border around divs*/
 .media {
     border-radius: 10px;
-    font-family: Arial, Gadget, sans-serif;
-}
-/*forum size*/
-.forum {
-    width: 95%;
-    height: 100%;
-    margin: 0 auto;
-    background-color: dodgerblue;
-    border-radius: 10px;
 }
 /*forum picture*/
 .media-object {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin: 30px;
 }
-/*forum name*/
-.media-heading {
-    padding-top: 30px;
+
+.comment-owner{
+    width: 75px;
+    height: 75px;
+    margin: 5px;
+    float: left;
+
 }
+
+
+/*forum name*/
 .media-heading > a {
     text-decoration: none;
     color: black;
-    font-size: 30px;
+}
+.media-heading {
+    padding-top: 30px;
+    font-size: 25px;
+}
+
+.media-body{
+     font-family: Arial, Gadget, sans-serif;
+
 }
 /*forum description*/
 .media-body > p {
+   
     font-size: 20px;
 }
 .media-left > p {
+
     font-size: 15px;
 }
 /*featured style*/
+.featured{
+    background-color: #0868A0;
+    color: white;
+}
+
+.textcolor{
+    color:white;
+}
+/*glyphicon style*/
+.glyphicon {
+    padding-right: 10px;
+}
+/*forums style*/
+.forums {
+     background-color: #42BBEB;
+}
 .featured{
     background-color: #0868A0;
     color: white;
@@ -42,9 +66,35 @@
 .glyphicon {
     padding-right: 10px;
 }
+.panel{
+    border-radius:10px;
+
+}
+.form-control{
+    border-radius: 10px;
+}
+.panel-body{
+    font-size: 14px;
+}
+
+.comment-description{
+    font-size: 14px;
+}
+.thumbnail > img{
+    width: 75px;
+    height: 75px;
+    margin: 5px;
+
+}
+
+
 /*create bytton style*/
 #createBtn {
     float: left;
+}
+
+#submitBtn{
+    float: right;
 }
 
 /*COMMENTS SECTION*/

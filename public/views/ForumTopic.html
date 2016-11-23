@@ -13,22 +13,24 @@
 
     <br>
 
-    <div class="row">
-    <div class ="col-md-8">
-    <div class="forum">
-        <div class="media">
-            <div class="media-left">
-                    <img class="media-object" src="images/forum/profileFiller.jpg">
-                    <p>By: {{forum.forumOwnerName}}</p>
-					<p>Date: {{forum.date}}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+               
+                    <div class="media forums">
+                        <div class="media-left">
+                            <img class="media-object" src="images/forum/defaultProfile.jpg">
+                            <p>By: {{forum.forumOwnerName}}</p>
+                            <p>Date: {{forum.date}}</p>
+
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{forum.title}}</h4>
+                            {{forum.description}}
+                        </div>
+
+                    </div>
             </div>
-            <div class="media-body">
-                <h4 class="media-heading">{{forum.title}}</h4>
-                {{forum.description}}
-            </div>
-            </div>
-        </div>
-        </div>
             <div class="col-md-4">
                 <div class="media featured">
                     <h2>Featured</h2>
@@ -36,88 +38,48 @@
                         <p><span class="glyphicon glyphicon-cloud"></span>{{post.title}}</p>
                     </div>                    
                 </div>
+
+
             </div>
         </div>
-        
+    </div>
 
+    <br>
 
     <div class="container" id="comments">
         <div class="row">
             <div class="col-md-8">
-                <h2 class="page-header">Comments</h2>
-                <section class="comment-list">
-                    <!-- First Comment -->
-                    <article class="row" ng-repeat="comment in comments">
-                        <div class="col-md-2 col-sm-2 hidden-xs">
-                            <figure class="thumbnail">
-                                <img class="img-responsive" src="images/forum/profileFiller.jpg" />
-                                <figcaption class="text-center"></figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-10 col-sm-10">
-                            <div class="panel panel-default arrow left">
-                                <div class="panel-body">
-                                    <header class="text-left">
-                                        <div class="comment-user"><i class="fa fa-user"></i>{{comment.commentOwnerName}}</div>
-                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>{{comment.date}}</time>
-                                    </header>
-                                    <div class="comment-post">
-                                        <p>
-                                            {{comment.description}}
-                                        </p>
-                                    </div>
-                                    <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                </div>
+                <div class="panel panel-default" ng-repeat="comment in comments track by $index">
+                        <div class="panel-body">  
+                            <header class="text-left">
+                                <div class="comment-user"><i class="fa fa-user"></i>{{comment.commentOwnerName}}</div>
+                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>{{comment.date}}</time>
+                            </header>               
+                            
+                            <img class="comment-owner" src="images/forum/defaultProfile.jpg">
+                            <div class="comment-post">
+                                   {{comment.description}}
                             </div>
                         </div>
-                    </article>
-                    <!-- Second Comment Reply -->
-                    <article class="row">
-                        <div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
-                            <figure class="thumbnail">
-                                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                                <figcaption class="text-center">username</figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-9 col-sm-9">
-                            <div class="panel panel-default arrow left">
-                                <div class="panel-heading right">Reply</div>
-                                <div class="panel-body">
-                                    <header class="text-left">
-                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                                    </header>
-                                    <div class="comment-post">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        </p>
-                                    </div>
-                                    <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </section>
+                  
+                    </div>
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-md-8">
+                  <div class="form-group">
+                        
+                        <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="comment.description"></textarea>
+                  </div>
+                <input type="submit" id="submitBtn" class="btn btn-primary" name="submit" ng-click="addComment(comment)" value="Add Comment"/>
             </div>
         </div>
-    </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-        <h3>Add Comment</h3>
-        <div class="widget-area no-padding blank">
-            <div class="status-upload">
-                <form>
-                    <textarea placeholder="What are you doing right now?" ng-model="comment.description" ></textarea>
-                        <button type="submit" class="btn btn-primary" ng-click="addComment(comment)"><i class="fa fa-share"></i> Submit</button>
-                </form>
-            </div><!-- Status Upload  -->
-        </div><!-- Widget Area -->
+        </div>
     </div>
         
-    </div>
-</div>
+
+
 </div>
 
 </div>
