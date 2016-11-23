@@ -44,7 +44,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'MessageController'
 		})
 		
-		.when('/forum', {
+		.when('/forum/:ownerId?', {
 			templateUrl: 'views/Forum.html',
 			controller: 'ForumController'
 		})

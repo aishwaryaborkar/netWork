@@ -1,5 +1,5 @@
 angular.module('ForumController', ['DataService'])
-.controller('ForumController', function($scope, $http, dataService, $location) {
+.controller('ForumController', function($scope, $http, $routeParams, dataService, $location) {
 
     //Forum attributes 
 
@@ -8,7 +8,7 @@ angular.module('ForumController', ['DataService'])
     $scope.posts;
 
         //Populates the Forum page with existing forums on page load.
-        dataService.getForumList().then( function(searchResult){
+        dataService.getForumList($routeParams.ownerId).then( function(searchResult){
 
             
             $scope.posts = [];  
@@ -20,6 +20,7 @@ angular.module('ForumController', ['DataService'])
             for (i = 0; i < searchResult.data.length ;i++) {
 
                 var obj = { title: searchResult.data[i].title,
+							ownerId:searchResult.data[i].ownerId,
                             forumOwnerName: searchResult.data[i].forumOwnerName,
                             date: searchResult.data[i].date,
                             description: searchResult.data[i].description,
@@ -62,7 +63,7 @@ angular.module('ForumController', ['DataService'])
 
         $scope.visitProfile = function(post){
         console.log(post.ownerId);
-        $location.path('/viewprofile/' + post._id);
+        $location.path('/viewprofile/' + post.ownerId);
     }
 })
 
@@ -89,6 +90,11 @@ angular.module('ForumController', ['DataService'])
 
             }
         });
+		
+		        $scope.visitProfile = function(post){
+        console.log(post.ownerId);
+        $location.path('/viewprofile/' + post.ownerId);
+				}
 
         $scope.addComment = function(comment){
          var monthNames = [

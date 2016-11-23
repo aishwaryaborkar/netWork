@@ -328,10 +328,9 @@ router.post('/search', function(req, res){
 //===========================================
 //FORUM RELATED SERVICES.....
 //===========================================
-router.get('/getForumList', function(req, res){
-	console.log("forum service requested : request for forum list");
-	
-	serviceFulfiller.getForumList().then(
+router.get('/getForumList/:ownerId?', function(req, res){
+	console.log("forum service requested : request for forum list");	
+	serviceFulfiller.getForumList(req.params.ownerId).then(
 		function(result){
 			res.status(200).json(result);
 		},

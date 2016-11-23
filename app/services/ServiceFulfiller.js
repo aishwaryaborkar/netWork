@@ -383,14 +383,22 @@ function performProfileSearch(searchInfo){
 //===========================================
 //FORUM RELATED SERVICES.....................
 //===========================================
-function getForumList(){
+function getForumList(ownerId){
 	console.log("IN getForumList : requesting data from DB");
 	var forum = mongoose.model('Forums', forumSchema);
-	return forum.find( {}, '_id title ownerId forumOwnerName date description',function(err, result){
-		if(err) return console.error(err);
-		console.log(result);		
-		return result;
-	});	
+	if(ownerId != undefined){
+		return forum.find( {ownerId: ownerId}, '_id title ownerId forumOwnerName date description',function(err, result){
+			if(err) return console.error(err);
+			console.log(result);		
+			return result;
+		});	
+	}else{
+		return forum.find( {}, '_id title ownerId forumOwnerName date description',function(err, result){
+			if(err) return console.error(err);
+			console.log(result);		
+			return result;
+		});	
+	}
 }
 
 function getForumById(forumId){

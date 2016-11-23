@@ -80,10 +80,17 @@ angular.module('DataService', []).factory('dataService', ['$http', function($htt
 		});
 	}
 
-	function getForumList(){
+	function getForumList(ownerId){
+		var apiUrl;
+		if(ownerId == undefined){
+			apiUrl = urlBase + '/getForumList';
+		}else{
+			apiUrl = urlBase.concat('/getForumList/').concat(ownerId);
+		}
+		console.log(apiUrl);
 				return $http({
 				method: 'GET',
-				url: urlBase + '/getForumList'
+				url: apiUrl
 		}).then(
 			function(body) { //what to on on success call
 				console.log(body);
