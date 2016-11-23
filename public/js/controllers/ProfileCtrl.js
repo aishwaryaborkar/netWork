@@ -15,12 +15,19 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 		sessionStorage.setItem('userName', data.name);
 		console.log(data)
 	});
-	$scope.imgURL = 'https://www.colourbox.com/preview/3603416-portrait-of-a-professional-business-executive.jpg'
 	
+	$scope.imgURL = 'http://localhost:8080/api/userImage/' + curUser;
 	
 	$scope.profileImageClick = function(){
-		$scope.modalHeader = 'ProfileImage'
-		editField = 'Profile Image'
+		$scope.modalHeader = 'Profile Header'
+		var aBody = []
+		aBody.push({name: $scope.user.name.slice(0),
+					company: $scope.user.company.slice(0),
+					jobTitle: $scope.user.jobTitle.slice(0)
+
+			})
+		$scope.editBody = aBody
+		editField = 'pfHeader'
 	};
 	
 	
@@ -125,6 +132,17 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 				"skills": skillsInfo
 			}
 			$scope.user.skills = $scope.editBody
+		}
+		if(editField == 'pfHeader'){
+			var params = {
+				"userId" : $rootScope.userId,
+				"name": $scope.editBody[0].name,
+				"jobTitle": $scope.editBody[0].jobTitle,
+				"company": $scope.editBody[0].company
+			}
+			$scope.user.name = $scope.editBody[0].name
+			$scope.user.jobTitle = $scope.editBody[0].jobTitle
+			$scope.user.company = $scope.editBody[0].company
 		}	
 		// var params = {
 		// 	userId: "581ff07eda0427b81de36544",
@@ -141,6 +159,13 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 		// 	}
 		// 	]
 		// }
+
+		// var params = {
+		// 	userId: "581ff07eda0427b81de36544",
+		// 	name: 'Navjot Bola',
+		// 	jobTitle: 'Software Developer',
+		// 	company: 'net[Work]'
+		// }
 		console.log(params)
 		dataService.updateProfile(params).then(function(data){
 			console.log(params)
@@ -156,21 +181,51 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 .controller('PublicProfileController', function($scope, $routeParams, dataService, Upload) {
 	var visitUserId = $routeParams.userId;
 	var curUser = sessionStorage.getItem('userId');
-	console.log(curUser);
+	$scope.imgURL = 'http://localhost:8080/api/userImage/' + visitUserId;
 	dataService.getProfile({'userId': visitUserId}).then(function(data){
 		console.log(data);
 		$scope.user = data;
 		//$scope.allowRequest = ((data.connections).includes(curUser) || (data.pendingConnections).includes(curUser));
 	});
-	
+	var alreadyReq = false
+
+	dataService.getPendingConnection(visitUserId).then(function(data){
+		console.log(data)
+		$scope.thisUsersConnections = data;
+
+		for(var i = 0; i < data.length; i++){
+			if(curUser == data[i]._id){
+				alreadyReq = true
+			}
+		}
+	});
+
+	dataService.getConnection(visitUserId).then(function(data){
+		console.log(data)
+
+		for(var i = 0; i < data.length; i++){
+			if(curUser == data[i]._id){
+				alreadyReq = true
+			}
+		}
+	});
+
+
 	$scope.testing = function(){
 		console.log("IN DUMMY TEST CLICKER");
 	}
 	
 	$scope.requestConnection = function(){
-		console.log("in requesting connection");
-		dataService.requestConnection({userId:curUser,connectionId:visitUserId})
-		toastr.success('Connection requested')
+		$scope.thisUsersConnections = [];
+
+		if(!alreadyReq){
+			dataService.requestConnection({userId:curUser,connectionId:visitUserId})
+			toastr.success('Connection requested')
+		}
+		else{
+			toastr.error('Connection already requested')
+		}
 		$scope.allowRequest = false;
+
 	}
 });

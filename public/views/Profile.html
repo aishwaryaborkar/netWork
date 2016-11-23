@@ -22,16 +22,15 @@
                 <h4>{{user.jobTitle}}</h4>
                 <span>Working with {{user.company}}</span>
                 <div class="row">
-					<i>	<div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="profileImageClick()">
-						<span><i class="fa fa-pencil" aria-hidden="true"></i></span>
-					</a></div>
+				    <div id="editButton"><a data-toggle="modal" data-target="#myModalImage" class="btn btn-default" ng-click="profileImageClick()">
+				        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+				    </a></div>
                 	<i class="fa fa-facebook-official fa-2x" aria-hidden="true" style="padding: 12px; color: #3b5998"></i>
                 	<i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color: #0084b4"></i>
                 </div>
            </div>
         </div>
-    </div>   
-	
+    </div>    	
 	<div class="row nav">    
         <!-- <div class="col-md-4"></div> -->
         <div class="col-md-12 col-xs-12" style="margin: 0px;padding: 0px;">
@@ -118,41 +117,63 @@
 	</div>
 </div>
 
-
-
-
-<!-- Profile Image Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<!-- Profile Header modal -->
+<div class="modal fade" id="myModalImage" role="dialog">
 	<div class="modal-dialog">
 	    <div class="modal-content">
-		
-		<div class="modal-body">
-	          <form name="myForm">
-        <div>Crop Image and Upload</div>
-        <button ngf-select ng-model="picFile" accept="image/*">
-            Select Picture</button>
-        <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
-             class="cropArea">
-            <img-crop image="picFile  | ngfDataUrl"                 
-				result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
-            </img-crop>
-        </div>
-        <div>
-            <img ng-src="{{croppedDataUrl}}" />
-        </div>
-		    <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button> 
-            
-        <span class="progress" ng-show="progress >= 0">
-          <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
-        </span>
-        <span ng-show="result">Upload Successful</span>
-        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-		
-		</form>
-		</div>
-		<div class="modal-footer">
-	            <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-	            <button type="button" class="btn btn-primary" ng-click="update()">Save changes</button>
+	        <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	             <h4 class="modal-title">Edit {{modalHeader}}</h4>
+
+	        </div>
+	        <div class="modal-body">
+				<div class="row">
+					<div class="col-md-6">
+			            <form method="post" enctype="multipart/form-data" action="{{'/api/uploadProfileImage/' + user._id }}" name="myForm">
+				            <!--<div>Crop Image and Upload</div>
+					        <button ngf-select ng-model="picFile" accept="image/*">
+					            Select Picture
+					        </button>
+					        <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+					             class="cropArea">
+					            <img-crop image="picFile  | ngfDataUrl"                 
+									result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+					            </img-crop>
+					        </div>
+					        <div>
+					            <img ng-src="{{croppedDataUrl}}" />
+					        </div>
+							<input type="submit" value="Upload image"/>   
+					        <span class="progress" ng-show="progress >= 0">
+					        	<div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+					        </span>
+					        <span ng-show="result">Upload Successful</span>
+					        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
+							<input type="file" name="file">
+							<input type="submit" name="upload">
+						</form>
+					</div>
+					<div class="col-md-5">
+						<div class="row">
+				    		<label for="email">Name:</label>
+			    			<input ng-model="editBody[0].name" type="text" class="form-control">
+						</div>
+						<div class="row">
+					    	<label for="email">Company:</label>
+				    		<input ng-model="editBody[0].company" type="text" class="form-control">
+						</div>
+						<div class="row">
+				    		<label for="email">Job Title:</label>
+			    			<input ng-model="editBody[0].jobTitle" type="text" class="form-control">
+						</div>
+					</div>
+				</div>
+
+	        </div>
+	        <div class="modal-footer">
+	            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+	            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update()">Save changes</button>
+	        </div>
 	    </div>
 	    <!-- /.modal-content -->
 	</div>
