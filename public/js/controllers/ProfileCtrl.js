@@ -200,6 +200,17 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 		}
 	});
 
+	dataService.getConnection(visitUserId).then(function(data){
+		console.log(data)
+
+		for(var i = 0; i < data.length; i++){
+			if(curUser == data[i]._id){
+				alreadyReq = true
+			}
+		}
+	});
+
+
 	$scope.testing = function(){
 		console.log("IN DUMMY TEST CLICKER");
 	}
