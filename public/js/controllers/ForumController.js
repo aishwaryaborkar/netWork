@@ -59,9 +59,10 @@ angular.module('ForumController', ['DataService'])
          forum.ownerId = sessionStorage.getItem('userId');
          forum.date = fullDate;
 
-         dataService.createForum(forum);
-         toastr.success('Forum Created.')
-         $location.path('/forum/');
+        dataService.createForum(forum).then(function(data){
+            toastr.success('Forum Created.')
+            $location.path('/forum');     
+         }); 
         }
 
         $scope.loadForumById = function(post) {
