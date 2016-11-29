@@ -106,7 +106,7 @@
    border-bottom:none;
    }
    .member_list {
-   height: 420px;
+   height: 460px;
    overflow-x: hidden;
    overflow-y: auto;
    }
@@ -164,7 +164,7 @@
   margin-left: 50px;
 }
 .chat-body1 p {
-  background: #fbf9fa none repeat scroll 0 0;
+  background: #EEEEEE none repeat scroll 0 0;
   padding: 10px;
 }
 .chat_area .admin_chat .chat-body1 {

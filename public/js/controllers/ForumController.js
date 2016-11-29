@@ -11,21 +11,29 @@ angular.module('ForumController', ['DataService'])
 
             
             $scope.posts = [];  
-            
-            
+            var anArray = [];
+            $scope.commentsArr = [];
             //console.log("In dataService promise function before: " + JSON.stringify($scope.posts));
-           
             var i = 0;
             for (i = 0; i < searchResult.data.length ;i++) {
-
+                anArray.push(searchResult.data[i]._id)
                 var obj = { title: searchResult.data[i].title,
-							ownerId:searchResult.data[i].ownerId,
+                            ownerId:searchResult.data[i].ownerId,
                             forumOwnerName: searchResult.data[i].forumOwnerName,
                             date: searchResult.data[i].date,
                             description: searchResult.data[i].description,
                             _id: searchResult.data[i]._id};
                 $scope.posts.push(obj);
                 //console.log("Element " + i + " in searchResult" + JSON.stringify(searchResult.data[i])); 
+            }
+            second();
+            function second(){
+                console.log(anArray)
+                for(var i = 0; i < anArray.length; i++){
+                    dataService.getForumById({'_id': anArray[i]}).then(function(data){
+                        $scope.commentsArr.push(data.comments.length)
+                    });
+                }
             }
 
            // console.log("In dataService promise function after: " + JSON.stringify($scope.posts));
@@ -94,7 +102,7 @@ angular.module('ForumController', ['DataService'])
 		$scope.visitProfile = function(post){
         console.log(post);
         $location.path('/viewprofile/' + post.ownerId);
-	       }
+	   }
 
         $scope.addComment = function(comment){
          var monthNames = [

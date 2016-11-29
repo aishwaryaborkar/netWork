@@ -6,14 +6,7 @@
       <div class="chat_container">
          <div class="col-sm-3 chat_sidebar">
     	 <div class="row">
-            <div id="custom-search-input">
-               <div class="input-group col-md-12">
-                  <input type="text" class="  search-query form-control" placeholder="Conversation" />
-                  <button class="btn btn-danger" type="button">
-                  <span class=" glyphicon glyphicon-search"></span>
-                  </button>
-               </div>
-            </div>
+
             <div class="dropdown all_conversation">
                <button type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">
                <i class="fa fa-weixin" aria-hidden="true"></i>
@@ -42,7 +35,7 @@
          <div class="col-sm-9 message_section">
 			 <div class="row">
 				 <div class="new_message_head">
-					 <div class="pull-left"><button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button></div><div class="pull-right"><div class="dropdown"></div></div>
+					 <div class="pull-left"><button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message {{selectedUser}}</button></div><div class="pull-right"><div class="dropdown"></div></div>
 				 </div><!--new_message_head-->
 				 
 				 <div class="chat_area" id="chatarea">
@@ -50,12 +43,10 @@
 				 <li class="left clearfix" ng-repeat='x in chatHistory'>
 		            <span ng-class="myStyle(x)">
 		            <!-- <span class="chat-img1 pull-left" > -->
-		            <img ng-src="{{'http://localhost:8080/api/userImage/' + x.id}}" alt="User Avatar" class="img-circle">
-
+		            <a href="#"><img ng-src="{{'http://localhost:8080/api/userImage/' + x.id}}" alt="User Avatar" class="img-circle" ng-click="visitProfile(x)"></a>
 		            </span>
 		            <div class="chat-body1 clearfix">
 		                <p>{{x.content}}</p>
-						<!-- <div class="chat_time pull-right">09:40PM</div> -->
 		            </div>
 		        </li>
 				 </ul>

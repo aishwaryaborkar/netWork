@@ -24,12 +24,13 @@ app.factory('socket', function($rootScope) {
     };
 })
 
-app.controller('MessageController', function($scope, $rootScope, $http, dataService, Upload, $sce, socket) {
+app.controller('MessageController', function($scope, $rootScope, $http, dataService, Upload, $sce, socket, $location) {
 console.log('MessageController loaded[]');
     var isLoggedIn = (sessionStorage.getItem('loggedIn') == 'true');
     var id = sessionStorage.getItem('userId');
     console.log('loggedIn user id ' + id);
     $scope.chatHistory = [];
+    $scope.selectedUser = ''
     socket.on('newPublicMessage',function(message) {
         // console.log(message);
          $scope.chatMessage = $scope.chatMessage + '<div class=\'item\'><span>' + 
@@ -139,6 +140,7 @@ console.log('MessageController loaded[]');
 
 
     $scope.chat = function(index, user) {
+        $scope.selectedUser = 'with ' + user.name
         for(var i = 0; i < $scope.namesCollection.length; i++){
             $scope.namesCollection[i].selected = false;
         }
@@ -264,6 +266,11 @@ console.log('MessageController loaded[]');
         $scope.value = 'chat-img1' + ' ' + x.style
         return $scope.value;
     } 
+
+    $scope.visitProfile = function(post){
+        console.log(post);
+        $location.path('/viewprofile/' + post.id);
+    }
 
     $scope.reply = function() {
         console.log($scope.replyMessage);

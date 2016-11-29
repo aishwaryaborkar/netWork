@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                
                     <div class="media forums">
                         <div class="media-left">
@@ -32,16 +32,6 @@
 
                     </div>
             </div>
-            <div class="col-md-4">
-                <div class="media featured">
-                    <h2>Featured</h2>
-                    <div ng-repeat="post in posts" ng-model="post">
-                        <p><span class="glyphicon glyphicon-cloud"></span>{{post.title}}</p>
-                    </div>                    
-                </div>
-
-
-            </div>
         </div>
     </div>
 
@@ -49,7 +39,7 @@
 
     <div class="container" id="comments">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="panel panel-default" ng-repeat="comment in comments track by $index">
                         <div class="panel-body">  
                             <header class="text-left">

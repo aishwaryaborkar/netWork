@@ -1,5 +1,5 @@
 .commentNumber { margin-top: 2em; margin-left: 13em; }
-.calendar-text { margin-top: .1em; }
+.calendar-text { margin-top: .02em; }
 hr{
     width: 400px;
     border-top: 1px solid #f8f8f8;
@@ -44,6 +44,7 @@ hr{
 .featured{
     background-color: #0868A0;
     color: white;
+    box-shadow: 3px 3px 5px #888888;
 }
 
 .textcolor{
