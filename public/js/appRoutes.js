@@ -9,6 +9,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'MainController'
 		})
 		
+		// about page
+		.when('/aboutus', {
+			templateUrl: 'views/aboutus.html'
+		})
+		
 		.when('/login', {
 			templateUrl: 'views/login.html',
 			controller: 'LoginController'

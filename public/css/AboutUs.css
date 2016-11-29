@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* CSS Document */
+.jumbotron{
+	background: #FFF;
+}
+h{
+	font-size: 42px;
+	color: #42BBEB;
+	float:inherit;
+}
+p{
+	font:medium;
+	color: #42BBEB;
+	margin-bottom: 15px;
+	float:inherit;
+}
