@@ -137,7 +137,8 @@ angular.module('ConnectionController', []).controller('ConnectionController', fu
  		
  		
  	});
-     
+ 	dataService.removeConnection(connection._id, sessionStorage.getItem('userId'));
+ 	
  };
  
  
