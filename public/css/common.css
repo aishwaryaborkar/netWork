@@ -18,6 +18,16 @@ ul li {
 	
 }
 
+.messageDiv{
+	opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+	text-align: center;
+	padding: 2.5%;
+	font-family: Lato;
+	color: black;
+	font-size: 20px;
+}
+
 .main-wrapper .menu .icon-list {
 	background:#ccc;
 	height:50px;
@@ -27,6 +37,7 @@ ul li {
 
 #dir {
 	height:431px;
+	width: 200px;
 	margin-top:5px;
 	overflow: auto;
 }
@@ -144,7 +155,7 @@ ul li {
 }
 
 .menu .inputs input {
-	width:100%;
+	width:200px;
 	height:25px;
 	box-sizing:border-box;
 }

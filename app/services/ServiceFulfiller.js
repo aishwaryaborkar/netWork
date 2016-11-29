@@ -444,7 +444,7 @@ function updateForum(forumData){
 function getAllUsers(id, callback) {
     console.log("get all user list");
     var count = 0;
-	profile.find({}, function(err, data){
+	profile.find({}, '_id name', function(err, data){
 		if(err) {
 			console.log('get all users error');
 			return console.error(err);
@@ -456,7 +456,7 @@ function getAllUsers(id, callback) {
         	//console.log(data[i]._id);
         	if(id != data[i]._id) {
         		console.log(data[i].name);
-        		result.push({"name": data[i].name});
+        		result.push({"_id":data[i]._id, "name":data[i].name});
         	}
         		/*
         	   var result = getProfileById(data[i]._id);

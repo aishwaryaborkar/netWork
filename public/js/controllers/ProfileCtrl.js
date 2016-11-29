@@ -1,4 +1,4 @@
-angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
+angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.bootstrap'])
 
 
 .controller('ProfileController', function($scope, $rootScope, dataService, Upload, $timeout) {
@@ -10,10 +10,13 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 	$scope.editBody = ''
 	$scope.user = []
 	var editField = '';
+	var summaryHolder = ''
 	dataService.getProfile({'userId': curUser}).then(function(data){
 		$scope.user = data;
 		sessionStorage.setItem('userName', data.name);
 		console.log(data)
+		summaryHolder = $scope.user.summary.slice(0);
+		$scope.user.summary = $scope.user.summary.split("\n")
 	});
 	
 	$scope.imgURL = 'http://localhost:8080/api/userImage/' + curUser;
@@ -29,15 +32,19 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 		$scope.editBody = aBody
 		editField = 'pfHeader'
 	};
-	
-	
-	$scope.addButton = function(){
-		// window.location.href = "/forum";
-	};
+
+	$scope.value = 60
+	$scope.myStyle = function(x) {
+		console.log(x.skillLevel)
+		$scope.value = x.skillLevel
+		return {width: $scope.value + '%'};
+	} 
+
+
 
 	$scope.summaryClick = function(){
 		$scope.modalHeader = 'Summary'
-		$scope.editBody = $scope.user.summary.slice(0)
+		$scope.editBody = summaryHolder.slice(0)
 		editField = 'summary'
 	};
 
@@ -89,7 +96,8 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 				"userId" : curUser,
 				"summary": $scope.editBody
 			}
-			$scope.user.summary = $scope.editBody
+			summaryHolder = $scope.editBody;
+			$scope.user.summary = $scope.editBody.split("\n")
 		}
 		if(editField == 'education'){
 			var educationInfo = []
@@ -210,6 +218,12 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 		}
 	});
 
+	$scope.myStyle = function(x) {
+		console.log(x.skillLevel)
+		$scope.value = x.skillLevel
+		return {width: $scope.value + '%'};
+	} 
+
 
 	$scope.testing = function(){
 		console.log("IN DUMMY TEST CLICKER");
@@ -228,4 +242,8 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop'])
 		$scope.allowRequest = false;
 
 	}
+
+	$scope.forumButton = function(){
+		window.location.href = "/forum";
+	};
 });

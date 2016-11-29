@@ -38,6 +38,7 @@ angular.module('MainCtrl', ['DataService'])
 				sessionStorage.setItem('isPremium', body.data.userInfo.premium);
 			}else{
 				$rootScope.isUserLoggedIn = false;
+				toastr.error('Login credentials invalid.')
 				console.log(body.data)
 				//need to show error
 				//clearfield
@@ -69,6 +70,7 @@ angular.module('MainCtrl', ['DataService'])
 	$scope.defaultQuestion = $scope.sQuestionList[0];
 	$scope.emailCheckerResult = '';
 	$scope.emailFailed = true;
+	$('#password').popover();
 	
 	$scope.createUserAccount = function(user){
 		var newUser = user;
@@ -153,5 +155,7 @@ $scope.userAccount;
 	$scope.validatePasswordConfirmation = function(pass, passConf){
 		return (pass.$viewValue !== passConf.$viewValue);
 	};
+
+
 });
 

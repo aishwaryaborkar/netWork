@@ -5,7 +5,7 @@
 	
 	<body>
 		<div class="grid grid-pad">
-    		<div class="col-6-12">
+    		<div class="col-6-12 fade-in one">
         	   	<img src= "./images/login/logo.jpg" alt="company Logo" style="max-width:100%; margin-top:20px"/>
 
                 <div style="margin-top:20px">
@@ -14,7 +14,7 @@
                     </marquee>
                 </div>
     		</div>
-    		<div class="col-6-12">
+    		<div class="col-6-12 fade-in one">
     		    <form name="form" ng-controller="LoginController" role="form">
         		<div class="form-group" ng-class="{ 'has-error': (form.email.$pristine || form.email.$dirty) && form.email.$error.required}">
             		<label for="Email">Email</label>
@@ -30,7 +30,7 @@
                 		<button type="submit" ng-click="validateLogin(form.email,form.password)" class="btn btn-primary" value="Login" title="Login" ng-disabled="!form.$valid">
                			  <span>Login</span>
              			</button>
-                        <a href="/recoveraccount"><strong><u>Forgot My Login</u><strong></a>
+                        <a href="/recoveraccount" class="btn btn-primary" role="button">Forgot</a>
             		</div>
 
                     <!--

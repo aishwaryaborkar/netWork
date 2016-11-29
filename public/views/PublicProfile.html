@@ -34,7 +34,7 @@
         <!-- <div class="col-md-4"></div> -->
         <div class="col-md-12 col-xs-12" style="margin: 0px;padding: 0px;">
             <div class="col-md-3 col-xs-3 well" ng-click="requestConnection()"><i class="fa fa-plus fa-lg"></i></div>
-            <div class="col-md-3 col-xs-3 well" ng-click="addButton()"><i class="fa fa-forumbee fa-lg"></i></div>
+            <div class="col-md-3 col-xs-3 well" ng-click="forumButton()"><i class="fa fa-forumbee fa-lg"></i></div>
             <div class="col-md-3 col-xs-3 well"><i class="fa fa-weixin fa-lg"></i></div>
             <div class="col-md-3 col-xs-3 well"><i class="fa fa-envelope-o fa-lg"></i></div>
         </div>
@@ -100,10 +100,17 @@
 
 			<h2 style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-wrench" aria-hidden="true" style="padding-right: 10px;"></i>Skills</h2> 
 
-		    <div ng-repeat='x in user.skills' >
-		    	<h2>{{x.skillName}}</h2>
-		    	<h4>{{x.skillLevel}}</h4>
-		    </div>
+			<div class="container" ng-repeat='x in user.skills'>
+				<div class="row"> 
+					<h3>inline</h3>
+			    	<span class="col-sm-3">{{x.skillName}}</span>
+			    	<div class="progress" class="col-sm-9">
+						<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" ng-style="myStyle(x)">
+			    			{{x.skillLevel}}%
+						</div>
+			   		</div>
+			  	</div>  
+			</div>
 
 		</div>
 	</div>

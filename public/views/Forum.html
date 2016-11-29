@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="css/forumstyle.css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <div>
 <div class="jumbotron text-center">
 
@@ -18,13 +18,19 @@
 				<div class="col-md-8">
 					<div class="media forums" ng-repeat="post in posts">
 						<div class="media-left">
-								<img class="media-object" ng-src="{{'http://localhost:8080/api/userImage/' + post.ownerId}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
-								<a href="#" ng-click="visitProfile(post)"><p>By: {{post.forumOwnerName}}</p></a>
-								<p>Date: {{post.date}}</p>
+								<img class="media-object img-circle" ng-src="{{'http://localhost:8080/api/userImage/' + post.ownerId}}" alt="Cinque Terre" width = 100px height = 100px >
+								<a href="#" ng-click="visitProfile(post)"><p style="color: black">By: {{post.forumOwnerName}}</p></a>
+								<h5>Date: {{post.date}}</h5>
 						</div>
 						<div class="media-body" ng-model="post">
 							<a href="#" ng-click="loadForumById(post)"><h4 class="media-heading">{{post.title}}</h4></a>
+							<hr>
 							<p>{{post.description}}</p>
+							<p>{{post.comments}}</p>
+							<span class="fa-stack fa-2x commentNumber">
+							  <i class="fa fa fa-comment fa-stack-2x"></i>
+							  <strong class="fa-stack-1x calendar-text" style="color: white">27</strong>
+							</span>
 						</div>
 					</div>
 				</div>

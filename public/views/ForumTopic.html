@@ -19,13 +19,14 @@
                
                     <div class="media forums">
                         <div class="media-left">
-                            <img class="media-object" ng-src="{{'http://localhost:8080/api/userImage/' + forum.ownerId}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
+                            <img class="media-object img-circle" ng-src="{{'http://localhost:8080/api/userImage/' + forum.ownerId}}" alt="Cinque Terre" width = 100px height = 100px >
                             <p>By: {{forum.forumOwnerName}}</p>
                             <p>Date: {{forum.date}}</p>
 
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">{{forum.title}}</h4>
+                            <hr>
                             {{forum.description}}
                         </div>
 
@@ -52,11 +53,11 @@
                 <div class="panel panel-default" ng-repeat="comment in comments track by $index">
                         <div class="panel-body">  
                             <header class="text-left">
-                                <div class="comment-user"><i class="fa fa-user"></i>{{comment.commentOwnerName}}</div>
+                                <div class="comment-user"><i class="fa fa-user" style="padding-right: 5px;"></i>{{comment.commentOwnerName}}</div>
                                 <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>{{comment.date}}</time>
                             </header>               
                             
-                            <img class="comment-owner" ng-src="{{'http://localhost:8080/api/userImage/' + comment.ownerId}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
+                            <img class="comment-owner img-circle" ng-src="{{'http://localhost:8080/api/userImage/' + comment.ownerId}}" alt="Cinque Terre" width = 100px height = 100px >
                             <div class="comment-post">
                                    {{comment.description}}
                             </div>

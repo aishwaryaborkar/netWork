@@ -1,3 +1,4 @@
+
 .jumbotron {position:relative;}
 #editButton {position:absolute; top:5px; left:5px;}
 *{
@@ -202,7 +203,6 @@ div.container3{
 	color: black;
 	background-color:  white;
 	font-size: 20px;
-
 }
 
 #aboutContext{

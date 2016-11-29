@@ -69,7 +69,8 @@ angular.module('SearchController', ['DataService']).controller('SearchController
     $scope.handleSubmit = function(criteria) {
 		//check for empty form
 		if(isEmpty(criteria)){
-			$scope.mysearch = 'ERROR: CANNOT LEAVE FIELDS EMPTY';
+			// $scope.mysearch = 'ERROR: CANNOT LEAVE FIELDS EMPTY';
+			toastr.error('Error: cannot leave fields empty');
 		}else{
 			
 			var searchObj = {};
@@ -117,4 +118,5 @@ angular.module('SearchController', ['DataService']).controller('SearchController
 		console.log(data._id);
 		$location.path('/viewprofile/' + data._id);
 	}
+
 });

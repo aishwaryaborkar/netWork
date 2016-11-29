@@ -1,80 +1,74 @@
-<div class="jumbotron text-center" style = "background-color: white;">
-    <link rel="stylesheet" href="/libs/angular-material/angular-material.css">
-	<link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
-	
+<script src="https://use.fontawesome.com/45e03a14ce.js"></script>
+<div class="main_section">
+	<link rel="stylesheet" type="text/css" href="/css/message.css" />
 
-	<!-- JS(External Library/Source) -->
-	<script src="libs/angular/angular.min.js"></script>
-	<script src="http://apps.bdimg.com/libs/angular.js/1.5.0-beta.0/angular-sanitize.min.js"></script>
-	<script src="libs/angular-route/angular-route.min.js"></script>
-	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/profile.css"> <!-- custom styles -->
-	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
-    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    
+   <div class="container">
+      <div class="chat_container">
+         <div class="col-sm-3 chat_sidebar">
+    	 <div class="row">
+            <div id="custom-search-input">
+               <div class="input-group col-md-12">
+                  <input type="text" class="  search-query form-control" placeholder="Conversation" />
+                  <button class="btn btn-danger" type="button">
+                  <span class=" glyphicon glyphicon-search"></span>
+                  </button>
+               </div>
+            </div>
+            <div class="dropdown all_conversation">
+               <button type="button" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">
+               <i class="fa fa-weixin" aria-hidden="true"></i>
+               All Conversations
+               </button>
+            </div>
+            <div class="member_list" id="sidebar">
+               <ul class="list-unstyled">
+                  <li class="namesCollection left clearfix" ng-repeat='x in namesCollection' ng-click="chat($index, x)" ng-class="{'active': x.selected}">
+                     <span class="chat-img pull-left">
+                     <img ng-src="{{'http://localhost:8080/api/userImage/' + x._id}}" alt="User Avatar" class="img-circle">
+                     </span>
+                     <div class="chat-body clearfix">
+                        <div class="header_sec">
+                           <strong class="primary-font">{{x.name}}</strong> <strong class="pull-right ">
+                           </strong>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+            </div></div>
+         </div>
+         <!--chat_sidebar-->
+		 
+		 
+         <div class="col-sm-9 message_section">
+			 <div class="row">
+				 <div class="new_message_head">
+					 <div class="pull-left"><button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button></div><div class="pull-right"><div class="dropdown"></div></div>
+				 </div><!--new_message_head-->
+				 
+				 <div class="chat_area" id="chatarea">
+				 <ul class="list-unstyled">
+				 <li class="left clearfix" ng-repeat='x in chatHistory'>
+		            <span ng-class="myStyle(x)">
+		            <!-- <span class="chat-img1 pull-left" > -->
+		            <img ng-src="{{'http://localhost:8080/api/userImage/' + x.id}}" alt="User Avatar" class="img-circle">
 
-	<!-- JS(Custom Source) -->
-	<script src='js/socket.io.js'></script>
-	<script src="js/controllers/MainCtrl.js"></script>
-	<script src="js/controllers/SearchController.js"></script>
-	<script src="js/controllers/MessageController.js"></script>
-	<script src="js/controllers/ConnectionController.js"></script>
-	<script src="js/controllers/ForumController.js"></script>
-	<script src="js/services/DataService.js"></script>
-	<script src="js/controllers/ForumController.js"></script>
-	<script src="js/controllers/ProfileController.js"></script>
-	<script src="js/controllers/message.js"></script>
-
-	<script src="js/appRoutes.js"></script>
-	<script src="js/app.js"></script>
-	
-	<!-- jQuery library -->
-	<script src="libs/jquery/dist/jquery.min.js"></script>
-	
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-   	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
-   	
-   	<!-- Javasciprt Toastr  -->
-   	<link href="libs/toastr/toastr.css" rel="stylesheet"/>
-   	<script src="libs/toastr/toastr.js"></script>
-		
-	<!-- ng-debounce -->
-	<script src="libs/ng-debounce/angular-debounce.js"></script>
-	
-
-   	<!-- ng-file-upload  -->
-	<script src="libs/ng-file-upload/ng-file-upload-shim.js"></script> <!-- for no html5 browsers support -->
-	<script src="libs/ng-file-upload/ng-file-upload.js"></script>
-
-   	<!-- angular bootstrap  -->
-	<script src='libs/angular-bootstrap/ui-bootstrap-tpls.min.js'></script>
-	<script src='libs/angular-bootstrap/ui-bootstrap.min.js'></script>
-	<link rel="stylesheet" type="text/css" href="/css/common.css" />
-	
-	<div class="main-wrapper">
-			<div class="menu">
-            		<div class="inputs">
-                    	<input type="text" id='search' placeholder="Search" ng-model='search'/>
-                        <button onClick="search()"></button>
-                    </div>
-                    <dir id="dir" content="myVal"></dir>
-					
-				
-			</div>
-			<div style="display:block;float:left;width:75%;margin-left:2%;">
-			    <div class="mydialog" ng-bind-html='chatMessage'> </div>
-			    <div class="enter">
-			        <textarea ng-model='replyMessage' placeholder="Say something..."></textarea>
-			        <div class="subb">
-			           <button ng-click="reply()">Send</button>
-			        </div>
-			    </div>
-			</div>
-		</div>
-        
-        
+		            </span>
+		            <div class="chat-body1 clearfix">
+		                <p>{{x.content}}</p>
+						<!-- <div class="chat_time pull-right">09:40PM</div> -->
+		            </div>
+		        </li>
+				 </ul>
+				 </div><!--chat_area-->
+		          <div class="message_write">
+		    	 <textarea class="form-control" ng-model='replyMessage' placeholder="Type a message..."></textarea>
+				 <div class="clearfix"></div>
+				<div class="chat_bottom">
+					 <a href="#" class="pull-left upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i></a><a href="#" class="pull-right btn btn-success" ng-click="reply()">Send</a>
+		 		</div>
+				 </div>
+			 </div>
+         </div> <!--message_section-->
+      </div>
+   </div>
 </div>

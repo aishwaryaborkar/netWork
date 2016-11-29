@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="css/search.css">
+
 <body onload="myFunction();">
 
 
@@ -7,30 +8,36 @@
   <div class="col-lg-4"> </div><!-- /.col-lg-6 -->
   <div class="col-lg-4">
 
-    <div class="input-group">
+    <div class="input-group fade-in one">
        <form name="form" role="form">
 			<div class="form-group">
-                Email: <input type="text" name="email" id="email" class="form-control" ng-model="criteria.email" placeholder="Email ..." />
+                <label>Email</label>
+                <input type="text" name="email" id="email" class="form-control" ng-model="criteria.email" placeholder="Email..." />
               </div>
             <div class="form-group">
-                Name: <input type="text" name="name" id="name" class="form-control" ng-model="criteria.name" placeholder="Name ..." />
+                <label>Name</label>
+                <input type="text" name="name" id="name" class="form-control" ng-model="criteria.name" placeholder="Name..." />
             </div>
             <div class="form-group">
-                Company: <input type="text" name="company" id="company" class="form-control" ng-model="criteria.company" placeholder="Company ..." />
+                <label>Company</label>
+                <input type="text" name="company" id="company" class="form-control" ng-model="criteria.company" placeholder="Company..." />
               </div>
             <div class="form-group">
-                Job Title: <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="criteria.jobtitle" placeholder="Job Title ..." />
+                <label>Job Title</label>
+                <input type="jobtitle" name="jobtitle" id="jobtitle" class="form-control" ng-model="criteria.jobtitle" placeholder="Job Title..." />
               </div>              
               <div class="form-group" ng-show={{isPremium}}>
-                Skill: <input type="text" name="skill" id="skill" class="form-control" ng-model="criteria.skillString" placeholder="Skill1Name [Skill1Level]"
+                <label>Skill</label>
+                <input type="text" name="skill" id="skill" class="form-control" ng-model="criteria.skillString" placeholder="Skill1Name [Skill1Level]"
 				title="FORMAT SAMPLE:&#xA;skillName - required.&#xA;skillLevel - optional(default 0).&#xA;search for name(s) => java, javascript&#xA;search for name and level => java 80, javascript"/>
               </div>
                <div class="form-group" ng-show={{isPremium}}>
-                School Name: <input type="text" name="schoolName" id="schoolName" class="form-control" ng-model="criteria.educationString" placeholder="School Name ..." />
+                <label>School Name</label>
+                <input type="text" name="schoolName" id="schoolName" class="form-control" ng-model="criteria.educationString" placeholder="School Name ..." />
               </div>
-      <input type="submit" class="btn btn-primary" name="submit" ng-click="handleSubmit(criteria)" value="Search"/>
-      <input type="button" class="btn btn-primary" name="submit" ng-click="criteria = null; results = null;mysearch = null" value="Clear"/>
-		</form>
+      <input type="submit" class="btn btn-primary" name="submit" ng-click="handleSubmit(criteria)" value="Search" style="margin-top: 10px;"/>
+      <input type="button" class="btn btn-primary" name="submit" ng-click="criteria = null; results = null;mysearch = null" value="Clear" style="margin-top: 10px;"/>
+        </form>
 		
     </div><!-- /input-group -->
 	
@@ -40,31 +47,46 @@
 
 </div>
 <div class="row">
-	<div class="col-lg-4"> </div>
-		<div  class="col-lg-4">
-			<h4>
-				{{ mysearch }}
-			</h4>
-		</div>
-	<div class="col-lg-4"> </div>
+    <h4 style="text-align: center;">
+        {{ mysearch }}
+    </h4>
 </div>
 
 
 	<!-- FOR THE SEARCH RESULT-->
-<div class="row">
-  <div class="col-lg-4">
-  
-  </div>
-  <div class="col-lg-4">
-   <div class="boxed" style="border: 2px solid #0868A0; border-radius: 5px;" align="center" ng-repeat="data in results">
-          <img ng-src="{{'http://localhost:8080/api/userImage/' + data._id}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
-          <p style= "font-style:bold;font-size: 18px;">{{data.name}}</p> 
-          <p style= "font-size: 15px;">{{data.jobTitle}}</p> 
-		  <p style= "font-size: 15px;">{{data.company}}</p> 
-          <div class="dropdown">
-  			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" ng-click="visitProfile(data)">View Profile</button>
-		  </div> <!--dropdown-->
-   </div><!--boxed-->
-  <div class="col-lg-4"></div>
+<div class="row"> 
+    <div class="col-lg-4 fade-in one" ng-repeat="data in results">
+        <div class="widget-head-color-box lazur-bg p-lg text-center" style="border: 2px solid #0868A0; border-radius: 5px;" align="center" >
+            <img ng-src="{{'http://localhost:8080/api/userImage/' + data._id}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
+                <div class="m-b-md">
+                <h2 class="font-bold no-margins">
+                    {{data.name}}
+                </h2>
+                    <small>{{data.jobTitle}} at {{data.company}}</small>
+                </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" ng-click="visitProfile(data)">View Profile</button>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
 </div>
+
+<!-- <div class="container bootstrap snippet" style="margin-bottom: 10px">
+    <div class="row fade-in one" ng-repeat="data in results track by $index" ng-if="$index % 4 == 0">
+        <a href="#"><div class="col-md-3" ng-repeat='i in [$index, $index + 1, $index + 2, $index + 3]' ng-if="results[i] != null" ng-click="visitProfile(data)">
+            <div class="widget-head-color-box lazur-bg p-lg text-center">
+                <div class="m-b-md">
+                <h2 class="font-bold no-margins">
+                    {{data.name}}
+                </h2>
+                    <small>{{data.jobTitle}} at {{data.company}}</small>
+                </div>
+                <img ng-src="{{'http://localhost:8080/api/userImage/' + data._id}}" class="img-circle" alt="Cinque Terre" width = 100px height = 100px >
+            </div>
+        </div>
+    </div>
+</div>
+ -->
+
 </body>

@@ -2,7 +2,7 @@
 <div class="jumbotron text-center">
 
 <!-- Connection page tab main-->
-<div class="container">
+<div class="container  ">
 	  <ul class="nav nav-pills">
     		 <li class="active"><a data-toggle="pill" href="#connections">Connections</a></li>
     		 <li><a data-toggle="pill" href="#requests">Requests</a></li>
@@ -11,7 +11,7 @@
   
 
 <!-- Connection tab-->
-	<div class="tab-content">
+	<div class="tab-content ">
 	<div id="connections" class="tab-pane fade in active">
    
    
@@ -21,7 +21,7 @@
 
 <!-- Search box-->
  <br />
-    <div class = "row">
+    <div class = "row ">
   			<div class="col-sm-4">
     			<div class="input-group">
      				 <input type="text"  ng-model="search[searchBy]" class="form-control" placeholder="Search Connections">
@@ -35,7 +35,7 @@
  <br />
 
 <!-- Connection main-->
-<div class = "row">
+<div class = "row ">
 <div class = "col-md-2" ng-repeat="connection in connectionResult  | filter:search as pendingConnect">
       <div class="boxed" align = "center">
           <br />
@@ -82,7 +82,7 @@
 
 
 <!-- Requests main-->
-<div class = "row">
+<div class = "row ">
       	<div class = "col-md-2" ng-repeat="connection in queryResult| filter:req as connectList">
      		 <div class="boxed" align = "center">
      		  <br />

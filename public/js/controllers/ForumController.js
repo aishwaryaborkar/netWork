@@ -2,7 +2,6 @@ angular.module('ForumController', ['DataService'])
 .controller('ForumController', function($scope, $http, $routeParams, dataService, $location) {
 
     //Forum attributes 
-
     $scope.title; 
     $scope.heading = "How do I leverage my network?";
     $scope.posts;
@@ -91,10 +90,10 @@ angular.module('ForumController', ['DataService'])
             }
         });
 		
-		        $scope.visitProfile = function(post){
-        console.log(post.ownerId);
+		$scope.visitProfile = function(post){
+        console.log(post);
         $location.path('/viewprofile/' + post.ownerId);
-				}
+	       }
 
         $scope.addComment = function(comment){
          var monthNames = [
