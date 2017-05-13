@@ -4,29 +4,41 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 .controller('ProfileController', function($scope, $rootScope, dataService, Upload, $timeout) {
     console.log('ProfileController loaded[]');
 	toastr.success('Welcome to netWork!');
-	var curUser = sessionStorage.getItem('userId');
+
 
 	$scope.modalHeader = ''
 	$scope.editBody = ''
-	$scope.user = []
 	var editField = '';
 	var summaryHolder = ''
-	dataService.getProfile({'userId': curUser}).then(function(data){
-		$scope.user = data;
-		sessionStorage.setItem('userName', data.name);
-		console.log(data)
-		summaryHolder = $scope.user.summary.slice(0);
-		$scope.user.summary = $scope.user.summary.split("\n")
-	});
+		
+	$scope.user = {
+		userId: "581ff07eda0427b81de36544",
+		name: "JC",
+		company: "Thomson Reuters - FindLaw",
+		jobTitle: "Software Consultant",
+		education: [
+		{
+			description: "Ranked #1 (in reverse order)",
+			graduationDate: "Class of 2016",
+			schoolName: "Space Camp"	
+		},
+		{
+			description: "Ranked #1 (in reverse order)",
+			graduationDate: "Class of 2016",
+			schoolName: "SJSU"	
+		}
+		]
+	}
+
 	
-	$scope.imgURL = 'http://localhost:8080/api/userImage/' + curUser;
+	$scope.imgURL = 'http://localhost:8080/api/userImage/' + $scope.user.userId;
 	
 	$scope.profileImageClick = function(){
 		$scope.modalHeader = 'Profile Header'
 		var aBody = []
-		aBody.push({name: $scope.user.name.slice(0),
-					company: $scope.user.company.slice(0),
-					jobTitle: $scope.user.jobTitle.slice(0)
+		aBody.push({name: $scope.user.name,
+					company: $scope.user.company,
+					jobTitle: $scope.user.jobTitle
 
 			})
 		$scope.editBody = aBody
@@ -152,28 +164,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 			$scope.user.jobTitle = $scope.editBody[0].jobTitle
 			$scope.user.company = $scope.editBody[0].company
 		}	
-		// var params = {
-		// 	userId: "581ff07eda0427b81de36544",
-		// 	education: [
-		// 	{
-		// 		description: "Ranked #1 (in reverse order)",
-		// 		graduationDate: "Class of 2016",
-		// 		schoolName: "Space Camp Test"	
-		// 	},
-		// 	{
-		// 		description: "Ranked #1 (in reverse order)",
-		// 		graduationDate: "Class of 2016",
-		// 		schoolName: "SJSU"	
-		// 	}
-		// 	]
-		// }
 
-		// var params = {
-		// 	userId: "581ff07eda0427b81de36544",
-		// 	name: 'Navjot Bola',
-		// 	jobTitle: 'Software Developer',
-		// 	company: 'net[Work]'
-		// }
 		console.log(params)
 		dataService.updateProfile(params).then(function(data){
 			console.log(params)
