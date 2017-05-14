@@ -24,9 +24,9 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 			],
 		experience:
 			[
-				{company:"Rito",jobTitle:"Troll",responsibility:"."},
-				{company:"Thomson Reuters",jobTitle:"Software Engineer",responsibility:"Front End developer"},
-				{company:"Levi Strauss & Co.",jobTitle:"IT Intern",responsibility:"busy work"}
+				{company:"Rito", location:"home", jobTitle:"Troll",duration: "Sept 2011 - Present", monthsTally: "5 Yrs 8 Mos", responsibility:"be TEEMO", details:"Do what teemo do best..."},
+				{company:"Thomson Reuters", location:"Sunnyvale", jobTitle:"Software Engineer", duration: "May 2016 - Present", monthsTally: "1 Yr", responsibility:"Front End developer", details:"additional details regarding scope of work and etc goes here."},
+				{company:"Levi Strauss & Co.", location:"San Francisco", jobTitle:"IT Intern", duration: "June 2009 - Sept 2009", monthsTally: "3 Mos", responsibility:"busy worker"}
 			],
 		skills: 
 			[
