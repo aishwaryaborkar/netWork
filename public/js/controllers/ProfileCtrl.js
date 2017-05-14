@@ -17,25 +17,64 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		company: "Thomson Reuters - FindLaw",
 		jobTitle: "Software Consultant",
 		summary: ["User summary goes here", "no special format here","just plain text/paragraph format"],
-		education: [
-		{
-			description: "Ranked #1 (in reverse order)",
-			graduationDate: "Class of 2016",
-			schoolName: "Space Camp"	
-		},
-		{
-			description: "Ranked #1 (in reverse order)",
-			graduationDate: "Class of 2016",
-			schoolName: "SJSU"	
-		}],
-		experience: [{company:"Rito",jobTitle:"Troll",responsibility:"."},
-					{company:"Thomson Reuters",jobTitle:"Software Engineer",responsibility:"Front End developer"},
-					{company:"Levi Strauss & Co.",jobTitle:"IT Intern",responsibility:"busy work"}],
-		skills: [{skillName:"ReactJS",skillLevel:"80"},
-			 		{skillName:"AngularJS",skillLevel:"80"},
-					 {skillName:"Spring",skillLevel:"50"}]
+		education: 
+			[
+				{description: "Ranked #1 (in reverse order)",graduationDate: "Class of 2016",schoolName: "Space Camp"},
+				{description: "Ranked #1 (in reverse order)", graduationDate: "Class of 2016",schoolName: "SJSU"}
+			],
+		experience:
+			[
+				{company:"Rito",jobTitle:"Troll",responsibility:"."},
+				{company:"Thomson Reuters",jobTitle:"Software Engineer",responsibility:"Front End developer"},
+				{company:"Levi Strauss & Co.",jobTitle:"IT Intern",responsibility:"busy work"}
+			],
+		skills: 
+			[
+				{skillName:"ReactJS",skillLevel:"60", endorsement:10},
+			 	{skillName:"AngularJS",skillLevel:"80", endorsement:7},
+				{skillName:"Spring",skillLevel:"90", endorsement:0}
+			],
+		achievements:
+			[
+				{title:"cheevos", description:"gotta catch them all", date: "Dec 2016"}
+			]
 	}
 
+	$scope.sortBy = function(column){
+		console.log(column);
+		$scope.lastSort = column
+
+		switch(column){
+			case 'endorse':
+				$scope.user.skills.sort(function(a,b) {
+  					if (a.endorsement > b.endorsement)
+    					return -1;
+  					if (a.endorsement < b.endorsement)
+    					return 1;
+  					return 0;
+				});
+			break;
+			case 'name':
+				$scope.user.skills.sort(function(a,b) {
+  					if (a.skillName < b.skillName)
+    					return -1;
+  					if (a.skillName > b.skillName)
+    					return 1;
+  					return 0;
+				});
+			break;
+			case 'skill level':
+				$scope.user.skills.sort(function(a,b) {
+  					if (a.skillLevel > b.skillLevel)
+    					return -1;
+  					if (a.skillLevel < b.skillLevel)
+    					return 1;
+  					return 0;
+				});
+			break;
+			default:
+		}
+	}
 	
 	$scope.imgURL = 'http://localhost:8080/api/userImage/' + $scope.user.userId;
 	
