@@ -61,11 +61,11 @@
 			<div ng-repeat='x in user.education'>
 				<div class="row">
 					<div class="col-md-12">
-						<h2 style="font-weight: bold;" class="pull-left">{{x.schoolName}}</h2>
+						<h2 class="pull-left" style="font-weight: bold;">{{x.schoolName}} - {{x.graduationDate}}</h2>
 					</div>
 					<div class="col-md-12">
-						<h4>{{x.graduationDate}}</h4> 
-						<h4>{{x.description}}</h4> 
+						<h4><b>Degree : </b>{{x.degree}}  |  <b>Field of Study : </b>{{x.field}}  |  <b>GPA : </b>{{x.gpa}}</h4>
+						<p style="font-size: 15px;">{{x.details}}<p> 
 					</div>
 				</div>
 			</div>
@@ -84,10 +84,10 @@
 			<div ng-repeat='x in user.experience'>
 				<div class="row">
 					<div class="col-md-12">
-						<h2 style="font-weight: bold;" class="pull-left">{{x.company}}</h2>
+						<h2 class="pull-left" style="font-weight: bold;">{{x.jobTitle}} @ {{x.company}}</h2>
 					</div>
 					<div class="col-md-12">
-						<h4>{{x.jobTitle}}</h4> 
+						<h4></h4> 
 						<h4>{{x.responsibility}}</h4> 
 					</div>
 				</div>
@@ -124,6 +124,30 @@
 		</div>
 	</div>
 </div>
+
+<div class="row fade-in three" >
+	<div class="container" style="width: 70%; padding-bottom: 10px;">
+		<div class="jumbotron" style="padding: 10px;">
+
+			<h2  style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-trophy" aria-hidden="true" style="padding-right: 10px;"></i>Achievements</h2> 
+		    <div id="editButton"><a data-toggle="modal" data-target="#myModalAchievement" class="btn btn-default" ng-click="achievementClick()"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a></div>
+
+			<div class="container" ng-repeat='x in user.achievements'>
+					<div class="row">
+						<div class="col-md-12">
+							<h2 class="pull-left" style="font-weight: bold;">{{x.name}}</h2>
+						</div>
+						<div class="col-md-12">
+							<h4"><b>Type of Achievement : </b>{{x.type}}  |  <b>Received : </b>{{x.date}}</h4>
+						</div>
+						<p style="font-size: 15px;">{{x.details}}<p> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <!-- Profile Header modal -->
 <div class="modal fade" id="myModalImage" role="dialog">

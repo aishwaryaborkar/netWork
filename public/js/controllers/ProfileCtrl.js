@@ -19,8 +19,8 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		summary: ["User summary goes here", "no special format here","just plain text/paragraph format"],
 		education: 
 			[
-				{description: "Ranked #1 (in reverse order)",graduationDate: "Class of 2016",schoolName: "Space Camp"},
-				{description: "Ranked #1 (in reverse order)", graduationDate: "Class of 2016",schoolName: "SJSU"}
+				{degree: "BS", field:"Software Engineering", gpa:"3.62", graduationDate: "Fall 2017",schoolName: "San Jose State University", details:"some extra details of achievements during school, sports, clubs, competitions etc"},
+				{degree: "AA", field:"Systems Programming", gpa:"3.25", graduationDate: "Spring 2015",schoolName: "De Anza College"}
 			],
 		experience:
 			[
@@ -36,7 +36,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 			],
 		achievements:
 			[
-				{title:"cheevos", description:"gotta catch them all", date: "Dec 2016"}
+				{name:"Microsoft Certified Professional ", type: "certificate", details:"gotta catch them all", date: "Dec 2016"}
 			]
 	}
 
