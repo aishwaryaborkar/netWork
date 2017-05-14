@@ -16,6 +16,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		name: "JC",
 		company: "Thomson Reuters - FindLaw",
 		jobTitle: "Software Consultant",
+		summary: ["User summary goes here", "no special format here","just plain text/paragraph format"],
 		education: [
 		{
 			description: "Ranked #1 (in reverse order)",
@@ -26,8 +27,13 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 			description: "Ranked #1 (in reverse order)",
 			graduationDate: "Class of 2016",
 			schoolName: "SJSU"	
-		}
-		]
+		}],
+		experience: [{company:"Rito",jobTitle:"Troll",responsibility:"."},
+					{company:"Thomson Reuters",jobTitle:"Software Engineer",responsibility:"Front End developer"},
+					{company:"Levi Strauss & Co.",jobTitle:"IT Intern",responsibility:"busy work"}],
+		skills: [{skillName:"ReactJS",skillLevel:"80"},
+			 		{skillName:"AngularJS",skillLevel:"80"},
+					 {skillName:"Spring",skillLevel:"50"}]
 	}
 
 	
@@ -105,7 +111,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 
 		if(editField == 'summary'){
 			var params = {
-				"userId" : curUser,
+				"userId" : "581ff07eda0427b81de36544",
 				"summary": $scope.editBody
 			}
 			summaryHolder = $scope.editBody;
@@ -120,7 +126,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 				educationInfo.push(obj)
 			}
 			var params = {
-				"userId" : curUser,
+				"userId" : "581ff07eda0427b81de36544",
 				"education": educationInfo
 			}
 			$scope.user.education = $scope.editBody
@@ -134,7 +140,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 				experienceInfo.push(obj)
 			}
 			var params = {
-				"userId" : curUser,
+				"userId" : "581ff07eda0427b81de36544",
 				"experience": experienceInfo
 			}
 			$scope.user.experience = $scope.editBody
@@ -148,14 +154,14 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 				skillsInfo.push(obj)
 			}
 			var params = {
-				"userId" : curUser,
+				"userId" : "581ff07eda0427b81de36544",
 				"skills": skillsInfo
 			}
 			$scope.user.skills = $scope.editBody
 		}
 		if(editField == 'pfHeader'){
 			var params = {
-				"userId" : curUser,
+				"userId" : "581ff07eda0427b81de36544",
 				"name": $scope.editBody[0].name,
 				"jobTitle": $scope.editBody[0].jobTitle,
 				"company": $scope.editBody[0].company
@@ -193,7 +199,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		$scope.thisUsersConnections = data;
 
 		for(var i = 0; i < data.length; i++){
-			if(curUser == data[i]._id){
+			if("581ff07eda0427b81de36544" == data[i]._id){
 				alreadyReq = true
 			}
 		}
@@ -203,7 +209,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		console.log(data)
 
 		for(var i = 0; i < data.length; i++){
-			if(curUser == data[i]._id){
+			if("581ff07eda0427b81de36544" == data[i]._id){
 				alreadyReq = true
 			}
 		}
@@ -224,7 +230,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		$scope.thisUsersConnections = [];
 
 		if(!alreadyReq){
-			dataService.requestConnection({userId:curUser,connectionId:visitUserId})
+			dataService.requestConnection({userId:"581ff07eda0427b81de36544",connectionId:visitUserId})
 			toastr.success('Connection requested')
 		}
 		else{
