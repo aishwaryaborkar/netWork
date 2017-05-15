@@ -40,10 +40,17 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 			]
 	}
 
+	Element.prototype.documentOffsetTop = function () {
+    	return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop() : 0 );
+	};
+
 	$scope.scrollWin = function(eleName){
-		var obj = document.getElementById(eleName);
-		var rect = obj.getBoundingClientRect();
-    	window.scrollTo(0, rect.top - 100);
+		//document.getElementById(eleName).scrollIntoView();
+		// var rect = obj.getBoundingClientRect();
+    	// window.scrollTo(0, rect.top);
+		var top = document.getElementById(eleName).documentOffsetTop() - ( window.innerHeight / 2 );
+		window.scrollTo( 0, top+300 );
+
 	};
 
 	$scope.sortBy = function(column){
