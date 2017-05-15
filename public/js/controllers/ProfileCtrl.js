@@ -32,11 +32,16 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 			[
 				{skillName:"ReactJS",skillLevel:"60", endorsement:10},
 			 	{skillName:"AngularJS",skillLevel:"80", endorsement:7},
-				{skillName:"Spring",skillLevel:"90", endorsement:0}
+				{skillName:"Spring",skillLevel:"30", endorsement:0},
+				{skillName:"Java",skillLevel:"90", endorsement:12},
+				{skillName:"SQL",skillLevel:"60", endorsement:2},
+				{skillName:"Python",skillLevel:"25", endorsement:0},
+				{skillName:"Swift",skillLevel:"50", endorsement:1}
 			],
 		achievements:
 			[
-				{name:"Microsoft Certified Professional ", type: "certificate", details:"gotta catch them all", date: "Dec 2016"}
+				{name:"Multilingual", type: "Person Achievement", details:"Fluent in Chinese(Mandarin) and English. Elementary level of Japanese and Korean", date: " - "},
+				{name:"Microsoft Certified Professional", type: "Certificate", details:"gotta catch them all", date: "Dec 2016"}
 			]
 	}
 
@@ -203,6 +208,8 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 				var obj = $scope.editBody[key]
 				delete obj._id
 				delete obj.$$hashKey
+				if(obj.endorsement == undefined)
+					obj.endorsement = 0;
 				skillsInfo.push(obj)
 			}
 			var params = {
