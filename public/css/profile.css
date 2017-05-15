@@ -375,3 +375,20 @@ animation-delay: 2.3s;
 -moz-animation-delay: 2.6s;
 animation-delay: 2.6s;
 }
+
+/*PROFILE NAV BAR*/
+#profile_nav {
+    background-color: white;
+    width: 7%;
+    border-radius: 5px;
+    position: fixed;
+}
+
+#profile_nav > ul {
+    list-style-type: none;
+    padding: 10px;
+}
+
+#profile_nav > ul > li > a {
+    text-decoration: none;
+}

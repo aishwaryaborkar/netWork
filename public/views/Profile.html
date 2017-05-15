@@ -9,7 +9,22 @@
 
 </head>
 
+<div id = "profile_nav">
+	<ul>
+		<li><a href="#" class="summary_nav">Summary</a></li>
+		<li><a href="#">Skills</a></li>
+		<li><a href="#">Experience</a></li>
+		<li><a href="#">Education</a></li>
+	</ul>
+</div>
 
+<script>
+$(".summary_nav").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".summary").offset().top},
+        'slow');
+});
+</script>
 
 <!-- <div class="jumbotron text-center"> -->
 <div class="container fade-in one" style="margin-top: 20px; margin-bottom: 20px; width: 80%">
@@ -40,7 +55,7 @@
     </div>
 </div>
  
-<div class="row fade-in two">
+<div class="row fade-in two summary">
 	<div class="container" style="width: 70%">
 		<div class="jumbotron">
 	    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="summaryClick()">
@@ -53,7 +68,7 @@
 </div>
 
 
-<div class="row fade-in three">
+<div class="row fade-in three" id="education">
 	<div class="container" style="width: 70%">
 		<div class="jumbotron">
 	    <div id="editButton"><a data-toggle="modal" data-target="#myModalEDU" class="btn btn-default" ng-click="eduClick()">
@@ -77,7 +92,7 @@
 </div>
 
 
-<div class="row fade-in three" >
+<div class="row fade-in three" id="experience">
 	<div class="container" style="width: 70%">
 		<div class="jumbotron">
 			<h2 style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-briefcase" aria-hidden="true" style="padding-right: 10px;"></i>Experience</h2> 
@@ -99,7 +114,7 @@
 </div>
 
 
-<div class="row fade-in three" >
+<div class="row fade-in three" id="skills">
 	<div class="container" style="width: 70%; padding-bottom: 10px;">
 		<div class="jumbotron">
 
