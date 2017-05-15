@@ -54,7 +54,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		// var rect = obj.getBoundingClientRect();
     	// window.scrollTo(0, rect.top);
 		var top = document.getElementById(eleName).documentOffsetTop() - ( window.innerHeight / 2 );
-		window.scrollTo( 0, top+300 );
+		window.scrollTo( 0, top + 200);
 
 	};
 
