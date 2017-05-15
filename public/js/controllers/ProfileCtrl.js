@@ -40,6 +40,12 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 			]
 	}
 
+	$scope.scrollWin = function(eleName){
+		var obj = document.getElementById(eleName);
+		var rect = obj.getBoundingClientRect();
+    	window.scrollTo(0, rect.top - 100);
+	};
+
 	$scope.sortBy = function(column){
 		console.log(column);
 		$scope.lastSort = column

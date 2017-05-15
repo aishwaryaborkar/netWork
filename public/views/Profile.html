@@ -8,9 +8,17 @@
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 </head>
 
+<div id = "profile_nav">
+	<button ng-click="scrollWin('top')">Top of Page</button>
+	<button ng-click="scrollWin('summary')">Summary</button>
+	<button ng-click="scrollWin('skills')">Skills</button>
+	<button ng-click="scrollWin('experience')">Experience</button>
+	<button ng-click="scrollWin('education')">Education</button>
+	<button ng-click="scrollWin('achievement')">Achievement</button>
+</div>
 <!-- <div class="jumbotron text-center"> -->
 <!--<div class="element">Wherever you go, I will find you!</div>-->
-<div class="container fade-in one" style="margin-top: 20px; margin-bottom: 20px; width: 80%">
+<div class="container fade-in one" style="margin-top: 20px; margin-bottom: 20px; width: 80%" id="top">
 	<div class="row panel">
 		<div class="col-xs-4 bg_blur img-circle" ng-style="{'background-image':'url('+imgURL+')'}">
 		</div>
@@ -38,7 +46,7 @@
     </div>
 </div>
  
-<div class="row fade-in two">
+<div class="row fade-in two" id="summary" id="summary">
 	<div class="container" style="width: 70%">
 		<div class="jumbotron" style="padding: 10px;">
 	    <div id="editButton"><a data-toggle="modal" data-target="#myModal" class="btn btn-default" ng-click="summaryClick()">
@@ -51,7 +59,7 @@
 </div>
 
 
-<div class="row fade-in three" >
+<div class="row fade-in three" id="skills">
 	<div class="container" style="width: 70%; padding-bottom: 10px;">
 		<div class="jumbotron" style="padding: 10px;">
 
@@ -81,7 +89,7 @@
 
 
 
-<div class="row fade-in three" >
+<div class="row fade-in three" id="experience">
 	<div class="container" style="width: 70%">
 		<div class="jumbotron" style="padding: 10px;">
 			<h2 style="color: #0868A0; text-shadow: 0.5px 0.7px black;"><i class="fa fa-briefcase" aria-hidden="true" style="padding-right: 10px;"></i>Experience</h2> 
@@ -104,7 +112,7 @@
 	</div>
 </div>
 
-<div class="row fade-in three">
+<div class="row fade-in three" id="education">
 	<div class="container" style="width: 70%">
 		<div class="jumbotron" style="padding: 10px;">
 	    <div id="editButton"><a data-toggle="modal" data-target="#myModalEDU" class="btn btn-default" ng-click="eduClick()">
@@ -128,7 +136,7 @@
 </div>
 
 
-<div class="row fade-in three" >
+<div class="row fade-in three" id="achievement">
 	<div class="container" style="width: 70%; padding-bottom: 10px;">
 		<div class="jumbotron" style="padding: 10px;">
 
