@@ -16,7 +16,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		name: "JC",
 		company: "Thomson Reuters - FindLaw",
 		jobTitle: "Software Consultant",
-		summary: ["User summary goes here", "no special format here","just plain text/paragraph format"],
+		summary: ["User summary goes here", "no special format here","just plain text/paragraph format", "and it could be more then a few line", "but the limit is capped at", "500 characters only."],
 		education: 
 			[
 				{degree: "BS", field:"Software Engineering", gpa:"3.62", graduationDate: "Fall 2017",schoolName: "San Jose State University", details:"some extra details of achievements during school, sports, clubs, competitions etc"},
@@ -54,7 +54,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		// var rect = obj.getBoundingClientRect();
     	// window.scrollTo(0, rect.top);
 		var top = document.getElementById(eleName).documentOffsetTop() - ( window.innerHeight / 2 );
-		window.scrollTo( 0, top + 200);
+		window.scrollTo( 0, top + 300);
 
 	};
 
@@ -119,7 +119,7 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 
 	$scope.summaryClick = function(){
 		$scope.modalHeader = 'Summary'
-		$scope.editBody = summaryHolder.slice(0)
+		$scope.editBody = $scope.user.summary.join("\n")
 		editField = 'summary'
 	};
 
@@ -139,6 +139,12 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 		$scope.modalHeader = 'Skills'
 		$scope.editBody = $.extend(true,{},$scope.user.skills)
 		editField = 'skills'
+	};
+
+	$scope.achievementClick = function(){
+		$scope.modalHeader = 'Achievements'
+		$scope.editBody = $.extend(true,{},$scope.user.achievements)
+		editField = 'achievement'
 	};
 
 	$scope.minusClick = function(index){
@@ -217,6 +223,22 @@ angular.module('ProfileCtrl', ['DataService', 'ngFileUpload', 'ngImgCrop', 'ui.b
 				"skills": skillsInfo
 			}
 			$scope.user.skills = $scope.editBody
+		}
+		if(editField == 'achievement'){
+			var skillsInfo = []
+			for(var key in $scope.editBody){
+				var obj = $scope.editBody[key]
+				delete obj._id
+				delete obj.$$hashKey
+				if(obj.endorsement == undefined)
+					obj.endorsement = 0;
+				skillsInfo.push(obj)
+			}
+			var params = {
+				"userId" : "581ff07eda0427b81de36544",
+				"skills": skillsInfo
+			}
+			$scope.user.achievements = $scope.editBody
 		}
 		if(editField == 'pfHeader'){
 			var params = {

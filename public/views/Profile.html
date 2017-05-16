@@ -8,18 +8,18 @@
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 </head>
 
-<div id = "profile_nav">
-	<button ng-click="scrollWin('top')" class="btn btn-info btn-block">Top of Page</button>
+<div id = "profile_nav" style="background-color: #91e4ff;">
+	<button ng-click="scrollWin('top')" class="btn btn-info btn-block">Top</button>
 	<div id="space"></div>
 	<button ng-click="scrollWin('summary')" class="btn btn-info btn-block">Summary</button>
 	<div id="space"></div>
 	<button ng-click="scrollWin('skills')" class="btn btn-info btn-block">Skills</button>
 	<div id="space"></div>
-	<button ng-click="scrollWin('experience')" class="btn btn-info btn-block">Experience</button>
+	<button ng-click="scrollWin('experience')" class="btn btn-info btn-block">Exp</button>
 	<div id="space"></div>
-	<button ng-click="scrollWin('education')" class="btn btn-info btn-block">Education</button>
+	<button ng-click="scrollWin('education')" class="btn btn-info btn-block">Edu</button>
 	<div id="space"></div>
-	<button ng-click="scrollWin('achievement')" class="btn btn-info btn-block">Achievement</button>
+	<button ng-click="scrollWin('achievement')" class="btn btn-info btn-block">Other</button>
 </div>
 
 <!-- <div class="jumbotron text-center"> -->
@@ -276,12 +276,27 @@
 				    		<input ng-model="edu.schoolName" type="text" class="form-control">
 						</div>
 						<div class="col-md-6">
+						    <label for="email">Degree Type:</label>
+						    <input ng-model="edu.degree" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
+						    <label for="email">Field Of Study:</label>
+						    <input ng-model="edu.field" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
 						    <label for="email">Graduation Date:</label>
 						    <input ng-model="edu.graduationDate" type="text" class="form-control">
 						</div>
 						<div class="col-md-6">
-						    <label for="email">Description:</label>
-						    <input ng-model="edu.description" type="text" class="form-control">
+						    <label for="email">GPA:</label>
+						    <input ng-model="edu.gpa" type="text" class="form-control">
+						</div>
+						<div class="col-md-12">
+							<md-input-container class="md-block">
+						  		<label for="$index">Additional Information</label>
+								<textarea ng-model="edu.details" md-maxlenght="500" rows="5" md-select-on-focus>
+								</textarea>
+							</md-input-container>
 						</div>
 					</div>
 					<div><h2>&nbsp</h2></div>
@@ -315,9 +330,13 @@
 							<i class="fa fa-minus-square fa-2x" aria-hidden="true" style="color: red;" ng-click='minusClick($index)'></i>
 						</a>
 						</div>
-						<div class="col-md-11">
+						<div class="col-md-5">
 					    	<label for="email">Company:</label>
 				    		<input ng-model="exp.company" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
+						    <label for="email">Location:</label>
+						    <input ng-model="exp.location" type="text" class="form-control">
 						</div>
 						<div class="col-md-6">
 						    <label for="email">Job Title:</label>
@@ -327,6 +346,22 @@
 						    <label for="email">Responsibilities:</label>
 						    <input ng-model="exp.responsibility" type="text" class="form-control">
 						</div>
+						<div class="col-md-6">
+						    <label for="email">From - Until:</label>
+						    <input ng-model="exp.duration" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
+						    <label for="email">Duration:</label>
+						    <input ng-model="exp.monthsTally" type="text" class="form-control">
+						</div>
+						<div class="col-md-12">
+							<md-input-container class="md-block">
+						  		<label for="$index">Additional Information</label>
+								<textarea ng-model="exp.details" md-maxlenght="500" rows="5" md-select-on-focus>
+								</textarea>
+							</md-input-container>
+						</div>
+
 					</div>
 					<div><h2>&nbsp</h2></div>
 				</div>
@@ -343,7 +378,7 @@
 	</div>
 </div>
 
-<!-- Education modal -->
+<!-- Skills modal -->
 <div class="modal fade" id="myModalSkills" role="dialog">
 	<div class="modal-dialog">
 	    <div class="modal-content">
@@ -371,6 +406,58 @@
 						
 					</div>
 					<div><h4>&nbsp</h4></div>
+				</div>
+	        </div>
+	        <div class="modal-footer">
+				<a href="#">
+	    			<i class="fa fa-plus-square fa-2x pull-left" aria-hidden="true" style="color: green;" ng-click='plusClick($index)'></i>
+	    		</a>
+	            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+	            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update()">Save changes</button>
+	        </div>
+	    </div>
+	    <!-- /.modal-content -->
+	</div>
+</div>
+
+
+<!-- Achievement modal -->
+<div class="modal fade" id="myModalAchievement" role="dialog">
+	<div class="modal-dialog">
+	    <div class="modal-content">
+	        <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	            <h4 class="modal-title">Edit {{modalHeader}}</h4>
+	        </div>
+	        <div class="modal-body">
+				<div ng-repeat='cheevo in editBody track by $index'>
+					<div class="row">
+						<div class="col-md-1">
+						<a href="#">
+							<i class="fa fa-minus-square fa-2x" aria-hidden="true" style="color: red;" ng-click='minusClick($index)'></i>
+						</a>
+						</div>
+						<div class="col-md-11">
+					    	<label for="email">Achievement Name:</label>
+				    		<input ng-model="cheevo.name" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
+						    <label for="email">Type:</label>
+						    <input ng-model="cheevo.type" type="text" class="form-control">
+						</div>
+						<div class="col-md-6">
+						    <label for="email">Received:</label>
+						    <input ng-model="cheevo.date" type="text" class="form-control">
+						</div>
+						<div class="col-md-12">
+							<md-input-container class="md-block">
+						  		<label for="$index">Additional Information</label>
+								<textarea ng-model="cheevo.details" md-maxlenght="500" rows="5" md-select-on-focus>
+								</textarea>
+							</md-input-container>
+						</div>
+					</div>
+					<div><h2>&nbsp</h2></div>
 				</div>
 	        </div>
 	        <div class="modal-footer">

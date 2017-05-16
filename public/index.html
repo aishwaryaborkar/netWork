@@ -17,9 +17,10 @@
 	<!-- JS(External Library/Source) -->
 	<script src="libs/angular/angular.min.js"></script>
 	<script src="http://apps.bdimg.com/libs/angular.js/1.5.0-beta.0/angular-sanitize.min.js"></script>
-	<script src="libs/angular-route/angular-route.min.js"></script>
-	
-	
+	<script src="libs/angular-route/angular-route.min.js"></script>	
+	<script src="libs/angular-aria/angular-aria.js"></script>
+	<script src="libs/angular-animate/angular-animate.js"></script>
+	<script src="libs/angular-material/angular-material.js"></script>
 
 	<!-- JS(Custom Source) -->
 	<script src="js/controllers/MainCtrl.js"></script>
@@ -63,7 +64,7 @@
 	</head>
 
 <body ng-app="netWork" ng-controller="MainController as ctrl" style="min-width : 1000px">
-	<div class="container" id="con2">
+	<div class="container" id="con2" style="background-color: #91e4ff;">
 
 		<!-- HEADER(NOT LOGGED IN) -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" ng-hide="$root.isUserLoggedIn">
@@ -105,7 +106,7 @@
 		<nav class="navbar navbar-inverse navbar-fixed-bottom" style="min-height: 30px">
 			<div class="navbar-footer">
 			<span>
-				<spam style="color:white;">&copy;2016 by Team Ash. All Rights Reserved.   </span><a href="/aboutus" style="color:white; padding-left: 10px">About Us</a>
+				<spam style="color:white;">&copy;2017 by Geek Squad. All Rights Reserved.
 				</span>
 			</div>
 			<ul class="nav navbar-nav">
